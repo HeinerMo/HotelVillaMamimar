@@ -1,0 +1,113 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "CoreDataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "CoreEntities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CoreDataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CoreDataAccess.dll": {}
+        }
+      },
+      "CoreEntities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/CoreEntities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CoreEntities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CoreDataAccess/1.0.0": {
+      "type": "project",
+      "path": "../CoreDataAccess/CoreDataAccess.csproj",
+      "msbuildProject": "../CoreDataAccess/CoreDataAccess.csproj"
+    },
+    "CoreEntities/1.0.0": {
+      "type": "project",
+      "path": "../CoreEntities/CoreEntities.csproj",
+      "msbuildProject": "../CoreEntities/CoreEntities.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "CoreDataAccess >= 1.0.0",
+      "CoreEntities >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\tonis\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreBusiness\\CoreBusiness.csproj",
+      "projectName": "CoreBusiness",
+      "projectPath": "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreBusiness\\CoreBusiness.csproj",
+      "packagesPath": "C:\\Users\\tonis\\.nuget\\packages\\",
+      "outputPath": "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreBusiness\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\tonis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreDataAccess\\CoreDataAccess.csproj": {
+              "projectPath": "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreDataAccess\\CoreDataAccess.csproj"
+            },
+            "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreEntities\\CoreEntities.csproj": {
+              "projectPath": "F:\\Repositories\\HotelVillaMamimar\\backend\\Core\\src\\CoreEntities\\CoreEntities.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\bin\Debug\net7.0\CoreDataAccess.deps.json
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\bin\Debug\net7.0\CoreDataAccess.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\bin\Debug\net7.0\CoreDataAccess.pdb
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\bin\Debug\net7.0\CoreEntities.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\bin\Debug\net7.0\CoreEntities.pdb
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.csproj.AssemblyReference.cache
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.AssemblyInfoInputs.cache
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.AssemblyInfo.cs
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.csproj.CoreCompileInputs.cache
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.csproj.CopyComplete
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\refint\CoreDataAccess.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.pdb
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\ref\CoreDataAccess.dll

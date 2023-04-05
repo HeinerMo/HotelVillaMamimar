@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "CoreBusiness/1.0.0": {
+        "dependencies": {
+          "CoreDataAccess": "1.0.0",
+          "CoreEntities": "1.0.0"
+        },
+        "runtime": {
+          "CoreBusiness.dll": {}
+        }
+      },
+      "CoreDataAccess/1.0.0": {
+        "dependencies": {
+          "CoreEntities": "1.0.0"
+        },
+        "runtime": {
+          "CoreDataAccess.dll": {}
+        }
+      },
+      "CoreEntities/1.0.0": {
+        "runtime": {
+          "CoreEntities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CoreBusiness/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CoreDataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CoreEntities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

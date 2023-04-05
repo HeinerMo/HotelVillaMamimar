@@ -1,0 +1,12 @@
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\bin\Debug\net7.0\CoreEntities.deps.json
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\bin\Debug\net7.0\CoreEntities.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\bin\Debug\net7.0\CoreEntities.pdb
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.csproj.AssemblyReference.cache
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.GeneratedMSBuildEditorConfig.editorconfig
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.AssemblyInfoInputs.cache
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.AssemblyInfo.cs
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.csproj.CoreCompileInputs.cache
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\refint\CoreEntities.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\CoreEntities.pdb
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreEntities\obj\Debug\net7.0\ref\CoreEntities.dll
