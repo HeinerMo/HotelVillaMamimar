@@ -1,0 +1,12 @@
+.navbar {
+    height: 100px;
+    background-color: #0c2e59;
+    color: #ffffff;
+    align-content: center;
+    font-weight: bolder;
+    border: 5px solid #328C52;
+}
+
+.logo {
+    margin-left: 30px;
+}
