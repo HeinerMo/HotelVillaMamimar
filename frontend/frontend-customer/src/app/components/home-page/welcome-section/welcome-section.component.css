@@ -1,0 +1,20 @@
+.welcome-section-container {
+    display: flex;
+    margin: 1rem;
+    justify-content: space-evenly;
+}
+
+.welcome-section-div {
+    padding: 2rem;
+    width: 45%;
+}
+
+.welcome-section-image {
+    width: 100%;
+}
+
+.welcome-section-message {
+    text-indent: 3em;
+    font-weight: 600;
+    font-size: 1.2rem;
+}

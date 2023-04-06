@@ -12,6 +12,7 @@ import { RatesPageComponent } from './components/rates-page/rates-page.component
 import { LocationPageComponent } from './components/location-page/location-page.component';
 import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
 import { ReservationPageComponent } from './components/reservation-page/reservation-page.component';
+import { WelcomeSectionComponent } from './components/home-page/welcome-section/welcome-section.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReservationPageComponent } from './components/reservation-page/reservat
     RatesPageComponent,
     LocationPageComponent,
     ContactsPageComponent,
-    ReservationPageComponent
+    ReservationPageComponent,
+    WelcomeSectionComponent
   ],
   imports: [
     BrowserModule,
