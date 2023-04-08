@@ -1,1 +1,11 @@
-<h1>Sección sobre nosotros</h1>
+
+<div class="gallery-tittle">Galería</div>
+<section class="gallery-container">
+    <div class="full-image-view">
+        <img #selectedImageRef [src]="this.selectedImage" class="selected-image" alt="error"/>
+    </div>
+
+    <div class="images-container">
+        <img *ngFor="let image of this.imagesUrl" class="gallery-image" src="{{image}}" (click)="this.setSelectedImage(image)"/>
+    </div>
+</section>
