@@ -13,6 +13,8 @@ import { LocationPageComponent } from './components/location-page/location-page.
 import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
 import { ReservationPageComponent } from './components/reservation-page/reservation-page.component';
 import { WelcomeSectionComponent } from './components/home-page/welcome-section/welcome-section.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdvertisingSectionComponent } from './components/body/advertising-section/advertising-section.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { WelcomeSectionComponent } from './components/home-page/welcome-section/
     LocationPageComponent,
     ContactsPageComponent,
     ReservationPageComponent,
-    WelcomeSectionComponent
+    WelcomeSectionComponent,
+    AdvertisingSectionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
