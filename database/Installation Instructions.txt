@@ -1,0 +1,28 @@
+First time installation
+
+    In order to be able to execute the installation script for this database
+    your SQL Server instance mush have FILESTREAM enabled. You can do this
+    with the following steps:
+
+    To enable and change FILESTREAM settings:
+    1) On the Start menu search the SQL Server Configuration Manager, 
+        and then click SQL Server Configuration Manager.
+    2) In the list of services, right-click SQL Server Services, and then click Open.
+    3) In the SQL Server Configuration Manager snap-in, locate the 
+        instance of SQL Server on which you want to enable FILESTREAM.
+    4) Right-click the instance, and then click Properties.
+    5) In the SQL Server Properties dialog box, click the FILESTREAM tab.
+    6) Select the Enable FILESTREAM for Transact-SQL access check box.
+    7) Click Apply.
+    8) In SQL Server Management Studio, click New Query to display the Query Editor.
+    9) In Query Editor, enter the following Transact-SQL code:
+        EXEC sp_configure filestream_access_level, 2
+        RECONFIGURE  
+    10) Click Execute.
+    11) Restart the SQL Server service from the SQL Server Configuration Manager.
+
+
+    Finally, to be able to create the required files, you need to create a folder
+    called "data" onto your C: drive as follows: "C:\data". This is the folder
+    where the database files will be stored.
+
