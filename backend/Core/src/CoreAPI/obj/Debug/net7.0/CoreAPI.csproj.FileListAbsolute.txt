@@ -37,3 +37,5 @@ F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreAPI\obj\Debug\net7.0\refi
 F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreAPI\obj\Debug\net7.0\CoreAPI.pdb
 F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreAPI\obj\Debug\net7.0\CoreAPI.genruntimeconfig.cache
 F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreAPI\obj\Debug\net7.0\ref\CoreAPI.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
