@@ -15,6 +15,7 @@ import { ReservationPageComponent } from './components/reservation-page/reservat
 import { WelcomeSectionComponent } from './components/home-page/welcome-section/welcome-section.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdvertisingSectionComponent } from './components/body/advertising-section/advertising-section.component';
+import { FacilitiesPageComponent } from './components/facilities-page/facilities-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdvertisingSectionComponent } from './components/body/advertising-secti
     ContactsPageComponent,
     ReservationPageComponent,
     WelcomeSectionComponent,
-    AdvertisingSectionComponent
+    AdvertisingSectionComponent,
+    FacilitiesPageComponent
   ],
   imports: [
     BrowserModule,

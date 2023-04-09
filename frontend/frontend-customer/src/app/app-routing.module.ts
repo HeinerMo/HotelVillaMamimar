@@ -7,6 +7,7 @@ import { LocationPageComponent } from './components/location-page/location-page.
 import { RatesPageComponent } from './components/rates-page/rates-page.component';
 import { ReservationPageComponent } from './components/reservation-page/reservation-page.component';
 import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
+import { FacilitiesPageComponent } from './components/facilities-page/facilities-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   },{
     path: 'about',
     component: AboutPageComponent,
+  },{
+    path: 'facilities',
+    component: FacilitiesPageComponent,
   }
   ,{
     path: 'location',
