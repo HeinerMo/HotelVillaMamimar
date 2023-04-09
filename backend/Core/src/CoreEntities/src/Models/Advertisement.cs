@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CoreEntities.src.Models
 {
-    public class Season
+    public class Advertisement
     {
         public int? Id { get; set; }
-        public string? Name { get; set; } = string.Empty;
-        public DateTime? StartingDate { get; set; }
-        public DateTime? EndingDate { get; set; }
+        public string? Url { get; set; } = string.Empty;
+
+        public IEnumerable<AdvertisementImage>? AdvertisementImages { get; set; }
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CoreEntities.src.Models
 {
-    public class Season
+    public class Location
     {
         public int? Id { get; set; }
-        public string? Name { get; set; } = string.Empty;
-        public DateTime? StartingDate { get; set; }
-        public DateTime? EndingDate { get; set; }
+        public float? Latitude { get; set; }
+        public float? Logitude { get; set; }
+        public string? ExtraDetails { get; set; } = String.Empty;
     }
 }
