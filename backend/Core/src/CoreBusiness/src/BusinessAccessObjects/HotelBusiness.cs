@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoreDataAccess.src.DataAccessObjects;
+using CoreEntities.DataTranferObjects;
+using CoreEntities.src.Models;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace CoreBusiness.src.BusinessAccessObjects
 {
@@ -15,6 +19,11 @@ namespace CoreBusiness.src.BusinessAccessObjects
         public HotelBusiness()
         {
             this.hotelDataAccess = new HotelDataAccess();
+        }
+
+        public async Task<ActionResult<ResponseDTO<HotelInformation>>> GetHotelInformation(int hotelInforamtionId)
+        {
+            return await hotelDataAccess.GetHotelInformation(hotelInforamtionId);
         }
 
     }

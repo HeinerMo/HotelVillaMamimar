@@ -86,7 +86,7 @@ BEGIN TRANSACTION
 		,FOREIGN KEY (roomTypeId) REFERENCES tb_room_type (id));
 
 	--Reservation
-	CREATE TABLE tb_resevation (
+	CREATE TABLE tb_reservation (
 		id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL
 		,startingDate DATE NOT NULL
 		,endingDate DATE NOT NULL

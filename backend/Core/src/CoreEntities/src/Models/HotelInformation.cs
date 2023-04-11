@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CoreEntities.src.Models
 {
+    [Table("tb_hotel_information")]
     public class HotelInformation
     {
         public int? Id { get; set; }

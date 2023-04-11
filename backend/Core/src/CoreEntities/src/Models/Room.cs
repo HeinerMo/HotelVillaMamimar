@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CoreEntities.src.Models
 {
+    [Table("tb_room")]
     public class Room
     {
         public int? Id { get; set; }
-        public int? roomTypeId { get; set; }
+        public int? RoomTypeId { get; set; }
         public Boolean Active { get; set; }
 
         public IEnumerable<Reservation>? Reservations { get; set; }
