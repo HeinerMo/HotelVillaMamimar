@@ -40,6 +40,10 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("varchar(100)")
             .HasColumnName("creditCardNumber");
 
+            builder.HasMany(c => c.Reservations)
+                .WithOne(b => b.Customer)
+                .HasForeignKey(b => b.Id);
+
             builder.ToTable("tb_customer");
 
         }

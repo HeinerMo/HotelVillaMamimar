@@ -21,6 +21,10 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("varchar(500)")
             .HasColumnName("description");
 
+            builder.HasMany(c => c.FacilityImages)
+                .WithOne(b => b.Facility)
+                .HasForeignKey(b => b.FacilityId);
+
             builder.ToTable("tb_facility");
 
         }

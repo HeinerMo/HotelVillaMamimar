@@ -21,6 +21,10 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("int")
             .HasColumnName("imageId");
 
+            builder.HasOne(c => c.Image)
+                .WithMany(b => b.HotelWelcomeImages)
+                .HasForeignKey(b => b.ImageId);
+
             builder.ToTable("tb_hotel_welcome_image");
         }
     }

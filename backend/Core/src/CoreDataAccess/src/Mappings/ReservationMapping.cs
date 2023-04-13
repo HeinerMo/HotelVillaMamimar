@@ -35,6 +35,17 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("int")
             .HasColumnName("customerId");
 
+
+            //EF Relation
+
+            builder.HasOne(c => c.Room)
+                .WithMany(b => b.Reservations)
+                .HasForeignKey(b => b.RoomId);
+
+            builder.HasOne(c => c.Customer)
+                .WithMany(b => b.Reservations)
+                .HasForeignKey(b => b.CustomerId);
+
             builder.ToTable("tb_reservation");
         }
 

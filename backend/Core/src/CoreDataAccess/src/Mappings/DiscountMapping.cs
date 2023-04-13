@@ -38,6 +38,10 @@ namespace CoreDataAccess.src.Mappings
                .HasColumnType("int")
            .HasColumnName("roomTypeId");
 
+            builder.HasOne(c => c.RoomType)
+                .WithMany(b => b.Discounts)
+                .HasForeignKey(b => b.RoomTypeId);
+
             builder.ToTable("tb_discount");
         }
 

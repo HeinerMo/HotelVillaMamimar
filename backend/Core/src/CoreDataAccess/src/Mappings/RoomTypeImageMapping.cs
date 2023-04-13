@@ -25,6 +25,10 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("int")
             .HasColumnName("roomTypeId");
 
+            builder.HasOne(c => c.Image)
+                .WithMany(b => b.RoomTypeImages)
+                .HasForeignKey(b => b.RoomTypeId);
+
             builder.ToTable("tb_room_type_image");
 
         }

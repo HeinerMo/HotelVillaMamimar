@@ -25,6 +25,11 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("bit")
             .HasColumnName("active");
 
+            builder.HasOne(c => c.RoomType)
+                .WithMany(b => b.Rooms)
+                .HasForeignKey(b => b.RoomTypeId);
+
+
             builder.ToTable("tb_room");
 
         }

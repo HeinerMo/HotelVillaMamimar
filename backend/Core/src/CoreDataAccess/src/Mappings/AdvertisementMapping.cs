@@ -21,6 +21,12 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("varchar(100)")
             .HasColumnName("url");
 
+            //EF Relation
+
+            builder.HasMany(c => c.AdvertisementImages)
+                .WithOne(b => b.Advertisement)
+                .HasForeignKey(b => b.AdvertisementId);
+
             builder.ToTable("tb_advertisement");
         }
 
