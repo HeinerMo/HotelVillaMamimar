@@ -31,7 +31,7 @@ import { FacilitiesPageComponent } from './components/facilities-page/facilities
     ReservationPageComponent,
     WelcomeSectionComponent,
     AdvertisingSectionComponent,
-    FacilitiesPageComponent
+    FacilitiesPageComponent,
   ],
   imports: [
     BrowserModule,
