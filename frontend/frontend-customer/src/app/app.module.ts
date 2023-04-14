@@ -16,6 +16,8 @@ import { WelcomeSectionComponent } from './components/home-page/welcome-section/
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdvertisingSectionComponent } from './components/body/advertising-section/advertising-section.component';
 import { FacilitiesPageComponent } from './components/facilities-page/facilities-page.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { FacilitiesPageComponent } from './components/facilities-page/facilities
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
