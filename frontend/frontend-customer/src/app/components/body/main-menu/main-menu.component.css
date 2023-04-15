@@ -1,14 +1,11 @@
 .menu-sidebar-container {
     color: black;
-    height: 100%;
-    width: 250px;
-    min-width: 250px;
-    text-align: left;
+    height: fit-content;
+    width: 100%;
+    text-align: center;
     position: relative;
-
     background-color: #0c2e59;
-    color: white;
-    border: 5px solid #ffffff;
+    margin-bottom: 0.3rem;
 }
 
 .menu-sidebar-container>.menu-sidebar {
@@ -24,19 +21,18 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    align-items: left;
 }
 
 .menu-sidebar-container>.menu-sidebar>ul li {
     display: flex;
-
     align-items:center;
     justify-content:center;
-
-    height: 35px;
+    height: fit-content;
+    width: 90%;
     background-color: transparent;
-  
     list-style-position:inside;
-    margin-bottom: 10px;
+    margin: 0.5rem;
 }
 
 .menu-sidebar-container>.menu-sidebar>ul>li a {  
@@ -44,28 +40,21 @@
     color: black;
     font-weight: bold;
     background-color: white;
-    
-    border-radius: 5px;
-    border: 3px solid white;
-
-    width: 200px;
-
+    border-radius: 1em;
+    width: 100%;
     display: flex;
-
     align-items:center;
     justify-content:center;
+    padding: 0.1em;
 }
 
 .menusidebar-header {
     display: flex;
-
     align-items:center;
     justify-content:center;
-    
     font-weight: bolder;
     font-size: 18px;
     height: 40px;
     width: 100%;
-
     background-color: white;
 }

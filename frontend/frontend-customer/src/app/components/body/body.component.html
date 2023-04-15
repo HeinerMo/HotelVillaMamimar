@@ -4,13 +4,14 @@
 
     <div class="app-body-main">
 
-        <app-main-menu></app-main-menu>
+        <div class="side-bar">
+            <app-main-menu></app-main-menu>
+            <app-advertising-section></app-advertising-section>
+        </div>
 
         <main class="app-body-content">
             <router-outlet></router-outlet>
         </main>
-
-        
     </div>
 
     <footer class="footer">
