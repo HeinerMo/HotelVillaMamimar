@@ -12,7 +12,7 @@
 .app-body-content {
     padding: 1em;
     display: flex;
-    justify-content: center;
+    align-items: left;
     flex-grow: 1;
     flex-direction: column;
     width: 85%;
