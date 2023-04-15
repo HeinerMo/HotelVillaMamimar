@@ -20,7 +20,7 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("decimal(8,6)")
             .HasColumnName("latitude");
 
-            builder.Property(c => c.Logitude)
+            builder.Property(c => c.Longitude)
                 .IsRequired()
                 .HasColumnType("deciaml(9,6)")
             .HasColumnName("longitude");

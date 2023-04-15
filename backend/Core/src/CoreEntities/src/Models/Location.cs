@@ -13,7 +13,7 @@ namespace CoreEntities.src.Models
     {
         public int? Id { get; set; }
         public float? Latitude { get; set; }
-        public float? Logitude { get; set; }
+        public float? Longitude { get; set; }
         public string? ExtraDetails { get; set; } = String.Empty;
     }
 }
