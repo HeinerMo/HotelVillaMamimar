@@ -33,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReservationPageComponent,
     WelcomeSectionComponent,
     AdvertisingSectionComponent,
-    FacilitiesPageComponent
+    FacilitiesPageComponent,
   ],
   imports: [
     BrowserModule,
