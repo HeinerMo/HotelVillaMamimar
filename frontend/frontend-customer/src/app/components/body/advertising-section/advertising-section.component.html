@@ -1,30 +1,36 @@
 <div>
-    <ngb-carousel *ngIf="images">
+    <ngb-carousel *ngIf="advertising">
         <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-                <img [src]="images[0]" alt="Random first slide" />
+                <a [href]="advertising[0].url">
+                    <img class="imageID" [src]="advertising[0].image" alt="Publicidad 1" />
+                </a>
             </div>
             <div class="carousel-caption">
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <h3>Info publicidad </h3>
+                <p>Info Publicidad</p>
             </div>
         </ng-template>
         <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-                <img [src]="images[1]" alt="Random second slide" />
+                <a [href]="advertising[1].url">
+                    <img class="imageID" [src]="advertising[1].image" alt="Publicidad 2" />
+                </a>
             </div>
             <div class="carousel-caption">
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Info publicidad</h3>
+                <p>Info Publicidad</p>
             </div>
         </ng-template>
         <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-                <img [src]="images[2]" alt="Random third slide" />
+                <a [href]="advertising[2].url">
+                    <img class="imageID" [src]="advertising[2].image" alt="Publicidad 3" />
+                </a>
             </div>
             <div class="carousel-caption">
-                <h3>Third slide label</h3>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <h3>Info publicidad</h3>
+                <p>Info Publicidad</p>
             </div>
         </ng-template>
     </ngb-carousel>
