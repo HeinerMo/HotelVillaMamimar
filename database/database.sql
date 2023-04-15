@@ -48,9 +48,9 @@ BEGIN TRANSACTION
 	--Location
 	CREATE TABLE tb_location (
 		id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL
-		,latitude DECIMAL(8,6) NOT NULL
-		,longitude DECIMAL(9,6) NOT NULL
-		,extraDetails VARCHAR(100) NULL);
+		,latitude DECIMAL(8,6)
+		,longitude DECIMAL(9,6)
+		,extraDetails VARCHAR(400) NULL);
 
 	--Room Type
 	CREATE TABLE tb_room_type (
@@ -163,6 +163,13 @@ BEGIN TRANSACTION
 	 This section populates the data in the tables that are necessary. 
 	 */
 	PRINT('Populating tables...') 
+
+	INSERT INTO tb_location 
+		(extraDetails)
+	VALUES
+		('Pejivalle de Jiménez, un kilometro antes de la Reserva de Vida Silvestre la Marta Cartago, Provincia de Cartago, Costa Rica')
+
+
 	COMMIT 
 	PRINT('Database ready!')
 END TRY 
