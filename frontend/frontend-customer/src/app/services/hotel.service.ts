@@ -16,7 +16,7 @@ export class HotelService {
   }
 
   public getHotel(): Observable<ResponseDTO<Hotel>> {
-    return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetHotel`);
+    return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetHotelInformation`);
   }
 
   public getGalleryAbout(): Observable<any> {

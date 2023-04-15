@@ -13,29 +13,33 @@ const routes: Routes = [
   {
     path: '',
     component: BodyComponent,
-  children: [ {
-    path: 'home',
-    component: HomePageComponent,
-  },{
-    path: 'about',
-    component: AboutPageComponent,
-  },{
-    path: 'facilities',
-    component: FacilitiesPageComponent,
+    children: [{
+      path: '',
+      component: HomePageComponent,
+    }, {
+      path: 'home',
+      component: HomePageComponent,
+    }, {
+      path: 'about',
+      component: AboutPageComponent,
+    }, {
+      path: 'facilities',
+      component: FacilitiesPageComponent,
+    }
+      , {
+      path: 'location',
+      component: LocationPageComponent,
+    }, {
+      path: 'rates',
+      component: RatesPageComponent,
+    }, {
+      path: 'reservation',
+      component: ReservationPageComponent,
+    }, {
+      path: 'contacts',
+      component: ContactsPageComponent,
+    }]
   }
-  ,{
-    path: 'location',
-    component: LocationPageComponent,
-  },{
-    path: 'rates',
-    component: RatesPageComponent,
-  },{
-    path: 'reservation',
-    component: ReservationPageComponent,
-  },{
-    path: 'contacts',
-    component: ContactsPageComponent,
-  }]}
 ];
 
 @NgModule({

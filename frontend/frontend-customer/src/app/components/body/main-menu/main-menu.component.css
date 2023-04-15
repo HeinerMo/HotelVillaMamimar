@@ -1,14 +1,14 @@
 .menu-sidebar-container {
     color: black;
     height: 100%;
-    width: 180px;
-    min-width: 180px;
+    width: 250px;
+    min-width: 250px;
     text-align: left;
     position: relative;
 
     background-color: #0c2e59;
     color: white;
-    border: 5px solid #328C52;
+    border: 5px solid #ffffff;
 }
 
 .menu-sidebar-container>.menu-sidebar {
@@ -46,9 +46,9 @@
     background-color: white;
     
     border-radius: 5px;
-    border: 3px solid #328C52;
+    border: 3px solid white;
 
-    width: 160px;
+    width: 200px;
 
     display: flex;
 
@@ -67,5 +67,5 @@
     height: 40px;
     width: 100%;
 
-    background-color: #328C52;
+    background-color: white;
 }
