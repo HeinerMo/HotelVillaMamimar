@@ -6,6 +6,6 @@
     </div>
 
     <div class="images-container">
-        <img *ngFor="let image of this.imagesUrl" class="gallery-image" src="{{image}}" (click)="this.setSelectedImage(image)"/>
+        <img *ngFor="let image of this.imagesUrl" class="gallery-image" [src]="image" (click)="this.setSelectedImage(image)"/>
     </div>
 </section>

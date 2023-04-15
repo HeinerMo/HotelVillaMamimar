@@ -26,5 +26,10 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await hotelDataAccess.GetHotelInformation(hotelInforamtionId);
         }
 
+        public async Task<ActionResult<ResponseDTO<List<HotelAboutImage>>>> GetGalleryAbout()
+        {
+            return await hotelDataAccess.GetGalleryAbout();
+        }
+
     }
 }

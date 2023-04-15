@@ -19,4 +19,8 @@ export class HotelService {
     return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetHotel`);
   }
 
+  public getGalleryAbout(): Observable<any> {
+    return this.httpClient.get(`https://localhost:7120/api/Hotel/GetGalleryAbout`);
+  }
+
 }

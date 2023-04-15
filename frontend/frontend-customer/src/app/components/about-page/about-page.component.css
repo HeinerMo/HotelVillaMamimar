@@ -12,10 +12,10 @@
 
 .full-image-view {
     min-width: 130px;
-    height: 20rem;
-    max-width: 280px;
-    max-height: 280px;
-    margin-right: 20px;
+    width: 100%;
+    max-width: 320px;
+    max-height:290px;
+    margin-right: 10px;
     margin-bottom: 20px;
     padding: 5px;
     background-color: #0c2e59;
@@ -37,7 +37,7 @@
     
     min-width: 140px;
     height: 20rem;
-    max-width: 290px;
+    max-width: 320px;
     max-height: 290px;
     background-color: #0c2e59;  
 }

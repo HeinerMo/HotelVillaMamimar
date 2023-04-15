@@ -24,5 +24,11 @@ namespace CoreAPI.Controllers
             return await hotelBusiness.GetHotelInformation(hotelInforamtionId);
         }
 
+        [HttpGet]
+        [Route("GetGalleryAbout")]
+        public async Task<ActionResult<ResponseDTO<List<HotelAboutImage>>>> GetGalleryAbout()
+        {
+            return await hotelBusiness.GetGalleryAbout();
+        }
     }
 }
