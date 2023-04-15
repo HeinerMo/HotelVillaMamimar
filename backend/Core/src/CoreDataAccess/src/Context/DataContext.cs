@@ -12,9 +12,8 @@ namespace CoreDataAccess.src.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=hotelMamimar;Persist Security Info=True;integrated security=True;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-JFUL1F7;Initial Catalog=hotelMamimar;Integrated Security=True;TrustServerCertificate=True;");
         }
-
 
         public DbSet<Season> Seasons => Set<Season>();
         public DbSet<Location> Locations => Set<Location>();

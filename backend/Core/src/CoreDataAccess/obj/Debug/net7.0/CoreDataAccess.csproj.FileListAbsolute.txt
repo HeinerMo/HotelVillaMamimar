@@ -13,3 +13,5 @@ F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7
 F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\refint\CoreDataAccess.dll
 F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.pdb
 F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\ref\CoreDataAccess.dll
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\bin\Debug\net7.0\CoreDataAccess.runtimeconfig.json
+F:\Repositories\HotelVillaMamimar\backend\Core\src\CoreDataAccess\obj\Debug\net7.0\CoreDataAccess.genruntimeconfig.cache
