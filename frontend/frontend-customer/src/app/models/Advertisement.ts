@@ -1,10 +1,10 @@
 
 export class Advertisement{
   
-    image?: ImageData
-    url?: URL
+    image?: String
+    url?: String
     
-    constructor({image, url}:{image?: ImageData,url?: URL}) {
+    constructor({image, url}:{image?: String,url?: String}) {
         this.image = image
         this.url = url
     }
