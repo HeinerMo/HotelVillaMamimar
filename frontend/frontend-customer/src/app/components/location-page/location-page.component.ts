@@ -10,15 +10,16 @@ import { HotelService } from 'src/app/services/hotel.service';
 })
 export class LocationPageComponent implements OnInit {
 
-  hotel?: Hotel;
+  location?: Location;
 
   constructor(private hotelService: HotelService) {
   }
 
 
   ngOnInit(): void {
-    this.hotelService.getHotel().subscribe((responseDTO) => {
-      this.hotel = Object.assign(new Hotel({}), responseDTO.item);
+    this.hotelService.getLocation().subscribe((responseDTO) => {
+      this.location = Object.assign(new Location({}), responseDTO.item);
+      console.log(this.location.extraDetails)
     })
   }
 }

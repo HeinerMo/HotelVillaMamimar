@@ -15,8 +15,16 @@ export class HotelService {
     this.controllerURL = "Hotel";
   }
 
-  public getHotel(): Observable<ResponseDTO<Hotel>> {
-    return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetHotelInformation`);
+  public getHotel(id: number): Observable<ResponseDTO<Hotel>> {
+    return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetHotelInformation?hotelInforamtionId=1`);
+  }
+
+  public getLocation(): Observable<ResponseDTO<Location>> {
+    return this.httpClient.get<ResponseDTO<Location>>(`${environment.apiUrl}/${this.controllerURL}/GetLocation`);
+  }
+
+  public getGalleryAbout(): Observable<any> {
+    return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetGalleryAbout`);
   }
 
 }

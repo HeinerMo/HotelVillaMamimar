@@ -13,16 +13,31 @@ namespace CoreAPI.Controllers
 
         private readonly HotelBusiness hotelBusiness;
 
-        public HotelController() { 
+        public HotelController()
+        {
             this.hotelBusiness = new HotelBusiness();
         }
 
         [HttpGet]
-        [Route("GetHotelInformation")] 
-        public async Task<ActionResult<ResponseDTO<HotelInformation>>> GetHotelInformation(int hotelInforamtionId) 
+        [Route("GetHotelInformation")]
+        public async Task<ActionResult<ResponseDTO<HotelInformation>>> GetHotelInformation(int hotelInforamtionId)
         {
             return await hotelBusiness.GetHotelInformation(hotelInforamtionId);
         }
 
+        [HttpGet]
+        [Route("GetGalleryAbout")]
+        public async Task<ActionResult<ResponseDTO<List<HotelAboutImage>>>> GetGalleryAbout()
+        {
+            return await hotelBusiness.GetGalleryAbout();
+        }
+
+
+        [HttpGet]
+        [Route("GetLocation")]
+        public async Task<ActionResult<ResponseDTO<Location>>> GetLocation()
+        {
+            return await hotelBusiness.GetLocation();
+        }
     }
 }

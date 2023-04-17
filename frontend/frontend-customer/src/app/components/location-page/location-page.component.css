@@ -2,7 +2,7 @@
     position: relative;
     text-align: center;
     width: 100%;
-    height: 40%;
+    height: 100%;
 }
 
 .gmap_canvas {
@@ -19,5 +19,5 @@
 
 .location_container {
     display: block;
-    height: 100%;
+    height: 60vh;
 }

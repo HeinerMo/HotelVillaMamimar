@@ -1,0 +1,8 @@
+backend/Core/src/CoreAPI/bin/
+backend/Core/src/CoreAPI/obj/
+backend/Core/src/CoreBusiness/bin/
+backend/Core/src/CoreBusiness/obj/
+backend/Core/src/CoreDataAccess/bin/
+backend/Core/src/CoreDataAccess/obj/
+backend/Core/src/CoreEntities/bin/
+backend/Core/src/CoreEntities/obj/
