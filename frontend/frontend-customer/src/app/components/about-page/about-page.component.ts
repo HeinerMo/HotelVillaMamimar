@@ -12,6 +12,7 @@ export class AboutPageComponent implements OnInit {
   @ViewChild('selectedImageRef') selectedImageRef!: ElementRef;
   selectedImage:SafeUrl = "";
   imagesUrl: SafeUrl[] = [];
+  aboutUsMessage = "";
 
   constructor(private hotelService: HotelService, private sanitizer: DomSanitizer) { }
 
@@ -45,6 +46,12 @@ export class AboutPageComponent implements OnInit {
         this.setSelectedImage(this.imagesUrl[0]);
       }
     });
+
+    this.hotelService.getHotel(1).subscribe((data: any) => {
+      if (data.id == 1) {
+        this.aboutUsMessage = data.item.aboutMessage;     
+      }
+    })
   }
 
   setSelectedImage(imageUrl: SafeUrl) {

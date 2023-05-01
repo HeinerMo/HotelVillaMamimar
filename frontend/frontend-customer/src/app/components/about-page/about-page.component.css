@@ -1,4 +1,16 @@
+.about-tittle{
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.about-message {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 .gallery-tittle {
+    margin-top: 1em;
     font-weight: 600;
     font-size: 1.2rem;
     margin-bottom: 1rem;
