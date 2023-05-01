@@ -21,7 +21,7 @@ namespace CoreDataAccess.src.Context
         public DbSet<Facility> Facilities => Set<Facility>();
         public DbSet<Advertisement> Advertisements => Set<Advertisement>();
         public DbSet<HotelAboutImage> hotelAboutImages => Set<HotelAboutImage>();
-        public DbSet<AdvertisementImage> advertisementImages => Set<AdvertisementImage>();
+        public DbSet<AdvertisementImage> AdvertisementImages => Set<AdvertisementImage>();
         public DbSet<HotelWelcomeImage> hotelWelcomeImages => Set<HotelWelcomeImage>();
         public DbSet<HotelInformation> HotelInformation => Set<HotelInformation>();
         public DbSet<FacilityImage> facilityImages => Set<FacilityImage>();
