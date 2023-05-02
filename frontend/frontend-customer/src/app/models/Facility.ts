@@ -1,9 +1,9 @@
 export class Facility{
   
     description?: String
-    image?: ImageData
+    image?: any
     
-    constructor({description, image}:{description?:String,image?:ImageData}) {
+    constructor({description, image}:{description?:String,image?:any}) {
         this.description = description
         this.image = image
     }
