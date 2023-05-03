@@ -1,1 +1,24 @@
-<h1>Sección tarifas</h1>
+<h2>Tarifas</h2>
+<div class="containerRate">
+    
+    <div class="card mb-3 cardRate" *ngFor="let rt of roomTypes; let i = index">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img  [src]="rt.image" alt="i" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{rt.name}}</h5>
+                    <p class="card-text">
+                        {{rt.description}}
+                    </p>
+                    <p class="card-text">
+                        ₡{{rt.price}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

@@ -16,7 +16,7 @@ export class RoomTypeService {
   }
 
   public getRoomTypes(): Observable<ResponseDTO<RoomType[]>> {
-    return this.httpClient.get<ResponseDTO<RoomType[]>>(`${environment.apiUrl}/${this.controllerURL}/GetRoomType`);
+    return this.httpClient.get<ResponseDTO<RoomType[]>>(`${environment.apiUrl}/${this.controllerURL}/GetRoomTypes`);
   }
 
 }

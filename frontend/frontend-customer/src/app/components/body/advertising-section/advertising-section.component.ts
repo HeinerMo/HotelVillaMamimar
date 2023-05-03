@@ -33,7 +33,6 @@ export class AdvertisingSectionComponent  implements OnInit{
         let link: any;
         let image:any;
 
-        console.log(item)
         item.forEach((a:any) => {
           let objeto = Object.entries(a);
           link = objeto[1][1];

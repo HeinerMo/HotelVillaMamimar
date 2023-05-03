@@ -55,7 +55,7 @@ BEGIN TRANSACTION
 	--Room Type
 	CREATE TABLE tb_room_type (
 		id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL
-		,price NUMERIC(7, 4) NOT NULL
+		,price NUMERIC(11, 4) NOT NULL
 		,name VARCHAR(80) NOT NULL
 		,description VARCHAR(500) NOT NULL);
 

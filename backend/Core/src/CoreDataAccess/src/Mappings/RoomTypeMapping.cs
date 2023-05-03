@@ -18,7 +18,7 @@ namespace CoreDataAccess.src.Mappings
 
             builder.Property(c => c.Price)
                 .IsRequired()
-                .HasColumnType("numeric(7,4)")
+                .HasColumnType("numeric(11,4)")
             .HasColumnName("price");
 
             builder.Property(c => c.Name)
