@@ -17,6 +17,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdvertisingSectionComponent } from './components/body/advertising-section/advertising-section.component';
 import { FacilitiesPageComponent } from './components/facilities-page/facilities-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomerDetailComponent } from './components/reservation-page/customer-detail/customer-detail.component';
+import { ReservationConfirmationComponent } from './components/reservation-page/reservation-confirmation/reservation-confirmation.component';
+import { RoomChooserComponent } from './components/reservation-page/room-chooser/room-chooser.component';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     WelcomeSectionComponent,
     AdvertisingSectionComponent,
     FacilitiesPageComponent,
+    CustomerDetailComponent,
+    ReservationConfirmationComponent,
+    RoomChooserComponent,
   ],
   imports: [
     BrowserModule,

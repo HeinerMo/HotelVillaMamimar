@@ -1,1 +1,6 @@
 <h1>Sección reservar en línea</h1>
+<div>
+    <app-room-chooser *ngIf="this.params.step == 1" [inputParams]="this.params"></app-room-chooser>
+    <app-customer-detail *ngIf="this.params.step == 2" [inputParams]="this.params"></app-customer-detail>
+    <app-reservation-confirmation *ngIf="this.params.step == 3" [inputParams]="this.params"></app-reservation-confirmation>
+</div>

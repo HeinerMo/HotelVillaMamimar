@@ -8,6 +8,9 @@ import { RatesPageComponent } from './components/rates-page/rates-page.component
 import { ReservationPageComponent } from './components/reservation-page/reservation-page.component';
 import { ContactsPageComponent } from './components/contacts-page/contacts-page.component';
 import { FacilitiesPageComponent } from './components/facilities-page/facilities-page.component';
+import { CustomerDetailComponent } from './components/reservation-page/customer-detail/customer-detail.component';
+import { ReservationConfirmationComponent } from './components/reservation-page/reservation-confirmation/reservation-confirmation.component';
+import { RoomChooserComponent } from './components/reservation-page/room-chooser/room-chooser.component';
 
 const routes: Routes = [
   {
@@ -35,6 +38,20 @@ const routes: Routes = [
     }, {
       path: 'reservation',
       component: ReservationPageComponent,
+      children: [
+        {
+          path: 'customer-detail',
+          component: CustomerDetailComponent,
+        },
+        {
+          path: 'confimation',
+          component: ReservationConfirmationComponent,
+        },
+        {
+          path: 'room-chooser',
+          component: RoomChooserComponent,
+        }
+      ]
     }, {
       path: 'contacts',
       component: ContactsPageComponent,
