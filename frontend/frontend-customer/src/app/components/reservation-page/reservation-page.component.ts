@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-export interface IConfimation {
+export interface IConfirmation {
+  goBack(): void,
   isSuccess:boolean,
   customerFullName:string,
   reservationNumber:string,
@@ -46,11 +47,14 @@ export class ReservationPageComponent implements OnInit {
     idRoomType: -1
   }
 
-  public confirmationParams: IConfimation = {
+  public confirmationParams: IConfirmation = {
     isSuccess: false,
     customerFullName: '',
     reservationNumber: '',
-    customerEmail: ''
+    customerEmail: '',
+    goBack: () => {
+      this.setView(1);
+    }
   }
 
   constructor() {}

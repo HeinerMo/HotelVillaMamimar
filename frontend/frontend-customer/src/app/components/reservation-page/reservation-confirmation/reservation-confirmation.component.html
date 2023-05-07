@@ -1,7 +1,19 @@
-<div>
-    <p>Reservar en línea</p>
-    <div >
-
+<div class="confirmation-container">
+    <div *ngIf="this.inputParams.isSuccess">
+        <br>
+        <p>Reservación realizada!</p>
+        <p>Gracias <strong>{{this.inputParams.customerFullName}}</strong>!! Su reservación fue realizada exitosamente.</p>
+        <p>Número de reservación: <strong>{{this.inputParams.reservationNumber}}</strong></p>
+        <p>Acabamos de enviar esta información a la dirección <strong>{{this.inputParams.customerEmail}}</strong> para mayor facilidad.</p>
+        <br>
+        <p>Gracias por preferirnos!</p>
+    </div>
+    <div *ngIf="!this.inputParams.isSuccess">
+        <br>
+        <p>Lo sentimos! En ese rango de fechas no tenemos habitaciones disponibles.</p>
+        <a [routerLink]="'.'" (click)="this.goBack()">
+            <strong>Volver</strong>
+        </a>
     </div>
 </div>
 

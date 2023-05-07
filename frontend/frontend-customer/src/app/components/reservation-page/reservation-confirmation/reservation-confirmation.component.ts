@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IConfimation } from '../reservation-page.component';
+import { IConfirmation as IConfirmation } from '../reservation-page.component';
 
 @Component({
   selector: 'app-reservation-confirmation',
@@ -8,14 +8,19 @@ import { IConfimation } from '../reservation-page.component';
 })
 export class ReservationConfirmationComponent implements OnInit {
   
-  @Input() inputParams!: IConfimation;
+  @Input() inputParams!: IConfirmation;
 
   constructor() {}
 
   ngOnInit() {
-    console.log(this.inputParams)
-    if (this.inputParams != undefined) {
-      //console.log(this.inputParams.reservationParams['toFirstStepTest'])
-    }
+    // This data is for testing purposes only.
+    this.inputParams.isSuccess = true;
+    this.inputParams.customerFullName = "Juan Pérez Vega";
+    this.inputParams.customerEmail = "juanito01@gmail.com";
+    this.inputParams.reservationNumber = "SSXX234XLJJKJLL";
+  }
+
+  goBack() {
+    this.inputParams.goBack();
   }
 }
