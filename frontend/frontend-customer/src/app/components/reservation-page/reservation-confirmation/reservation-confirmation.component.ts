@@ -1,23 +1,21 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IConfimation } from '../reservation-page.component';
 
 @Component({
   selector: 'app-reservation-confirmation',
   templateUrl: './reservation-confirmation.component.html',
   styleUrls: ['./reservation-confirmation.component.css']
 })
-export class ReservationConfirmationComponent implements OnInit, OnChanges {
-  @Input() inputParams: {reservationParams: {}} | undefined;
+export class ReservationConfirmationComponent implements OnInit {
+  
+  @Input() inputParams!: IConfimation;
 
   constructor() {}
-  
-  ngOnChanges(changes: SimpleChanges): void {
-    let inputParamsAux = changes['inputParams'].currentValue;
-    if (inputParamsAux != undefined) {
-      //Change this if inputParams change on after init
-    }
-  }
 
   ngOnInit() {
     console.log(this.inputParams)
+    if (this.inputParams != undefined) {
+      //console.log(this.inputParams.reservationParams['toFirstStepTest'])
+    }
   }
 }

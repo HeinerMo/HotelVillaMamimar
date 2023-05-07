@@ -1,5 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
+export interface IConfimation {
+  isSuccess:boolean,
+  customerFullName:string,
+  reservationNumber:string,
+  customerEmail:string
+}
+export interface IRoomChooser {
+  nextView(startDate: string, endDate: string, idRoomType: number): void
+}
+export interface ICustomerDetail {
+  nextView(isSuccess:boolean, customerFullName?:string, reservationNumber?:string, customerEmail?:string): void,
+  startDate: string,
+  endDate: string,
+  idRoomType: number
+}
 @Component({
   selector: 'app-reservation-page',
   templateUrl: './reservation-page.component.html',
@@ -7,23 +22,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationPageComponent implements OnInit {
 
-  public params: {reservationParams: {}, step:number} = {
-    reservationParams: {},
-    step: 0
-  };
+  public viewIndex = -1;
+
+  public roomChooserParams: IRoomChooser = {
+    nextView: (startDate: string, endDate: string, idRoomType: number) => {
+      this.customerDetailsParams.startDate = startDate;
+      this.customerDetailsParams.endDate = endDate;
+      this.customerDetailsParams.idRoomType = idRoomType;
+      this.setView(2);
+    }
+  }
+
+  public customerDetailsParams: ICustomerDetail = {
+    nextView: (isSuccess:boolean, customerFullName:string = '', reservationNumber:string = '', customerEmail:string = '') => {
+      this.confirmationParams.isSuccess = isSuccess;
+      this.confirmationParams.customerFullName = customerFullName;
+      this.confirmationParams.reservationNumber = reservationNumber;
+      this.confirmationParams.customerEmail = customerEmail;
+      this.setView(3);
+    },
+    startDate: '',
+    endDate: '',
+    idRoomType: -1
+  }
+
+  public confirmationParams: IConfimation = {
+    isSuccess: false,
+    customerFullName: '',
+    reservationNumber: '',
+    customerEmail: ''
+  }
 
   constructor() {}
   
   ngOnInit(): void {
-    let reservationParams = {
-      toFirstStepTest: "This is a test"
-    };
-    this.navigateToRoomChooser(reservationParams);
+    // Change this value according to your view: View one = 1, View two = 2, View three = 3
+    this.setView(3)
   }
 
-  navigateToRoomChooser(outputParams: {} = {}) {
-    this.params.reservationParams = outputParams;
-    // Change this step value according to your view: View one = 1, View two = 2, View three = 3
-    this.params.step = 1;
+  setView(index:number) {
+    this.viewIndex = index;
   }
 }
