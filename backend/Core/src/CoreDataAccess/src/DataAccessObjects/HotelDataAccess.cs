@@ -81,5 +81,36 @@ namespace CoreDataAccess.src.DataAccessObjects
 
             return await Task.FromResult(responseDTO);
         }
+
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> GetFacilities()
+        {
+
+            var dbFacilities = _context.Facilities.Include(i => i.FacilityImages).ToList();
+
+            foreach (Facility i in dbFacilities)
+            {
+                i.FacilityImages = _context.facilityImages.Where(e => e.FacilityId == i.Id).Include(j => j.Image).ToList();
+            }
+
+            var responseDTO = new ResponseDTO<List<Facility>>();
+
+            if (dbFacilities == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer las facilidades";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbFacilities
+                    ;
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
+
+    
+
 }
 }

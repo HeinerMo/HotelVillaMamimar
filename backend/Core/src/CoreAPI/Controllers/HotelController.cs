@@ -39,5 +39,12 @@ namespace CoreAPI.Controllers
         {
             return await hotelBusiness.GetLocation();
         }
+
+        [HttpGet]
+        [Route("GetFacilities")]
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> GetFacilities()
+        {
+            return await hotelBusiness.GetFacilities();
+        }
     }
 }
