@@ -61,7 +61,7 @@ export class ReservationPageComponent implements OnInit {
   
   ngOnInit(): void {
     // Change this value according to your view: View one = 1, View two = 2, View three = 3
-    this.setView(3)
+    this.setView(2)
   }
 
   setView(index:number) {

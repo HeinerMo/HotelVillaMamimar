@@ -1,1 +1,35 @@
-<p>customer-detail works!</p>
+<div class="main-container">
+    <div class="room-info-container"> <!--TODO: Load from previous view-->
+        <img src="/assets/heading.jpg" alt="Room Image" class="room-image">
+        <p class="room-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem explicabo
+            necessitatibus fuga,
+            labore eaque quis impedit odio quae. Dolorum facilis laboriosam temporibus deserunt nostrum dolores,
+            ipsam itaque aut minima quo.</p>
+    </div>
+
+    <div class="input-fields">
+        <p>Monto de su resevación: $XYZ</p> <!--TODO: Load from previous view-->
+        <form>
+            <div class="form-group">
+                <label for="name-input">Nombre:</label>
+                <input type="text" class="form-control" id="name-input" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name-input">Apellidos:</label>
+                <input type="text" class="form-control" id="last-name-input" placeholder="Apellidos" required>
+            </div>
+
+            <div class="form-group">
+                <label for="credit-card-input">Número de tarjeta:</label>
+                <input type="text" class="form-control" id="credit-card-input" aria-describedby="credit-card"
+                    placeholder="XXXX-XXXX-XXXX-XXXX" required>
+            </div>
+            <div class="submits">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="submit" class="btn btn-primary">Cancelar</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
