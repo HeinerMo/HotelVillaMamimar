@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ICustomerDetail } from '../reservation-page.component';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ICustomerDetail, ReservationPageComponent } from '../reservation-page.component';
 
 @Component({
   selector: 'app-customer-detail',
@@ -9,12 +9,16 @@ import { ICustomerDetail } from '../reservation-page.component';
 export class CustomerDetailComponent implements OnInit {
   @Input() inputParams!: ICustomerDetail;
 
-  constructor() {}
+  constructor(private reservationPageComponent: ReservationPageComponent) {}
 
   ngOnInit() {
     console.log(this.inputParams)
 
     //this is an example
     //this.inputParams.nextView(true, 'nombre completo', 'número de reservación', 'correo');
+  }
+
+  cancel() {
+    this.reservationPageComponent!.setView(1);
   }
 }
