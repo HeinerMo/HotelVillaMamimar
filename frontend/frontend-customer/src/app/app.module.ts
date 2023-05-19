@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerDetailComponent } from './components/reservation-page/customer-detail/customer-detail.component';
 import { ReservationConfirmationComponent } from './components/reservation-page/reservation-confirmation/reservation-confirmation.component';
 import { RoomChooserComponent } from './components/reservation-page/room-chooser/room-chooser.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { RoomChooserComponent } from './components/reservation-page/room-chooser
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
