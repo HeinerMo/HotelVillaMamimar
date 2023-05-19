@@ -29,9 +29,9 @@ namespace CoreDataAccess.src.DataAccessObjects
 
             var query = from room in dbRoom
                         join reservation in dbReservation on room.Id equals reservation.RoomId
-                        where reservation.StartingDate <= startDate && startDate <= reservation.EndingDate
+                        where (room.RoomTypeId == roomTypeId) && (reservation.StartingDate <= startDate && startDate <= reservation.EndingDate
                         || endDate >= reservation.StartingDate && endDate <= reservation.EndingDate
-                        || startDate <= reservation.StartingDate && endDate >= reservation.EndingDate
+                        || startDate <= reservation.StartingDate && endDate >= reservation.EndingDate)
                         select room;
 
             var responseDTO = new ResponseDTO<List<Room>>(); //Create response data transfer object 
