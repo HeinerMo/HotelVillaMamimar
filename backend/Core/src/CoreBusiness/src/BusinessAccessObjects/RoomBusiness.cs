@@ -1,4 +1,7 @@
 ﻿using CoreDataAccess.src.DataAccessObjects;
+using CoreEntities.DataTranferObjects;
+using CoreEntities.src.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,10 @@ namespace CoreBusiness.src.BusinessAccessObjects
         private readonly RoomDataAccess roomDataAccess;
         public RoomBusiness() { 
             this.roomDataAccess = new RoomDataAccess();
+        }
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms()
+        {
+            return await roomDataAccess.GetAvailableRooms();
         }
     }
 }
