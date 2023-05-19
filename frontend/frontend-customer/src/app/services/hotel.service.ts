@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Hotel } from '../models/Hotel';
 import { ResponseDTO } from '../models/DataTransferObjects/ResponseDTO';
 import { environment } from 'src/enviroments/environment';
+import { Facility } from '../models/Facility';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class HotelService {
 
   public getGalleryAbout(): Observable<any> {
     return this.httpClient.get<ResponseDTO<Hotel>>(`${environment.apiUrl}/${this.controllerURL}/GetGalleryAbout`);
+  }
+
+  public getFacilities(): Observable<ResponseDTO<Facility[]>> {
+    return this.httpClient.get<ResponseDTO<Facility[]>>(`${environment.apiUrl}/${this.controllerURL}/GetFacilities`);
   }
 
 }

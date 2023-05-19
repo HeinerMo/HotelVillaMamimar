@@ -42,6 +42,7 @@ BEGIN TRANSACTION
 	CREATE TABLE tb_season (
 		id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL
 		,name VARCHAR(80) NOT NULL
+		,porcentage INT NOT NULL
 		,startingDate DATE NOT NULL
 		,endingDate DATE NOT NULL);
 
@@ -67,6 +68,7 @@ BEGIN TRANSACTION
 		,name VARCHAR(80)
 		,description VARCHAR(500)
 		,roomTypeId INT NOT NULL
+		,porcentage INT NOT NULL
 		,FOREIGN KEY (roomTypeId) REFERENCES tb_room_type (id));
 
 	--Customer
@@ -185,6 +187,15 @@ BEGIN TRANSACTION
            ,'En Villa Mami Mar somos un hotel ubicado en una hermosa zona montañosa, donde podrás disfrutar de vistas panorámicas y aire puro en un ambiente tranquilo y relajante. Nos enfocamos en brindar a nuestros huéspedes la oportunidad de conectarse con la naturaleza y desconectar de la rutina diaria, ofreciendo acogedoras habitaciones diseñadas para brindar la máxima comodidad y privacidad, y un personal amable y servicial siempre a tu disposición para asegurarse de que tengas todo lo que necesitas para una experiencia memorable. En nuestro hotel, encontrarás una amplia variedad de actividades al aire libre para disfrutar durante todo el año, desde senderismo y paseos en bicicleta hasta excursiones de pesca, ideal tanto para escapadas románticas como aventuras en familia. En resumen, en Villa Mami Mar encontrarás un ambiente acogedor, actividades al aire libre emocionantes y un equipo comprometido en hacer de tu estadía una experiencia inolvidable. ¡Esperamos tener el placer de recibirte pronto!'
 			)
 
+
+
+	INSERT INTO [dbo].[tb_season]
+	(
+		[name], [porcentage], [startingDate], [endingDate]
+	)
+	VALUES
+		('Temporada alta', 20,'2023-11-1', '2023-03-31')
+		,('Temporada baja', -20,'2023-04-1', '2023-10-31')
 	COMMIT 
 	PRINT('Database ready!')
 END TRY 

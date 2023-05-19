@@ -36,5 +36,11 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await hotelDataAccess.GetLocation();
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> GetFacilities()
+        {
+            return await hotelDataAccess.GetFacilities();
+        }
+
+
     }
 }
