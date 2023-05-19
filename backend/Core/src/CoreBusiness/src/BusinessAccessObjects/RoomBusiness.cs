@@ -16,9 +16,9 @@ namespace CoreBusiness.src.BusinessAccessObjects
         public RoomBusiness() { 
             this.roomDataAccess = new RoomDataAccess();
         }
-        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms()
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
         {
-            return await roomDataAccess.GetAvailableRooms();
+            return await roomDataAccess.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
     }
 }

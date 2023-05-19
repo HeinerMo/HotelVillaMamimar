@@ -19,11 +19,8 @@ namespace CoreDataAccess.src.DataAccessObjects
         }
 
 
-        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms()
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
         {
-
-            DateTime startDate = DateTime.Now; // Specify the start date of the desired availability range
-            DateTime endDate = DateTime.Now.AddDays(7); // Specify the end date of the desired availability range
 
             var dbRoom = _context.rooms; //load database.
 

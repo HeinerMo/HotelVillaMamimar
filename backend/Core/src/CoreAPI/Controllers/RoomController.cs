@@ -3,6 +3,7 @@ using CoreDataAccess.src.DataAccessObjects;
 using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CoreAPI.Controllers
 {
@@ -19,9 +20,9 @@ namespace CoreAPI.Controllers
 
         [HttpGet]
         [Route("GetAvailableRooms")]
-        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms()
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(ateTime startDate, DateTime endDate, int roomTypeId)
         {
-            return await roomBusiness.GetAvailableRooms();
+            return await roomBusiness.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
     }
 }
