@@ -2,13 +2,13 @@ export class ContactInformation{
   
     phone?: String
     email?: String
-    instagram?: URL
-    facebook?: URL
+    instagram?: String
+    facebook?: String
     
-    constructor({phone,email,insagram,facebook}:{phone?:String,email?:String,insagram?:URL,facebook?:URL}) {
+    constructor({phone,email,instagram,facebook}:{phone?:String,email?:String,instagram?:String,facebook?:String}) {
         this.phone = phone
         this.email = email
-        this.instagram = insagram
+        this.instagram = instagram
         this.facebook = facebook
     }
 

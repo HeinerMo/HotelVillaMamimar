@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerDetailComponent } from './components/reservation-page/customer-detail/customer-detail.component';
 import { ReservationConfirmationComponent } from './components/reservation-page/reservation-confirmation/reservation-confirmation.component';
 import { RoomChooserComponent } from './components/reservation-page/room-chooser/room-chooser.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,11 @@ import { RoomChooserComponent } from './components/reservation-page/room-chooser
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    BrowserAnimationsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

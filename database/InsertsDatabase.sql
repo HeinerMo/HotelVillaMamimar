@@ -293,3 +293,4 @@ INSERT INTO tb_facility_image(imageId, facilityId)
 values 
 (SCOPE_IDENTITY(), 5)
 
+

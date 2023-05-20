@@ -1,0 +1,5 @@
+.containerContacts {
+    margin: 2rem;
+    max-height: 650px;
+    overflow: auto;
+}
