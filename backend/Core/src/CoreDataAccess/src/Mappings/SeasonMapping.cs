@@ -20,6 +20,11 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("varchar(80)")
             .HasColumnName("name");
 
+            builder.Property(c => c.Porcentage)
+              .IsRequired()
+              .HasColumnType("int")
+          .HasColumnName("porcentage");
+
             builder.Property(c => c.StartingDate)
                 .IsRequired()
                 .HasColumnType("date")

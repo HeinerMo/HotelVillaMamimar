@@ -205,8 +205,8 @@ values
 INSERT INTO [dbo].[tb_discount]
 	([startingDate], [endingDate], [name], [description], [roomTypeId],[porcentage])
 VALUES
-	('2023-05-05 00:00:00','2023-05-05 23:59:59','descuento suite','Descuento de suite', 1, 50)
-	,('2023-05-06 00:00:00','2023-05-06 23:59:59','descuento standar','Descuento de estandar', 2, 10)
+	('2023-05-18 00:00:00','2023-05-25 23:59:59','descuento suite','Descuento de suite', 1, 50)
+	,('2023-05-18 00:00:00','2023-05-25 23:59:59','descuento standar','Descuento de estandar', 2, 10)
 
 
 /*

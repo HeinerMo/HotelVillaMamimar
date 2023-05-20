@@ -13,6 +13,7 @@ namespace CoreEntities.src.Models
     {
         public int? Id { get; set; }
         public string? Name { get; set; } = string.Empty;
+        public int? Porcentage { get; set; }
         public DateTime? StartingDate { get; set; }
         public DateTime? EndingDate { get; set; }
     }

@@ -13,7 +13,13 @@ namespace CoreEntities.src.Models
         public int? Id { get; set; }
         public decimal? Price { get; set; }
         public string? Name { get; set; } = String.Empty;
-        public string? Description { get; set; } = String.Empty;    
+        public string? Description { get; set; } = String.Empty;
+
+        
+        [NotMapped]
+        public int? Discount { get; set; } = 0;
+        [NotMapped]
+        public decimal? FinalPrice { get; set; } = 0;
     
         public IEnumerable<Room>? Rooms { get; set; }
         public IEnumerable<RoomTypeImage>? RoomTypeImages { get; set; } 

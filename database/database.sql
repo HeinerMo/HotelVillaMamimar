@@ -196,6 +196,8 @@ BEGIN TRANSACTION
 	VALUES
 		('Temporada alta', 20,'2023-11-1', '2023-03-31')
 		,('Temporada baja', -20,'2023-04-1', '2023-10-31')
+
+	
 	COMMIT 
 	PRINT('Database ready!')
 END TRY 

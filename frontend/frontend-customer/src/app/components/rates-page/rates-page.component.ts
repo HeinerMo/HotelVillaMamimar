@@ -33,7 +33,10 @@ export class RatesPageComponent implements OnInit{
         let name: any;
         let description:any;
         let price: any;
+        let discount: any;
+        let finalPrice: any;
         let image:any;
+
 
         item.forEach((a:any) => {
           let objeto = Object.entries(a);
@@ -41,16 +44,17 @@ export class RatesPageComponent implements OnInit{
           name=objeto[2][1];
           price=objeto[1][1];
           description=objeto[3][1];
-          image=objeto[5][1];
-          
-
+          discount=objeto[4][1];
+          finalPrice=objeto[5][1];
+          image=objeto[7][1];
+        
           
           let decodedBytes: Uint8Array;
           decodedBytes = toByteArray(image[0].image.imageData);
           const blob = new Blob([decodedBytes], { type: 'image/jpg' });
           let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
   
-         this.createRoomTypes(new RoomType({name:name,price:price,image:url, description:description}))
+         this.createRoomTypes(new RoomType({name:name,price:price,image:url, description:description, discountPercentage:discount, finalPrice:finalPrice}))
          
         });
 

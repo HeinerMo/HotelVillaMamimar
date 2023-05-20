@@ -38,6 +38,11 @@ namespace CoreDataAccess.src.Mappings
                .HasColumnType("int")
            .HasColumnName("roomTypeId");
 
+            builder.Property(c => c.Porcentage)
+              .IsRequired()
+              .HasColumnType("int")
+          .HasColumnName("porcentage");
+
             builder.HasOne(c => c.RoomType)
                 .WithMany(b => b.Discounts)
                 .HasForeignKey(b => b.RoomTypeId);

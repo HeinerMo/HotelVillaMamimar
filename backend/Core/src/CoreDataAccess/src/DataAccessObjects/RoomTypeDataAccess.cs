@@ -15,19 +15,65 @@ namespace CoreDataAccess.src.DataAccessObjects
     {
 
         private readonly DataContext _context;
+        private readonly DiscountDataAccess discountDataAccess;
+        private readonly SeasonDataAccess seasonDataAccess;
 
         public RoomTypeDataAccess()
         {
             _context = new DataContext();
+            discountDataAccess = new DiscountDataAccess();
+            seasonDataAccess = new SeasonDataAccess();
         }
+
+        public List<RoomType> GetImagesForRoomTypes(List<RoomType> roomTypes) 
+        {
+            foreach (RoomType i in roomTypes)
+            {
+                i.RoomTypeImages = _context.roomTypeImages.Where(e => e.RoomTypeId == i.Id).Include(j => j.Image).ToList();
+            }
+            return roomTypes;
+        }
+
+        public List<RoomType> PriceRoomTypes(List<RoomType> roomTypes)
+        {
+            Discount discounts;
+            var season = seasonDataAccess.GetCurrentSeason().Result.Value.Item;
+            decimal seasonPercentage = 0;
+            decimal discountPercentage = 0;
+
+            if (season != null)
+            {
+                seasonPercentage = Decimal.Divide((Decimal)season.Porcentage, 100);
+            }
+
+            foreach (RoomType i in roomTypes)
+            {
+                discountPercentage = 0;
+                i.FinalPrice = i.Price + (i.Price * seasonPercentage);
+                discounts = discountDataAccess.GetDiscountByRoomType((int)i.Id).Result.Value.Item;
+                if (discounts != null)
+                {
+                    discountPercentage = Decimal.Divide((Decimal)discounts.Porcentage, 100);                  
+                    i.Discount = discounts.Porcentage;
+                }
+                i.FinalPrice = i.FinalPrice - (i.FinalPrice * discountPercentage);
+                
+                
+               
+               
+            }
+            return roomTypes;
+        }
+
 
         public async Task<ActionResult<ResponseDTO<List<RoomType>>>> GetRoomTypes()
         {
-            var dbRoomType = _context.roomTypes.Include(i => i.RoomTypeImages).ToList();
+            var dbRoomType = _context.roomTypes.Include(i => i.RoomTypeImages).ToList();                       
 
-            foreach (RoomType i in dbRoomType)
-            {
-                i.RoomTypeImages = _context.roomTypeImages.Where(e => e.RoomTypeId == i.Id).Include(j => j.Image).ToList();
+            if (dbRoomType != null) 
+            {   
+                dbRoomType = GetImagesForRoomTypes(dbRoomType);         
+                dbRoomType = PriceRoomTypes(dbRoomType);
             }
 
             var responseDTO = new ResponseDTO<List<RoomType>>();
@@ -41,8 +87,7 @@ namespace CoreDataAccess.src.DataAccessObjects
             else
             {
                 responseDTO.Id = 1;
-                responseDTO.Item = dbRoomType
-                    ;
+                responseDTO.Item = dbRoomType;
             }
 
             return await Task.FromResult(responseDTO);
