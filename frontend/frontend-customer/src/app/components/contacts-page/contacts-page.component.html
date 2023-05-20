@@ -1,1 +1,9 @@
-<h1>Sección contactenos</h1>
+<h2>Contactenos</h2>
+<div class="containerContacts" *ngIf="contactInformation">
+    <br>
+    <p><strong>Teléfono:</strong> {{this.contactInformation.phone}}</p>
+    <p><strong>Correo:</strong> {{this.contactInformation.email}}</p>
+    <p href=""><strong>Instagram:</strong> {{this.contactInformation.instagram}}</p>
+    <p href=""><strong>Facebook:</strong> {{this.contactInformation.facebook}}</p>
+    <br>
+</div>

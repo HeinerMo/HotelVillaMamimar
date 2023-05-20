@@ -179,10 +179,10 @@ BEGIN TRANSACTION
            ,[welcomeMessage]
            ,[aboutMessage])
      VALUES
-           (''
-           ,''
-           ,''
-           ,''
+           ('8694 9070'
+           ,'villamamimar@outlook.com'
+           ,'Villa Mamimar & Quinta Don Antonio'
+           ,'Villa Mamimar & Quinta Don Antonio'
            ,''
            ,'En Villa Mami Mar somos un hotel ubicado en una hermosa zona montañosa, donde podrás disfrutar de vistas panorámicas y aire puro en un ambiente tranquilo y relajante. Nos enfocamos en brindar a nuestros huéspedes la oportunidad de conectarse con la naturaleza y desconectar de la rutina diaria, ofreciendo acogedoras habitaciones diseñadas para brindar la máxima comodidad y privacidad, y un personal amable y servicial siempre a tu disposición para asegurarse de que tengas todo lo que necesitas para una experiencia memorable. En nuestro hotel, encontrarás una amplia variedad de actividades al aire libre para disfrutar durante todo el año, desde senderismo y paseos en bicicleta hasta excursiones de pesca, ideal tanto para escapadas románticas como aventuras en familia. En resumen, en Villa Mami Mar encontrarás un ambiente acogedor, actividades al aire libre emocionantes y un equipo comprometido en hacer de tu estadía una experiencia inolvidable. ¡Esperamos tener el placer de recibirte pronto!'
 			)
