@@ -2,14 +2,13 @@ import { RoomType } from "./RoomType"
 
 export class Room{
   
-    Id?: number
-    RoomTypeId?: number
+    id?: number
+    roomTypeId?: number
     active?:number
     
-    constructor({Id, RoomTypeId, active}:{Id?: number, RoomTypeId: number, active?:number}) {
-        this.Id = Id
-        this.RoomTypeId = RoomTypeId
+    constructor({id, roomTypeId, active}:{id?: number, roomTypeId?: number, active?:number}) {
+        this.id = id
+        this.roomTypeId = roomTypeId
         this.active = active
     }
-
 }
