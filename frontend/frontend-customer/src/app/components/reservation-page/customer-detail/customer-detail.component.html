@@ -1,10 +1,7 @@
 <div class="main-container">
     <div class="room-info-container"> <!--TODO: Load from previous view-->
-        <img src="/assets/heading.jpg" alt="Room Image" class="room-image">
-        <p class="room-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem explicabo
-            necessitatibus fuga,
-            labore eaque quis impedit odio quae. Dolorum facilis laboriosam temporibus deserunt nostrum dolores,
-            ipsam itaque aut minima quo.</p>
+        <img [src]="this.roomType!.image" alt="Room Image" class="room-image">
+        <p class="room-description">{{this.roomType!.description}}</p>
     </div>
 
     <div class="input-fields">
@@ -25,6 +22,12 @@
             <div class="form-group">
                 <label for="credit-card">Número de tarjeta:</label>
                 <input type="text" class="form-control" name="credit-card" aria-describedby="credit-card"
+                    placeholder="XXXX-XXXX-XXXX-XXXX" ngModel required>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_number">Identificación:</label>
+                <input type="text" class="form-control" name="id_number" aria-describedby="id_number"
                     placeholder="XXXX-XXXX-XXXX-XXXX" ngModel required>
             </div>
             <div class="submits">

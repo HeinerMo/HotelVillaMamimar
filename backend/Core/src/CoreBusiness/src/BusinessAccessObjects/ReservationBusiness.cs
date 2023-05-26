@@ -20,7 +20,10 @@ namespace CoreBusiness.src.BusinessAccessObjects
 
         public async Task<ActionResult<ResponseDTO<int>>> CreateReservation(Reservation reservation)
         {
-            return await reservationDataAccess.CreateReservation(reservation);
+            Reservation temp = reservation;
+            temp.RoomId = reservation.Room.Id;
+            temp.Room = null; //null room so it doesn't get inserted again.
+            return await reservationDataAccess.CreateReservation(temp);
         }
 
     }
