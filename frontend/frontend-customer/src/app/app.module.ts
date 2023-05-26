@@ -22,6 +22,14 @@ import { ReservationConfirmationComponent } from './components/reservation-page/
 import { RoomChooserComponent } from './components/reservation-page/room-chooser/room-chooser.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +57,15 @@ import {MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    CommonModule,
+    FormsModule,
+    DatePipe
     ],
   providers: [],
   bootstrap: [AppComponent]
