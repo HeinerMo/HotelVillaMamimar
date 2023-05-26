@@ -21,18 +21,29 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
         {
-
             var dbRoom = _context.rooms; //load database.
 
             /*This should not be here. This is horrible coupling*/
             var dbReservation = _context.Reservations;
 
             var query = from room in dbRoom
+                        join reservation in dbReservation on room.Id equals reservation.RoomId into reservations
+                        from reservation in reservations.DefaultIfEmpty()
+                        where (room.RoomTypeId == roomTypeId) &&
+                              ((reservation == null) ||
+                               (reservation.StartingDate <= startDate && startDate <= reservation.EndingDate) ||
+                               (endDate >= reservation.StartingDate && endDate <= reservation.EndingDate) ||
+                               (startDate <= reservation.StartingDate && endDate >= reservation.EndingDate))
+                        select room;
+            /*
+                var query = from room in dbRoom
                         join reservation in dbReservation on room.Id equals reservation.RoomId
                         where (room.RoomTypeId == roomTypeId) && (reservation.StartingDate <= startDate && startDate <= reservation.EndingDate
                         || endDate >= reservation.StartingDate && endDate <= reservation.EndingDate
                         || startDate <= reservation.StartingDate && endDate >= reservation.EndingDate)
                         select room;
+            */
+
 
             var responseDTO = new ResponseDTO<List<Room>>(); //Create response data transfer object 
 

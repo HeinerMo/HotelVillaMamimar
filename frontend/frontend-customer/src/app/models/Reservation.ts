@@ -3,12 +3,12 @@ import { Room } from "./Room"
 
 export class Reservation{
   
-    startingDate?: Date
-    endingDate?: Date
+    startingDate?: string
+    endingDate?: string
     room?: Room
     customer?: Customer
     
-    constructor({startingDate, endingDate, room, customer}:{startingDate?: Date, endingDate?: Date, room?: Room, customer?: Customer}) {
+    constructor({startingDate, endingDate, room, customer}:{startingDate?: string, endingDate?: string, room?: Room, customer?: Customer}) {
         this.startingDate = startingDate
         this.endingDate = endingDate
         this.room = room

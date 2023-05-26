@@ -17,11 +17,11 @@ namespace CoreAPI.Controllers
             this.roomBusiness = new RoomBusiness();
         }
 
-
         [HttpGet]
         [Route("GetAvailableRooms")]
-        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(string startDate, string endDate, int roomTypeId)
         {
+            Console.WriteLine(startDate + " " + endDate);
             return await roomBusiness.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
     }
