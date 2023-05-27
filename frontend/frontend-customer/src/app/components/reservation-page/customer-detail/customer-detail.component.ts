@@ -32,30 +32,35 @@ export class CustomerDetailComponent implements OnInit {
 
     this.roomType = new RoomType({})
     this.room = new Room({})
+    
+  }
+
+  ngOnInit() {
+    this.inputParams.idRoomType = 1
+    this.inputParams.startDate = "2023/12/12"
+    this.inputParams.endDate = "2023/12/12"
     this.roomTypeService.getRoomTypes().subscribe((response: ResponseDTO<RoomType[]>) => {
 
       if (response.id == 1) {
-
+        
         let name: any;
         let description: any;
         let price: any;
         let image: any;
 
-        response.item!.forEach((type: RoomType) => {
-          if (type.id == 2) { //TODO this "2" should be the id from inputParams
-
+        response.item!.forEach((type: any) => {
+          if (type.id == this.inputParams.idRoomType) {
+            
             let typeJSON = Object.entries(type);
 
             name = typeJSON[2][1];
             price = typeJSON[1][1];
             description = typeJSON[3][1];
-            image = typeJSON[5][1];
-
+            image =  type.roomTypeImages[0].image.imageData;
             let decodedBytes: Uint8Array;
-            decodedBytes = toByteArray(image[0].image.imageData);
+            decodedBytes = toByteArray(image);
             const blob = new Blob([decodedBytes], { type: 'image/jpg' });
             let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-
             this.roomType.description = description
             this.roomType.name = name
             this.roomType.price = price
@@ -65,7 +70,6 @@ export class CustomerDetailComponent implements OnInit {
       }
     });
 
-    //TODO this dates should be loaded from input params
     this.roomService.getAvailableRooms("2023/12/12", "2023/12/12", 1).subscribe((data: ResponseDTO<Room[]>) => {
       if (data.id == 1) {
         this.room = data.item![0]
@@ -73,9 +77,8 @@ export class CustomerDetailComponent implements OnInit {
         this.inputParams.nextView(false)
       }
     })
-  }
 
-  ngOnInit() {
+
   }
 
   cancel() {
@@ -86,9 +89,9 @@ export class CustomerDetailComponent implements OnInit {
   //!IMPORTANT Data format should used '-' instead of '/'
   applyReservation(userform: NgForm) {
     if (userform.valid) {
-      this.reservationService.createReservation(new Reservation({
-        'startingDate': "2023-12-13",
-        'endingDate': "2023-12-13",
+      /*this.reservationService.createReservation(new Reservation({
+        'startingDate': "2023/12/12",
+        'endingDate': "2023/12/12",
         'room': this.room!,
         'customer': new Customer({
           'name': userform.controls['name'].value,
@@ -100,11 +103,12 @@ export class CustomerDetailComponent implements OnInit {
       })).subscribe((message: MessageDataTransferObject) => {
         if (message.id == 1) {
           console.log(message.message)
-          this.inputParams.nextView(true, userform.controls['name'].value, userform.controls['last-name'].value, userform.controls['credit-card'].value);
+          this.inputParams.nextView(true, userform.controls['name'].value, userform.controls['last-name'].value, userform.controls['email'].value);
         } else {
           console.log(message.message)
         }
-      })
+      })*/
+      this.inputParams.nextView(true, userform.controls['name'].value, userform.controls['last-name'].value, userform.controls['email'].value);
     }
   }
 }

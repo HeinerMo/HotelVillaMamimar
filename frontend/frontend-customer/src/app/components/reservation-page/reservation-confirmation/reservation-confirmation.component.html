@@ -2,9 +2,6 @@
     <div *ngIf="this.inputParams.isSuccess">
         <br>
         <p>Reservación realizada!</p>
-        <a [routerLink]="'/room-chooser'">
-            <strong>Room_Choser</strong>
-        </a>
         <p>Gracias <strong>{{this.inputParams.customerFullName}}</strong>!! Su reservación fue realizada exitosamente.</p>
         <p>Número de reservación: <strong>{{this.inputParams.reservationNumber}}</strong></p>
         <p>Acabamos de enviar esta información a la dirección <strong>{{this.inputParams.customerEmail}}</strong> para mayor facilidad.</p>
