@@ -30,7 +30,7 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("varchar(100)")
             .HasColumnName("email");
 
-            builder.Property(c => c.IdNumber)
+            builder.Property(c => c.id_number)
                 .IsRequired()
                 .HasColumnType("varchar(100)")
             .HasColumnName("id_number");

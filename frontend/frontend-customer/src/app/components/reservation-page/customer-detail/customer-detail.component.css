@@ -1,0 +1,22 @@
+.room-info-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.room-image {
+    width: 30%;
+}
+
+.room-description {
+    width: 50%;
+}
+
+.submits {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+
+.input-fields {
+    width: 50%;
+}

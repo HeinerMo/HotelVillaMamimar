@@ -14,7 +14,7 @@ namespace CoreEntities.src.Models
         public string? Name { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; } 
-        public string? IdNumber { get; set; }
+        public string? id_number { get; set; }
         public string? CreditCardNumber { get; set; }
 
         public IEnumerable<Reservation>? Reservations { get; set; }

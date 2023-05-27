@@ -1,1 +1,53 @@
-<p>room-chooser works!</p>
+<div class="date-chooser-container">
+  <div class="start-date">
+    <div class="row mb-6">
+      <div class="col-md-6">
+        <div class="form-outline">
+          <mat-form-field>
+            <mat-label>Fecha de llegada</mat-label>
+            <input matInput [matDatepicker]="picker1" placeholder="Fecha Inicio" [(ngModel)]="startDate" [min]="startDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-outline">
+          <mat-form-field>
+            <mat-label>Fecha de salida</mat-label>
+            <input matInput [matDatepicker]="picker2" placeholder="Fecha Fin" [(ngModel)]="endDate" [min]="endDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <mat-form-field>
+            <mat-label>Tipos de Habitación</mat-label>
+            <mat-select [(ngModel)]="roomType" [value]="defaultRoomType">
+              <mat-option *ngFor="let roomtype of roomTypes" [value]="roomtype.id">
+                {{ roomtype.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <div class="form-outline">
+          <button type="submit" class="btn btn-primary" (click)="sendInformation();">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
