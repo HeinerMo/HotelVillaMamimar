@@ -14,10 +14,10 @@ export class ReservationConfirmationComponent implements OnInit {
 
   ngOnInit() {
     // This data is for testing purposes only.
-    //this.inputParams.isSuccess = true;
-    //this.inputParams.customerFullName = "Juan Pérez Vega";
-    //this.inputParams.customerEmail = "juanito01@gmail.com";
-    //this.inputParams.reservationNumber = "SSXX234XLJJKJLL";
+    this.inputParams.isSuccess = true;
+    this.inputParams.customerFullName = "Juan Pérez Vega";
+    this.inputParams.customerEmail = "juanito01@gmail.com";
+    this.inputParams.reservationNumber = "SSXX234XLJJKJLL";
   }
 
   goBack() {
