@@ -1,2 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+body, html {
+    width: 100%;
+    margin: 0;
+}
+
+
+/*
+    Global Navbar, footer and header color
+*/
+.accent-color {
+    background-color: #85f0e7;
+}
+
+.page-content {
+    display: flex;
+}

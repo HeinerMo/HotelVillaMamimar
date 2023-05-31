@@ -1,0 +1,17 @@
+.nav-container {
+    background-color: #a8e3f3;
+    width: 100%;
+}
+
+.nav-container>.nav-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+}
+
+.nav-container>.nav-header>.logo {
+    height: 4em;
+    margin: 1em;
+    margin-left: 2em;
+}
