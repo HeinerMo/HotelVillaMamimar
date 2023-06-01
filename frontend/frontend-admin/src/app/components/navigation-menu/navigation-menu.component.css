@@ -1,0 +1,25 @@
+.nav-container {
+    width: 15em;
+    border: #77949c 1px solid;
+    margin: 0.5em;
+}
+
+.nav-container>.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: #77949c 1px solid;
+}
+
+.nav-container>.nav-options {
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-evenly;
+}
+
+.nav-container>.nav-options>.nav-option {
+    margin: 0.3em;
+}
