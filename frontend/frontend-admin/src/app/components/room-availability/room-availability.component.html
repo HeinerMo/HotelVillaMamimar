@@ -1,4 +1,52 @@
 <div class="page-content">
     <app-navigation-menu></app-navigation-menu>
-    <p>room-availability works!</p>
+    <div class="main-container">
+        <p>Consultar Disponibilidad de Habitaciones</p>
+
+        <div class="inputs-container">
+
+            <div class="input">
+                <span class="title">Fecha Llegada:</span>
+                <hr>
+                <mat-form-field #beginingDateForm>
+                    <mat-label>{{getDateFormatString()}}</mat-label>
+                    <input matInput [formControl]="beginingDateControl" [matDatepicker]="beginingDate"
+                        [min]="minDateForBegining" (dateInput)="setBeginingDateValue($event.target.value)"
+                        [readonly]="true">
+                    <mat-datepicker-toggle matIconSuffix [for]="beginingDate"></mat-datepicker-toggle>
+                    <mat-datepicker #beginingDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="input">
+                <span class="title">Fecha Salida:</span>
+                <hr>
+                <mat-form-field>
+                    <mat-label>{{getDateFormatString()}}</mat-label>
+                    <input matInput [formControl]="endingDateControl" [matDatepicker]="endingDate"
+                        [min]="minDateForEnding" [readonly]="true">
+                    <mat-datepicker-toggle matIconSuffix [for]="endingDate"></mat-datepicker-toggle>
+                    <mat-datepicker #endingDate></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="input">
+                <span class="title">Tipo de Habitación:</span>
+                <hr>
+                <mat-form-field>
+                    <mat-label>Tipo de Habitación</mat-label>
+                    <mat-select [formControl]="roomTypeControl" required>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let roomType of roomTypes" [value]="roomType">
+                            {{ roomType.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="roomTypeControl.hasError('required')">Por favor, selecciona un tipo de habitación</mat-error>
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <button mat-button color="primary" (click)="this.sendRequest()">Consultar</button>
+    </div>
 </div>
