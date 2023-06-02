@@ -1,5 +1,8 @@
 <header class='nav-container accent-color'>
     <div class="nav-header accent-color">
-        <img class="logo" src="logo.png" alt="logo"> <!--TODO: get logo from database.-->
+        <img class="logo" src="./assets/logo.jpg" alt="logo"> <!--TODO: get logo from database.-->
+    </div>
+    <div>
+        <button *ngIf="this.adminService.isLoggedIn()" type="button" class="mb-4 input-button" (click)="logOut()"  >Salir</button>
     </div>
 </header>

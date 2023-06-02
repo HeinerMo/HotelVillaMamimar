@@ -7,16 +7,19 @@ import { ReservationsComponent } from './components/reservations/reservations.co
 import { RoomAvailabilityComponent } from './components/room-availability/room-availability.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'status', component: HotelStatusComponent},
-  { path: 'pages', component: PagesComponent},
-  { path: 'reservations', component: ReservationsComponent},
-  { path: 'availability', component: RoomAvailabilityComponent},
-  { path: 'rooms', component: RoomsComponent},
-  { path: 'advertisement', component: AdvertisementComponent},
-  { path: '**', component: HomeComponent}]
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
+  { path: 'status', component: HotelStatusComponent, canActivate:[AuthGuard]},
+  { path: 'pages', component: PagesComponent, canActivate:[AuthGuard]},
+  { path: 'reservations', component: ReservationsComponent, canActivate:[AuthGuard]},
+  { path: 'availability', component: RoomAvailabilityComponent, canActivate:[AuthGuard]},
+  { path: 'rooms', component: RoomsComponent, canActivate:[AuthGuard]},
+  { path: 'advertisement', component: AdvertisementComponent, canActivate:[AuthGuard]},
+  { path: 'login', component: LoginComponent},
+  { path: '**', component: HomeComponent, canActivate:[AuthGuard]}]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
