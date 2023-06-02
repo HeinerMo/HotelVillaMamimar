@@ -14,7 +14,8 @@ namespace CoreDataAccess.src.DataAccessObjects
     public class RoomDataAccess
     {
         private readonly DataContext _context;
-        public RoomDataAccess() {
+        public RoomDataAccess()
+        {
             _context = new DataContext();
         }
 
@@ -75,5 +76,40 @@ namespace CoreDataAccess.src.DataAccessObjects
              */
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRoomsToAdmin(string startDate, string endDate, int roomTypeId)
+        {
+            var statingDateAux = DateTime.Parse(startDate);
+            var endingDateAux = DateTime.Parse(endDate);
+
+            var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
+                .Join(_context.Reservations.Where(r => r.StartingDate >= statingDateAux && r.EndingDate <= endingDateAux),
+                    room => room.Id,
+                    r => r.RoomId,
+                    (room, r) => new Room
+                    {
+                        Id = room.Id,
+                        RoomTypeId = room.RoomTypeId,
+                        Active = room.Active,
+                        RoomType = room.RoomType
+                    })
+                .ToList();
+
+            var responseDTO = new ResponseDTO<List<Room>>();
+
+            if (dbRooms == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer las habitaciones";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbRooms;
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
     }
+
 }

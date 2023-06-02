@@ -23,6 +23,9 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await roomDataAccess.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
 
-
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRoomsToAdmin(string startDate, string endDate, int roomTypeId)
+        {
+            return await roomDataAccess.GetAvailableRoomsToAdmin(startDate, endDate, roomTypeId);
+        }
     }
 }

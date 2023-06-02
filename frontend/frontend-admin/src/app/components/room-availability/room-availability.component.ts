@@ -7,6 +7,7 @@ import {
 } from '@angular/material-moment-adapter';
 import { FormControl, Validators } from '@angular/forms';
 import { RoomTypeService } from 'src/app/services/roomType.service';
+import { RoomService } from 'src/app/services/room.service';
 
 const today = new Date();
 const day = today.getDay()
@@ -47,7 +48,8 @@ export class RoomAvailabilityComponent implements OnInit{
 
   constructor(
     @Inject(MAT_DATE_LOCALE) private _locale: string,
-    private roomTypeService: RoomTypeService
+    private roomTypeService: RoomTypeService,
+    private roomService: RoomService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,13 @@ export class RoomAvailabilityComponent implements OnInit{
 
   sendRequest() {
     if (this.beginingDateControl.valid && this.endingDateControl.valid && this.roomTypeControl.valid) {
-      console.log(this.roomTypeControl.value)
+      let startingDate = `${this.beginingDateControl.value._i.year}-${this.beginingDateControl.value._i.month+1}-${this.beginingDateControl.value._i.date}`;
+      let endingDate = `${this.endingDateControl.value._i.year}-${this.endingDateControl.value._i.month+1}-${this.endingDateControl.value._i.date}`;
+      let roomTypeId = this.roomTypeControl.value!.id;
+
+      this.roomService.getAvailableRoomsToAdmin(startingDate, endingDate, roomTypeId).subscribe(data => {
+        console.log(data)
+      });
     } else {
       this.beginingDateControl.markAsTouched();
       this.endingDateControl.markAsTouched();
