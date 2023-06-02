@@ -18,6 +18,9 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { HotelStatusComponent } from './components/hotel-status/hotel-status.component';
 import { RoomAvailabilityComponent } from './components/room-availability/room-availability.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
+import { LoginComponent } from './components/login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { AdvertisementComponent } from './components/advertisement/advertisement
     RoomsComponent,
     HotelStatusComponent,
     RoomAvailabilityComponent,
-    AdvertisementComponent
+    AdvertisementComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,10 @@ import { AdvertisementComponent } from './components/advertisement/advertisement
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
