@@ -20,9 +20,9 @@ import { AdvertisementComponent } from './components/advertisement/advertisement
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
@@ -51,10 +51,11 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    MatOptionModule,
-    MatSelectModule,
     MatButtonModule
   ],
   providers: [],
