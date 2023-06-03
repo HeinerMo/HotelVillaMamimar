@@ -3,6 +3,7 @@ using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,8 @@ namespace CoreDataAccess.src.DataAccessObjects
             var statingDateAux = DateTime.Parse(startDate);
             var endingDateAux = DateTime.Parse(endDate);
 
-            var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
+            // This show the NOT available rooms
+            /*var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
                 .Join(_context.Reservations.Where(r => r.StartingDate >= statingDateAux && r.EndingDate <= endingDateAux),
                     room => room.Id,
                     r => r.RoomId,
@@ -92,7 +94,22 @@ namespace CoreDataAccess.src.DataAccessObjects
                         Active = room.Active,
                         RoomType = room.RoomType
                     })
+                .ToList();*/
+
+            // This show the available rooms
+            var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
+                .Where(room => !_context.Reservations.Any(r => r.RoomId == room.Id &&
+                                                              r.StartingDate >= statingDateAux &&
+                                                              r.EndingDate <= endingDateAux))
+                .Select(room => new Room
+                {
+                    Id = room.Id,
+                    RoomTypeId = room.RoomTypeId,
+                    Active = room.Active,
+                    RoomType = room.RoomType
+                })
                 .ToList();
+
 
             var responseDTO = new ResponseDTO<List<Room>>();
 
