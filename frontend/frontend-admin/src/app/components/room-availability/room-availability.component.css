@@ -1,3 +1,14 @@
+.page-content {
+    height: 80vh;
+}
+
+.main-container {
+    display: block;
+    position: relative;
+    height: calc(100% - 50px);
+    overflow: auto;
+}
+
 .inputs-container {
     display: flex;
     flex-wrap: wrap;
@@ -7,11 +18,29 @@
     padding: 10px;
 }
 
-.main-container {
-    display: block;
-}
-
 .title {
     font-weight: bolder;
 }
-  
+
+.rooms-table {
+    display: block;
+    position: relative;
+}
+
+
+.mat-table {
+    max-height: 30em;
+    overflow: auto;
+}
+
+.component-title {
+    padding: 1em;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.send-button {
+    margin: 1em;
+    background-color: #85f0e7;
+    color: black;
+}
