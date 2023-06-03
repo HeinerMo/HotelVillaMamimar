@@ -31,5 +31,12 @@ namespace CoreAPI.Controllers
         {
             return await roomBusiness.GetRoomsStatus();
         }
+
+        [HttpGet]
+        [Route("GetAvailableRoomsToAdmin")]
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRoomsToAdmin(string startDate, string endDate, int roomTypeId)
+        {
+            return await roomBusiness.GetAvailableRoomsToAdmin(startDate, endDate, roomTypeId);
+        }
     }
 }
