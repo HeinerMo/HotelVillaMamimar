@@ -13,7 +13,8 @@ namespace CoreEntities.src.Models
         public int? Id { get; set; }
         public int? RoomTypeId { get; set; }
         public Boolean Active { get; set; }
-
+        [NotMapped]
+        public string? ReservationStatus { get; set; } = string.Empty;
         public IEnumerable<Reservation>? Reservations { get; set; }
         public RoomType? RoomType { get; set; }
     }

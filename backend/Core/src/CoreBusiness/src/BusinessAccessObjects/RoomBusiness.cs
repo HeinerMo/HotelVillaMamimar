@@ -23,6 +23,11 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await roomDataAccess.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetRoomsStatus()
+        {
+            return await roomDataAccess.GetRoomsStatus();
+        }
+
 
     }
 }

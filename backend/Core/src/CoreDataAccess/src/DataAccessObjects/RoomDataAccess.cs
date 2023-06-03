@@ -75,5 +75,56 @@ namespace CoreDataAccess.src.DataAccessObjects
              */
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetRoomsStatus()
+        {
+            var dbRoom = _context.rooms; //load database.
+
+            /*This should not be here. This is horrible coupling*/
+            var dbReservation = _context.Reservations;
+
+            var query = from r in dbRoom
+                        join res in dbReservation
+                        on r.Id equals res.RoomId into reservations
+                        from res in reservations.DefaultIfEmpty()
+                        select new
+                        {
+                            r.Id,
+                            r.Active,
+                            r.RoomType,
+                            ReservationStatus = res.RoomId != null ? "Reservada" :
+                            r.Active ? "Inactiva" : "Disponible"
+                        };
+
+            foreach (var result in query)
+            {
+                Console.WriteLine($"Room ID: {result.Id}, Active: {result.Active}, Reservation Status: {result.ReservationStatus}");
+            }
+
+            var responseDTO = new ResponseDTO<List<Room>>(); //Create response data transfer object 
+
+            if (query == null) //if no rooms where found then return an error message
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al obtener la lista de habitaciones";
+                return await Task.FromResult(responseDTO); //wait for task to finish (await)
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = query.Select(result => new Room
+                {
+                    Id = result.Id,
+                    Active = result.Active,
+                    RoomType = result.RoomType,
+                    ReservationStatus = result.ReservationStatus
+                }).ToList();
+            }
+
+            return await Task.FromResult(responseDTO);
+
+
+
+        }
+
     }
 }

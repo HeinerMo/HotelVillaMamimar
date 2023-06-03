@@ -1,0 +1,25 @@
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.cell-reservado {
+  background-color: rgb(235, 235, 76);
+}
+
+.cell-disponible {
+  background-color: rgb(82, 206, 82);
+}
+
+.cell-inactivo {
+  background-color: rgb(226, 138, 138);
+}
+
+.example-container {
+  margin: 2rem;
+  max-height: 450px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
