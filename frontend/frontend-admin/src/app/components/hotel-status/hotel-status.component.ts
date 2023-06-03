@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Room } from 'src/app/models/Room';
 import { RoomService } from 'src/app/services/room.service';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -11,27 +11,18 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
   styleUrls: ['./hotel-status.component.css']
 })
 
-export class HotelStatusComponent implements OnInit {
+export class HotelStatusComponent implements AfterViewInit {
   rooms: Room[] = [];
   today: Date = new Date();
   displayedColumns = ['Número', 'Tipo', 'Estado'];
-  dataSource = new MatTableDataSource<Room>()
-  pageSize = 5; // Cantidad de elementos por página
-  currentPage = 0; // Número de página actual
+  dataSource = new MatTableDataSource<Room>(this.rooms);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private roomService: RoomService) { }
-
-  ngOnInit(): void {
+  
+  ngAfterViewInit(): void {
     this.getRoomStatus();
-  }
-
-  onPageChange(event: PageEvent) {
-    this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
-    // Lógica adicional para obtener los datos correspondientes a la página actual
-    // y actualizar el dataSource si es necesario.
   }
 
   getRoomStatus(): void {
@@ -63,10 +54,10 @@ export class HotelStatusComponent implements OnInit {
           this.createRoom(new Room({ id: id, roomType: type, roomStatus: status }))
         });
       }
-
+      this.dataSource = new MatTableDataSource<Room>(this.rooms)
+      this.dataSource.paginator = this.paginator;
     });
-    this.dataSource = new MatTableDataSource<Room>(this.rooms)
-    this.dataSource.paginator = this.paginator;
+  
   }
 
   createRoom(ad: Room) {
