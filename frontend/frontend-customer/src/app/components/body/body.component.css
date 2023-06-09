@@ -19,7 +19,9 @@
 }
 
 .side-bar {
+    display: block;
     width: 15%;
+    height: calc(100vh - 150px);
     border: 0.3rem solid #ffffff;
 }
 

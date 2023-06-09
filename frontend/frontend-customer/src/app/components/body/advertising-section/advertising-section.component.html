@@ -1,19 +1,11 @@
-<div>
-    <ngb-carousel *ngIf="advertising">
-
-        <ng-template ngbSlide *ngFor="let ad of advertising; let i = index">
-            <div class="picsum-img-wrapper">
-                <a [href]="ad.url" target="_blank">
-                    <img class="imageID" [src]="ad.image" alt="i" />
-                </a>
-            </div>
-            <!-- <div class="carousel-caption">
-                <h3>Info publicidad </h3>
-                <p>Info Publicidad</p>
-            </div> -->
-        </ng-template>
-
-    </ngb-carousel>
+<div class="ad-section">
+  <ngb-carousel class="ad-carousel" *ngIf="advertising">
+    <ng-template ngbSlide *ngFor="let ad of advertising; let i = index">
+      <div class="picsum-img-wrapper">
+        <a [href]="ad.url" target="_blank">
+          <img class="carousel-img" [src]="ad.image" alt="i" />
+        </a>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 </div>
-
-
