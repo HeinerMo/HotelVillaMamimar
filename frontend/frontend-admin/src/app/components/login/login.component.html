@@ -1,0 +1,19 @@
+<div class="login-body">
+    <main class="login-container">
+        <div class="lc-header">Ingreso al Sistema</div>
+
+        <form class="lc-form">
+            <mat-error *ngIf="this.userNameControl.hasError('required')">
+                El nombre de usuario es requerido
+            </mat-error>
+            <input type="text" [formControl]="this.userNameControl" maxlength="50" name="userName" class="mb-4 input-text" placeholder="Usuario" required>
+            <br>
+            <mat-error *ngIf="this.userPasswordControl.hasError('required')">
+                La contraseña es requerida
+            </mat-error>
+            <input type="password" [formControl]="this.userPasswordControl" maxlength="100" name="password" class="mb-4 input-text" placeholder="Contraseña" required><br>
+            <mat-error *ngIf="this.isLoginIncorrect">{{this.messageToShow}}</mat-error>
+            <button type="button" class="mb-4 input-button" (click)="onLogin()" [disabled]="!this.isLoginValid()" >Ingresar</button>
+        </form>
+    </main>
+</div>

@@ -197,6 +197,13 @@ BEGIN TRANSACTION
 		('Temporada alta', 20,'2023-11-1', '2023-03-31')
 		,('Temporada baja', -20,'2023-04-1', '2023-10-31')
 
+	INSERT INTO [dbo].[tb_admin]
+	(
+		[userName], [password]
+	)
+	VALUES 
+	('admin','1234')
+
 	
 	COMMIT 
 	PRINT('Database ready!')

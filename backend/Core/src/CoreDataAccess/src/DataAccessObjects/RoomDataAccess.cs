@@ -3,6 +3,7 @@ using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,58 @@ namespace CoreDataAccess.src.DataAccessObjects
     public class RoomDataAccess
     {
         private readonly DataContext _context;
-        public RoomDataAccess() {
+        public RoomDataAccess()
+        {
             _context = new DataContext();
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetRoomsStatus()
+        {
+            var dbRoom = _context.rooms; 
+
+            var dbReservation = _context.Reservations;
+
+            var query = from r in dbRoom
+                        join res in dbReservation
+                        on r.Id equals res.RoomId into reservations
+                        from res in reservations.DefaultIfEmpty()
+                        select new
+                        {
+                            r.Id,
+                            r.Active,
+                            r.RoomType,
+                            ReservationStatus = res.RoomId != null ? "Reservada" :
+                            r.Active ? "Inactiva" : "Disponible"
+                        };
+
+            foreach (var result in query)
+            {
+                Console.WriteLine($"Room ID: {result.Id}, Active: {result.Active}, Reservation Status: {result.ReservationStatus}");
+            }
+
+            var responseDTO = new ResponseDTO<List<Room>>(); //Create response data transfer object 
+
+            if (query == null) //if no rooms where found then return an error message
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al obtener la lista de habitaciones";
+                return await Task.FromResult(responseDTO); //wait for task to finish (await)
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = query.Select(result => new Room
+                {
+                    Id = result.Id,
+                    Active = result.Active,
+                    RoomType = result.RoomType,
+                    ReservationStatus = result.ReservationStatus
+                }).ToList();
+            }
+
+            return await Task.FromResult(responseDTO);
+
+        }
 
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
         {
@@ -73,6 +122,59 @@ namespace CoreDataAccess.src.DataAccessObjects
             };
             return await Task.FromResult(responseDTO);
              */
+        }
+
+
+
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRoomsToAdmin(string startDate, string endDate, int roomTypeId)
+        {
+            var statingDateAux = DateTime.Parse(startDate);
+            var endingDateAux = DateTime.Parse(endDate);
+
+            // This show the NOT available rooms
+            /*var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
+                .Join(_context.Reservations.Where(r => r.StartingDate >= statingDateAux && r.EndingDate <= endingDateAux),
+                    room => room.Id,
+                    r => r.RoomId,
+                    (room, r) => new Room
+                    {
+                        Id = room.Id,
+                        RoomTypeId = room.RoomTypeId,
+                        Active = room.Active,
+                        RoomType = room.RoomType
+                    })
+                .ToList();*/
+
+            // This show the available rooms
+            var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
+                .Where(room => !_context.Reservations.Any(r => r.RoomId == room.Id &&
+                                                              r.StartingDate >= statingDateAux &&
+                                                              r.EndingDate <= endingDateAux))
+                .Select(room => new Room
+                {
+                    Id = room.Id,
+                    RoomTypeId = room.RoomTypeId,
+                    Active = room.Active,
+                    RoomType = room.RoomType
+                })
+                .ToList();
+
+
+            var responseDTO = new ResponseDTO<List<Room>>();
+
+            if (dbRooms == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer las habitaciones";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbRooms;
+            }
+
+            return await Task.FromResult(responseDTO);
         }
 
     }

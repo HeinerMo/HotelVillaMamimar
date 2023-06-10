@@ -24,5 +24,19 @@ namespace CoreAPI.Controllers
             Console.WriteLine(startDate + " " + endDate);
             return await roomBusiness.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
+
+        [HttpGet]
+        [Route("GetRoomsStatus")]
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetRoomsStatus()
+        {
+            return await roomBusiness.GetRoomsStatus();
+        }
+
+        [HttpGet]
+        [Route("GetAvailableRoomsToAdmin")]
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRoomsToAdmin(string startDate, string endDate, int roomTypeId)
+        {
+            return await roomBusiness.GetAvailableRoomsToAdmin(startDate, endDate, roomTypeId);
+        }
     }
 }
