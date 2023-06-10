@@ -1,6 +1,11 @@
+* {
+    color: #ffffff;
+}
+
 body, html {
     width: 100%;
     margin: 0;
+    background-color: rgb(60, 60, 60);
 }
 
 
@@ -8,9 +13,9 @@ body, html {
     Global Navbar, footer and header color
 */
 .accent-color {
-    background-color: #85f0e7;
+    background-color: rgb(40, 40, 40);
 }
 
 .page-content {
-    display: flex;
+    display: inline;
 }
