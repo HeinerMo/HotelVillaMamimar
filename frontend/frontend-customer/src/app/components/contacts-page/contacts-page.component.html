@@ -1,9 +1,34 @@
 <h2>Contactenos</h2>
 <div class="containerContacts" *ngIf="contactInformation">
-    <br>
-    <p><strong>Teléfono:</strong> {{this.contactInformation.phone}}</p>
-    <p><strong>Correo:</strong> {{this.contactInformation.email}}</p>
-    <p href=""><strong>Instagram:</strong> {{this.contactInformation.instagram}}</p>
-    <p href=""><strong>Facebook:</strong> {{this.contactInformation.facebook}}</p>
-    <br>
+    <br />
+    <p><strong>Teléfono:</strong> {{ this.contactInformation.phone }}</p>
+    <p><strong>Correo:</strong> {{ this.contactInformation.email }}</p>
+    <p href="">
+        <strong>Instagram:</strong> {{ this.contactInformation.instagram }}
+    </p>
+    <p href="">
+        <strong>Facebook:</strong> {{ this.contactInformation.facebook }}
+    </p>
+    <div ngClass="feedback-container">
+        <hr />
+        <span>Tu opinión es importante.</span>
+        <br />
+        <span>
+            Si deseas agregar una sugerencia o queja, ingrésela en el siguiente campo:
+        </span>
+        <br />
+        <mat-form-field ngClass="feedback-input">
+            <mat-label>Ingrese la queja o sugerencia aquí</mat-label>
+            <textarea matInput [formControl]="feedbackControl"></textarea>
+        </mat-form-field>
+        <br />
+        <div ngClass="feedback-message success" *ngIf="sendFeedbackState == 1">¡Enviado correctamente!</div>
+        <mat-error ngClass="feedback-message" *ngIf="sendFeedbackState == 0">
+            No se puede enviar. Intente de nuevo más tarde.
+        </mat-error>
+        <button mat-button color="primary" [ngClass]="'send-button'" (click)="this.sendRequest()">
+            Enviar
+        </button>
+        <br />
+    </div>
 </div>

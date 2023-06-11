@@ -3,3 +3,35 @@
     max-height: 650px;
     overflow: auto;
 }
+
+.feedback-container {
+    display: block;
+}
+
+.feedback-container span {
+    font-weight: bold;
+}
+
+.feedback-input {
+    padding: 10px;
+    width: 33em;
+    margin-bottom: 0;
+}
+
+.send-button {
+    margin-top: -2em;
+    background-color: #0c2e59;
+}
+
+.feedback-message {
+    margin-top: -2em; 
+    margin-bottom: 2em;
+}
+
+.feedback-message.success{
+    color: green;
+}
+
+::ng-deep.mdc-button__label{
+    color: white;
+}
