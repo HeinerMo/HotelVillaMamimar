@@ -26,6 +26,20 @@ namespace CoreAPI.Controllers
             return await adminBusiness.AuthenticateUser(adminToLogin);
         }
 
+        [HttpPut]
+        [Route("CreateAdmin")]
+        public async Task<ActionResult<ResponseDTO<int>>> CreateAdmin(Admin admin)
+        {
+            return await adminBusiness.CreateAdmin(admin);
+        }
+
+        [HttpGet]
+        [Route("GetAdmins")]
+        public async Task<ActionResult<ResponseDTO<List<Admin>>>> GetAdmins()
+        {
+            return await adminBusiness.GetAdmins();
+        }
+
 
 
     }

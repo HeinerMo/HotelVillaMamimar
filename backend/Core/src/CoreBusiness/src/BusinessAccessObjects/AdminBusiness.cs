@@ -25,5 +25,15 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await adminDataAccess.AuthenticateUser(adminToLogin);
         }
 
+        public async Task<ActionResult<ResponseDTO<int>>> CreateAdmin(Admin admin)
+        {
+            return await adminDataAccess.CreateAdmin(admin);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<Admin>>>> GetAdmins()
+        {
+            return await adminDataAccess.GetAdmins();
+        }
+
     }
 }
