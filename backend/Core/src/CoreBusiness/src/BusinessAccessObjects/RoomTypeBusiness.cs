@@ -21,5 +21,10 @@ namespace CoreBusiness.src.BusinessAccessObjects
         {
             return await roomTypeDataAccess.GetRoomTypes();
         }
+
+        public async Task<ActionResult<ResponseDTO<decimal>>> getRoomTypeFinalPrice(int roomTypeId)
+        {
+            return await roomTypeDataAccess.getRoomTypeFinalPrice(roomTypeId);
+        }
     }
 }

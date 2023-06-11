@@ -34,6 +34,35 @@ namespace CoreDataAccess.src.DataAccessObjects
             return roomTypes;
         }
 
+        public async Task<ActionResult<ResponseDTO<decimal>>> getRoomTypeFinalPrice(int roomTypeId)
+        {
+            var dbRoomTypes = _context.roomTypes.Where(r => r.Id == roomTypeId).ToList();
+
+            var responseDTO = new ResponseDTO<decimal>();
+
+            if (dbRoomTypes.Count == 0)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "get by id error";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+
+                responseDTO.Item = 0;
+                this.PriceRoomTypes(dbRoomTypes).ForEach(r =>
+                {
+                    if (r.Id == roomTypeId)
+                    {
+                        responseDTO.Item = (decimal)r.FinalPrice;
+                    }
+                });
+
+                return await Task.FromResult(responseDTO);
+            }
+        }
+
         public List<RoomType> PriceRoomTypes(List<RoomType> roomTypes)
         {
             Discount discounts;

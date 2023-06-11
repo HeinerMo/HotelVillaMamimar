@@ -81,5 +81,85 @@ namespace CoreDataAccess.src.DataAccessObjects
             return await Task.FromResult(responseDTO);
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Discount>>>> GetAllDiscounts()
+        {
+            var responseDTO = new ResponseDTO<List<Discount>>();
+
+            var dbDiscounts = _context.discounts.ToList();
+
+            if (dbDiscounts == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer los descuentos";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbDiscounts;
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
+
+        public async Task<ActionResult<ResponseDTO<Discount>>> UpdateDiscount(Discount discount)
+        {
+            var dbDiscount = _context.discounts.FirstOrDefault(s => s.Id == discount.Id);
+
+            var responseDTO = new ResponseDTO<Discount>();
+            if (dbDiscount == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                dbDiscount.Id = discount.Id;
+                dbDiscount.StartingDate = discount.StartingDate;
+                dbDiscount.EndingDate = discount.EndingDate;
+                dbDiscount.Name = discount.Name;
+                dbDiscount.Description = discount.Description;
+                dbDiscount.RoomTypeId = discount.RoomTypeId;
+                dbDiscount.Porcentage = discount.Porcentage;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = dbDiscount;
+                return await Task.FromResult(responseDTO);
+            }
+
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<Discount>>>> CreateDiscount(Discount discount)
+        {
+            var responseDTO = new ResponseDTO<List<Discount>>();
+
+            _context.discounts.Add(discount);
+
+            _context.SaveChanges();
+
+            responseDTO.Id = 1;
+            responseDTO.Message = "create success";
+            responseDTO.Item = _context.discounts.ToList();
+            return await Task.FromResult(responseDTO);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<Discount>>>> DeleteDiscount(Discount discount)
+        {
+            var responseDTO = new ResponseDTO<List<Discount>>();
+
+            _context.discounts.Remove(discount);
+
+            _context.SaveChanges();
+
+            responseDTO.Id = 1;
+            responseDTO.Message = "delete success";
+            responseDTO.Item = _context.discounts.ToList();
+            return await Task.FromResult(responseDTO);
+        }
+
     }
 }

@@ -93,15 +93,16 @@ export class RoomAvailabilityComponent implements OnInit {
     this.minDateForEnding = new Date(date);
   }
 
-  calcHours(startingDateStr: string, endingDateStr: string): number {
+  calcDays(startingDateStr: string, endingDateStr: string): number {
     const startingDate = new Date(startingDateStr);
     const endingDate = new Date(endingDateStr);
   
-    const diffInMiliseconds = endingDate.getTime() - startingDate.getTime();
-
-    const diffInHours:number = Math.floor(diffInMiliseconds / 3600000);
-    return diffInHours;
+    const diffInMilliseconds = endingDate.getTime() - startingDate.getTime();
+    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+  
+    return diffInDays;
   }
+  
 
   sendRequest() {
     if (this.beginingDateControl.valid && this.endingDateControl.valid && this.roomTypeControl.valid) {
@@ -120,7 +121,14 @@ export class RoomAvailabilityComponent implements OnInit {
               costTotal: 0
             }
 
-            availableRoom.costTotal = room.roomType!.price * this.calcHours(startingDate, endingDate);
+            this.roomTypeService.getRoomTypeFinalPrice(room.roomType!.id).subscribe(data => {
+              if (data.id == 1) {
+                availableRoom.costTotal = data.item * this.calcDays(startingDate, endingDate);
+              } else {
+                availableRoom.costTotal = room.roomType!.price * this.calcDays(startingDate, endingDate); 
+              }
+            })
+
             this.availableRooms.push(availableRoom);
           })
         }

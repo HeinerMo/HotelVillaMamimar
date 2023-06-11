@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerDetailComponent } from './components/reservation-page/customer-detail/customer-detail.component';
 import { ReservationConfirmationComponent } from './components/reservation-page/reservation-confirmation/reservation-confirmation.component';
 import { RoomChooserComponent } from './components/reservation-page/room-chooser/room-chooser.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -66,7 +66,8 @@ import { CommonModule, DatePipe } from '@angular/common';
     CommonModule,
     FormsModule,
     DatePipe,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
