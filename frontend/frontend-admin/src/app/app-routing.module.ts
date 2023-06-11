@@ -9,6 +9,7 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { AddAdminsComponent } from './components/add-admins/add-admins.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'availability', component: RoomAvailabilityComponent, canActivate:[AuthGuard]},
   { path: 'rooms', component: RoomsComponent, canActivate:[AuthGuard]},
   { path: 'advertisement', component: AdvertisementComponent, canActivate:[AuthGuard]},
+  { path: 'admins', component: AddAdminsComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: '**', component: HomeComponent, canActivate:[AuthGuard]}]
 

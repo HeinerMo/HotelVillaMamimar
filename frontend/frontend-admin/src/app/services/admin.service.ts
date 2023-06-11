@@ -65,4 +65,13 @@ export class AdminService {
     return (localStorage.getItem('STATE') == 'true');
   }
 
+
+  public CreateAdmin(admin:Admin): Observable<ResponseDTO<Admin>> {   
+    return this.httpClient.put<ResponseDTO<any>>(`${environment.apiUrl}/${this.controllerURL}/CreateAdmin`, admin);
+  }
+
+  public getAdmins(): Observable<ResponseDTO<Admin[]>> {
+    return this.httpClient.get<ResponseDTO<Admin[]>>(`${environment.apiUrl}/${this.controllerURL}/GetAdmins`);
+  }
+
 }

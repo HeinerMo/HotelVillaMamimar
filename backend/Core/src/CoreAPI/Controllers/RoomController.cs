@@ -21,7 +21,6 @@ namespace CoreAPI.Controllers
         [Route("GetAvailableRooms")]
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(string startDate, string endDate, int roomTypeId)
         {
-            Console.WriteLine(startDate + " " + endDate);
             return await roomBusiness.GetAvailableRooms(startDate, endDate, roomTypeId);
         }
 
