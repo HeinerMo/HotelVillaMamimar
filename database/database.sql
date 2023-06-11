@@ -6,7 +6,7 @@
  Creation Date: March 08 2023.
  */
 USE master
-GO 
+GO
 
 BEGIN TRY
 	PRINT('Dropping database if exists.') 
@@ -158,6 +158,11 @@ BEGIN TRANSACTION
 		,advertisementId INT NOT NULL
 		,FOREIGN KEY (imageId) REFERENCES tb_image (id)
 		,FOREIGN KEY (advertisementId) REFERENCES tb_advertisement (id));
+
+	CREATE TABLE tb_feedback (
+		id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL
+		,message VARCHAR(MAX) NOT NULL
+	)
 
 	PRINT('Tables created successfully') 
 	

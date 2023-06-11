@@ -31,10 +31,8 @@ namespace CoreDataAccess.src.Context
         public DbSet<RoomTypeImage> roomTypeImages => Set<RoomTypeImage>();
         public DbSet<Customer> customers => Set<Customer>();
         public DbSet<RoomType> roomTypes => Set<RoomType>();
-        public DbSet<Discount> discounts => Set<Discount>();    
-
-
-
+        public DbSet<Discount> discounts => Set<Discount>();
+        public DbSet<Feedback> feedbacks => Set<Feedback>();
 
     }
 }
