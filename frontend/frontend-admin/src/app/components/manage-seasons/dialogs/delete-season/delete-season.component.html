@@ -1,0 +1,21 @@
+<div class="container">
+    <h3 mat-dialog-title>Estás seguro que quieres eliminar la temporada?</h3>
+    <div mat-dialog-content>
+      <strong>Id:</strong> {{season.id}}
+      <p></p>
+      <strong>Nombre:</strong> {{season.name}}
+      <p></p>
+      <strong>Porcentaje:</strong> {{season.porcentage}}
+      <p></p>
+      <strong>Fecha de inicio:</strong> {{getFormattedDate(season.startingDate)}}
+      <p></p>
+      <strong>Fecha de fin:</strong>  {{getFormattedDate(season.endingDate)}}
+      <p></p>
+    </div>
+  
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Eliminar</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </div>
+  

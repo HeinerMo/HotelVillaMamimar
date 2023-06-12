@@ -25,6 +25,14 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import { AddAdminsComponent } from './components/add-admins/add-admins.component';
+import { ManageSeasonsComponent } from './components/manage-seasons/manage-seasons.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { CreateSeasonComponent } from './components/manage-seasons/dialogs/create-season/create-season.component';
+import { DeleteSeasonComponent } from './components/manage-seasons/dialogs/delete-season/delete-season.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ModifySeasonComponent } from './components/manage-seasons/dialogs/modify-season/modify-season.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +48,11 @@ import { AddAdminsComponent } from './components/add-admins/add-admins.component
     RoomAvailabilityComponent,
     AdvertisementComponent,
     LoginComponent,
-    AddAdminsComponent
+    AddAdminsComponent,
+    ManageSeasonsComponent,
+    CreateSeasonComponent,
+    DeleteSeasonComponent,
+    ModifySeasonComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +70,11 @@ import { AddAdminsComponent } from './components/add-admins/add-admins.component
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
