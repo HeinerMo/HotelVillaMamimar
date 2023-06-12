@@ -1,0 +1,37 @@
+.login-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5em;
+    height: 50vh;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 40%;
+    border: solid 1px #545454;
+    padding: 4em;
+}
+
+.error-message {
+    color: red;
+}
+
+input {
+    color: black;
+}
+
+button {
+    margin-bottom: 3em;
+}
+
+button:active {
+    background-color: azure;
+}
+
+button:enabled {
+    background-color: #545454;
+}
