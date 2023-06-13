@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.message-text {
+  max-width: 30em; /* Adjust the width as per your requirement */
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

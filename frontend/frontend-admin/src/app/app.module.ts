@@ -37,6 +37,9 @@ import { ManageDiscountsComponent } from './components/manage-discounts/manage-d
 import { CreateDiscountComponent } from './components/manage-discounts/dialogs/create-discount/create-discount.component';
 import { DeleteDiscountComponent } from './components/manage-discounts/dialogs/delete-discount/delete-discount.component';
 import { ModifyDiscountComponent } from './components/manage-discounts/dialogs/modify-discount/modify-discount.component';
+import { ManageFeedbackComponent } from './components/manage-feedback/manage-feedback.component';
+import { DeleteFeedbackComponent } from './components/manage-feedback/dialogs/delete-feedback/delete-feedback.component';
+import { MoreFeedbackComponent } from './components/manage-feedback/dialogs/more-feedback/more-feedback.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { ModifyDiscountComponent } from './components/manage-discounts/dialogs/m
     CreateDiscountComponent,
     DeleteDiscountComponent,
     ModifyDiscountComponent,
+    ManageFeedbackComponent,
+    DeleteFeedbackComponent,
+    MoreFeedbackComponent
   ],
   imports: [
     BrowserModule,

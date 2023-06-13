@@ -1,0 +1,17 @@
+<div class="container">
+  <h3 mat-dialog-title>Ver más</h3>
+  <hr>
+  <div mat-dialog-content>
+    <strong>Id:</strong> {{feedback.id}}
+    <p></p>
+    <hr>
+    <strong>Mensaje: </strong>
+    <span class="message-text">{{feedback.message}}</span>
+    <p></p>
+    <hr>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cerrar</button>
+  </div>
+</div>

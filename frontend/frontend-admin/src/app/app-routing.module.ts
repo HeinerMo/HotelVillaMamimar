@@ -12,6 +12,7 @@ import { AuthGuard } from './services/auth.guard';
 import { AddAdminsComponent } from './components/add-admins/add-admins.component';
 import { ManageSeasonsComponent } from './components/manage-seasons/manage-seasons.component';
 import { ManageDiscountsComponent } from './components/manage-discounts/manage-discounts.component';
+import { ManageFeedbackComponent } from './components/manage-feedback/manage-feedback.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'admins', component: AddAdminsComponent, canActivate:[AuthGuard]},
   { path: 'seasons', component: ManageSeasonsComponent, canActivate:[AuthGuard]},
   { path: 'discounts', component: ManageDiscountsComponent, canActivate:[AuthGuard]},
+  { path: 'feedbacks', component: ManageFeedbackComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: '**', component: HomeComponent, canActivate:[AuthGuard]}]
 
