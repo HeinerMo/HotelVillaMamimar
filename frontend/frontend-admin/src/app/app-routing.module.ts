@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { AddAdminsComponent } from './components/add-admins/add-admins.component';
 import { ManageSeasonsComponent } from './components/manage-seasons/manage-seasons.component';
+import { ManageDiscountsComponent } from './components/manage-discounts/manage-discounts.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'advertisement', component: AdvertisementComponent, canActivate:[AuthGuard]},
   { path: 'admins', component: AddAdminsComponent, canActivate:[AuthGuard]},
   { path: 'seasons', component: ManageSeasonsComponent, canActivate:[AuthGuard]},
+  { path: 'discounts', component: ManageDiscountsComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: '**', component: HomeComponent, canActivate:[AuthGuard]}]
 

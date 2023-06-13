@@ -85,7 +85,7 @@ namespace CoreDataAccess.src.DataAccessObjects
         {
             var responseDTO = new ResponseDTO<List<Discount>>();
 
-            var dbDiscounts = _context.discounts.ToList();
+            var dbDiscounts = _context.discounts.Include(d => d.RoomType).ToList();
 
             if (dbDiscounts == null)
             {
@@ -104,7 +104,7 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         public async Task<ActionResult<ResponseDTO<Discount>>> UpdateDiscount(Discount discount)
         {
-            var dbDiscount = _context.discounts.FirstOrDefault(s => s.Id == discount.Id);
+            var dbDiscount = _context.discounts.Include(d => d.RoomType).FirstOrDefault(s => s.Id == discount.Id);
 
             var responseDTO = new ResponseDTO<Discount>();
             if (dbDiscount == null)
@@ -143,7 +143,7 @@ namespace CoreDataAccess.src.DataAccessObjects
 
             responseDTO.Id = 1;
             responseDTO.Message = "create success";
-            responseDTO.Item = _context.discounts.ToList();
+            responseDTO.Item = _context.discounts.Include(d => d.RoomType).ToList();
             return await Task.FromResult(responseDTO);
         }
 
@@ -157,7 +157,7 @@ namespace CoreDataAccess.src.DataAccessObjects
 
             responseDTO.Id = 1;
             responseDTO.Message = "delete success";
-            responseDTO.Item = _context.discounts.ToList();
+            responseDTO.Item = _context.discounts.Include(d => d.RoomType).ToList();
             return await Task.FromResult(responseDTO);
         }
 

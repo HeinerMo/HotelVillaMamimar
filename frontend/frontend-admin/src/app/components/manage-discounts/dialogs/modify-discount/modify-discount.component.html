@@ -1,0 +1,72 @@
+<div ngClass="dialog-container">
+    <h3 mat-dialog-title>Crear temporada</h3>
+
+    <form ngClass="mat-dialog-content" #formControl="ngForm">
+
+        <div ngClass="form">
+            <mat-form-field color="primary">
+                <mat-label>Nombre</mat-label>
+                <input matInput #inputName ngClass="form-control" [(ngModel)]="discount.name" name="name" maxlength="80"
+                    required>
+                <mat-hint [align]="'end'">{{inputName.value!.length || 0}}/80</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div ngClass="form">
+            <mat-form-field color="primary">
+                <mat-label>Descripción</mat-label>
+                <input matInput #inputName ngClass="form-control" [(ngModel)]="discount.description" name="description"
+                    maxlength="500" required>
+                <mat-hint [align]="'end'">{{inputName.value!.length || 0}}/500</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div ngClass="form">
+            <mat-form-field color="primary">
+                <mat-label>Porcentaje</mat-label>
+                <input matInput [type]="'number'" (input)="checkPercentage(inputPercentage)" #inputPercentage
+                    ngClass="form-control" [(ngModel)]="discount.porcentage" name="percentage" maxlength="3" required>
+                <mat-hint [align]="'end'">{{inputPercentage.value!.length || 0}}/3</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div ngClass="form">
+            <mat-form-field #beginingDateForm>
+                <mat-label>Fecha de inicio</mat-label>
+                <input matInput [formControl]="beginingDateControl" [matDatepicker]="beginingDate"
+                    [min]="minDateForBegining" (dateInput)="setBeginingDateValue($event.target.value)"
+                    [readonly]="true">
+                <mat-datepicker-toggle matIconSuffix [for]="beginingDate"></mat-datepicker-toggle>
+                <mat-datepicker #beginingDate></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div ngClass="form">
+            <mat-form-field>
+                <mat-label>Fecha de fin</mat-label>
+                <input matInput [formControl]="endingDateControl" [matDatepicker]="endingDate" [min]="minDateForEnding"
+                    [readonly]="true">
+                <mat-datepicker-toggle matIconSuffix [for]="endingDate"></mat-datepicker-toggle>
+                <mat-datepicker #endingDate></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div ngClass="form">
+            <mat-form-field>
+                <mat-label>Tipo de habitación</mat-label>
+                <mat-select [formControl]="roomTypeControl" name="room-type" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let roomType of this.roomTypes" [value]="roomType.id">
+                        {{roomType.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button [disabled]="!this.isFormValid()" (click)="this.submit()"
+                [mat-dialog-close]="1">Modificar</button>
+            <button mat-button (click)="onNoClick()">Cancelar</button>
+        </div>
+    </form>
+</div>

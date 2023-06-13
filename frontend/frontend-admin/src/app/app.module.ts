@@ -33,6 +33,10 @@ import { DeleteSeasonComponent } from './components/manage-seasons/dialogs/delet
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ModifySeasonComponent } from './components/manage-seasons/dialogs/modify-season/modify-season.component';
+import { ManageDiscountsComponent } from './components/manage-discounts/manage-discounts.component';
+import { CreateDiscountComponent } from './components/manage-discounts/dialogs/create-discount/create-discount.component';
+import { DeleteDiscountComponent } from './components/manage-discounts/dialogs/delete-discount/delete-discount.component';
+import { ModifyDiscountComponent } from './components/manage-discounts/dialogs/modify-discount/modify-discount.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,11 @@ import { ModifySeasonComponent } from './components/manage-seasons/dialogs/modif
     ManageSeasonsComponent,
     CreateSeasonComponent,
     DeleteSeasonComponent,
-    ModifySeasonComponent
+    ModifySeasonComponent,
+    ManageDiscountsComponent,
+    CreateDiscountComponent,
+    DeleteDiscountComponent,
+    ModifyDiscountComponent,
   ],
   imports: [
     BrowserModule,
