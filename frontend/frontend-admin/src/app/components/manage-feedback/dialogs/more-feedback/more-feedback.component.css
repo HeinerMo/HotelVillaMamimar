@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 30em;
 }
 
 .container > * {
@@ -11,6 +12,9 @@
   max-width: 30em;
   max-height: 30em;
   display: inline-block;
-  overflow: auto;
+  overflow-y: auto; /* Enable vertical scrolling */
   text-overflow: ellipsis;
+  white-space: pre-wrap; /* Preserve line breaks in the text */
+  word-wrap: break-word; /* Break long words if needed */
 }
+
