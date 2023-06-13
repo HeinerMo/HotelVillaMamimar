@@ -16,7 +16,7 @@ body, html {
 }
 
 .page-content {
-    display: inline;
+    margin: 1em;
 }
 
 
