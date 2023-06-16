@@ -1,12 +1,13 @@
+<app-navigation-menu></app-navigation-menu>
 <div class="page-content">
-  <app-navigation-menu></app-navigation-menu>
+
 
   <div class="row container-roomsStatus">
     <h2>Estado de las habitaciones - {{ today | date:'dd/MM/yyyy' }}</h2>
 
     <div class="example-container mat-elevation-z8">
       <ng-container *ngIf="dataSource">
-        <mat-table #table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource">
+        <mat-table #table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" class="main-color">
           <!-- Id Column -->
           <ng-container matColumnDef="Número">
             <mat-header-cell *matHeaderCellDef> Número </mat-header-cell>
@@ -23,14 +24,15 @@
           <ng-container matColumnDef="Estado">
             <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
             <mat-cell *matCellDef="let room"
-              [ngClass]="{'cell-reservado': room.roomStatus === 'Reservada', 'cell-disponible': room.roomStatus === 'Disponible', 'cell-inactivo': room.roomStatus === 'Inactiva'}">
+              [ngClass]="{'cell-reserved': room.roomStatus === 'Reservada', 'cell-available': room.roomStatus === 'Disponible', 'cell-inactive': room.roomStatus === 'Inactiva'}">
               {{ room.roomStatus }} </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
+          class="default-text-color main-color">
         </mat-paginator>
         <p *ngIf="dataSource.data.length === 0">No hay datos disponibles.</p>
       </ng-container>

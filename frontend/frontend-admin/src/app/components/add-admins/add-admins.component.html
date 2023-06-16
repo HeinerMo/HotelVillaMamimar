@@ -1,5 +1,5 @@
+<app-navigation-menu></app-navigation-menu>
 <div class="page-content">
-    <app-navigation-menu></app-navigation-menu>
     <div class="main-container">
         <p class="component-title">Agregar Administrador</p>
         <p>Asigne las credenciales para el nuevo administrador.</p>
@@ -8,9 +8,9 @@
             <div class="input">
                 <span class="title">Usuario</span>
                 <hr>
-                <mat-form-field>
+                <mat-form-field class="default-text-color">
                     <mat-label>Usuario</mat-label>
-                    <input matInput [formControl]="userNameControl" [readonly]="false" type="text">
+                    <input  class="default-text-color" matInput [formControl]="userNameControl" [readonly]="false" type="text">
                     <mat-error *ngIf="passwordControl.hasError('required')">Completar todos los campos</mat-error>
                 </mat-form-field>
             </div>
@@ -18,9 +18,9 @@
             <div class="input">
                 <span class="title">Contraseña</span>
                 <hr>
-                <mat-form-field>
+                <mat-form-field class="default-text-color">
                     <mat-label>Constraseña</mat-label>
-                    <input matInput [formControl]="passwordControl" [readonly]="false" type="password">
+                    <input class="default-text-color" matInput [formControl]="passwordControl" [readonly]="false" type="password">
                     <mat-error *ngIf="passwordControl.hasError('required')">Completar todos los campos</mat-error>
                 </mat-form-field>
             </div>
@@ -28,7 +28,7 @@
             <div class="input">
                 <span class="title">Confirme contraseña</span>
                 <hr>
-                <mat-form-field>
+                <mat-form-field >
                     <mat-label>Confirme contraseña</mat-label>
                     <input matInput [formControl]="confirmPasswordControl" [readonly]="false" type="password">
                     <mat-error *ngIf="confirmPasswordControl.hasError('passwordMismatch')">La contraseña no
@@ -42,7 +42,7 @@
 
         <div class="rooms-table" *ngIf="this.admins.length > 0">
             <div class="mat-elevation-z8" [ngClass]="'mat-table'">
-                <table mat-table [dataSource]="dataSource">
+                <table class="main-color" mat-table [dataSource]="dataSource">
 
                     <!-- Tipo Column -->
                     <ng-container matColumnDef="userName">
@@ -54,7 +54,7 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
             </div>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+            <mat-paginator class="main-color" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
             </mat-paginator>
         </div>
         <hr>

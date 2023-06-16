@@ -30,6 +30,24 @@
 
 .send-button {
     margin: 1em;
-    background-color: #85f0e7;
+    background-color: #626666;
     color: black;
+    transition: .4s;
+}
+
+.send-button:focus, .send-button:hover {
+    background-color: #b1b1b1;
+    transition: .4s;
+}
+
+.send-button:active {
+    background-color: #ffa260;
+}
+
+mat-label {
+    color: black;
+}
+
+th, td {
+    color: #ffffff;
 }

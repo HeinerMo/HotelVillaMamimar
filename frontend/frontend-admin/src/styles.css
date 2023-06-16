@@ -1,19 +1,29 @@
+* {
+    color: #ffffff;
+}
+
 body, html {
     width: 100%;
     margin: 0;
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
-
 
 /*
     Global Navbar, footer and header color
 */
 .accent-color {
-    background-color: #85f0e7;
+    background-color: rgb(40, 40, 40);
 }
 
 .page-content {
-    display: flex;
+    margin: 1em;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.main-color {
+    background-color: rgb(60, 60, 60);
+}
+
+.default-text-color {
+    color: #ffffff;
+}

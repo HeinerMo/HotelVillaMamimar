@@ -3,16 +3,27 @@
   max-height: 500px;
 }
 
-.cell-reservado {
+mat-cell {
+  color: #ffffff;
+}
+
+mat-header-cell {
+  color: #ffffff;
+}
+
+.cell-reserved {
   background-color: rgb(235, 235, 76);
+  color: black;
 }
 
-.cell-disponible {
+.cell-available {
   background-color: rgb(82, 206, 82);
+  color: black;
 }
 
-.cell-inactivo {
+.cell-inactive {
   background-color: rgb(226, 138, 138);
+  color: black;
 }
 
 .example-container {
