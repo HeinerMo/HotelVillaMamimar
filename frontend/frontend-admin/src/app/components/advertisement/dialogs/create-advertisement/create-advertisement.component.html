@@ -1,0 +1,31 @@
+<div ngClass="dialog-container">
+    <h3 mat-dialog-title>Crear temporada</h3>
+
+    <form ngClass="mat-dialog-content" #formControl="ngForm">
+        <div>
+            <img class="carousel-img" [src]="advertisement.image" alt="i" />
+        </div>
+
+        <label class="image-upload-container btn btn-bwm">
+            <span>Select Image</span>
+            <input #imageInput
+                   type="file"
+                   accept="image/*"
+                   (change)="processFile(imageInput)">
+          </label>
+
+        <div ngClass="form">
+            <mat-form-field color="primary">
+                <mat-label>URL</mat-label>
+                <input matInput #inputName ngClass="form-control" [(ngModel)]="advertisement.url" name="url"  required>
+            </mat-form-field>
+        </div>
+
+
+
+        <div mat-dialog-actions>
+            <button mat-button [disabled]="!this.isFormValid()" (click)="this.submit()" [mat-dialog-close]="1">Crear</button>
+            <button mat-button (click)="onNoClick()">Cancelar</button>
+        </div>
+    </form>
+</div>

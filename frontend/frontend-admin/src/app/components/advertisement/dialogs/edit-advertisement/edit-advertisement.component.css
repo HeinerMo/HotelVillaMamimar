@@ -1,0 +1,13 @@
+/* Dark Style */
+
+:host ::ng-deep .dialog-container * {
+    color: black;
+  }
+  
+  .dialog-container button.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base {
+    background-color: #3f51b5;
+  }
+  
+  :host ::ng-deep .dialog-container .mdc-button__label {
+    color: white;
+  }
