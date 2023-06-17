@@ -5,7 +5,7 @@
         <p class="component-title">Gestionar descuentos</p>
 
         <div ngClass="crud-container">
-            <mat-form-field>
+            <mat-form-field ngClass="filter">
                 <mat-label>Buscar descuento</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: descuento...." #input>
             </mat-form-field>

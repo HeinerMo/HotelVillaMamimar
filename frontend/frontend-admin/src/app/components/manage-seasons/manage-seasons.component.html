@@ -5,7 +5,7 @@
         <p class="component-title">Gestionar temporadas</p>
 
         <div ngClass="crud-container">
-            <mat-form-field>
+            <mat-form-field ngClass="filter">
                 <mat-label>Buscar temporada</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: Temporada baja" #input>
             </mat-form-field>
