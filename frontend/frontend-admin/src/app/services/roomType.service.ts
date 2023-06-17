@@ -9,9 +9,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class RoomTypeService {
-  
+
   private controllerURL: string;
-  constructor (private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
     this.controllerURL = "RoomType";
   }
 
@@ -29,6 +29,7 @@ export class RoomTypeService {
 
   public createRoomType(roomType: any): Observable<any> {
     return this.httpClient.post<any>(`${environment.apiUrl}/${this.controllerURL}/CreateRoomType`, roomType);
+
   }
 
   public updateRoomType(roomType: any): Observable<any> {
@@ -40,7 +41,7 @@ export class RoomTypeService {
       .set('Content-Type', 'application/json')
       .set('accept', 'text/plain');
 
-    return this.httpClient.delete<any> (
+    return this.httpClient.delete<any>(
       `${environment.apiUrl}/${this.controllerURL}/DeleteRoomType`,
       {
         headers,

@@ -177,12 +177,44 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         }
 
-        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomTypeInsert roomTypeInsert)
         {
             var responseDTO = new ResponseDTO<List<RoomType>>();
 
-            _context.roomTypes.Add(roomType);
+            var newRoomType = new RoomType
+            {
+                Price = roomTypeInsert.Price,
+                Description = roomTypeInsert.Description,
+                Name = roomTypeInsert.Name,
+                IsDeleted = roomTypeInsert.IsDeleted
+            };
 
+            _context.roomTypes.Add(newRoomType);
+            _context.SaveChanges();
+
+            int numBytes = roomTypeInsert.hexImageString!.Length / 2;
+            byte[] bytes = new byte[numBytes];
+            for (int i = 0; i < numBytes; ++i)
+            {
+                bytes[i] = Convert.ToByte(roomTypeInsert.hexImageString!.Substring(i * 2, 2), 16);
+            }
+
+            var newImage = new Image
+            {
+                ImageData = bytes,
+                UniqueIdentifier = Guid.NewGuid()
+            };
+
+            _context.images.Add(newImage);
+            _context.SaveChanges();
+
+            var roomTypeImage = new RoomTypeImage
+            {
+               RoomTypeId = newRoomType.Id,
+               ImageId = newImage.Id
+            };
+
+            _context.roomTypeImages.Add(roomTypeImage);
             _context.SaveChanges();
 
             responseDTO.Id = 1;

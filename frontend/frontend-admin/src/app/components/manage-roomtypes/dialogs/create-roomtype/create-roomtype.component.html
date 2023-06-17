@@ -27,6 +27,11 @@
             </mat-form-field>
         </div>
 
+        <div class="form">
+            <!-- Select File -->
+            <input type="file" accept="image/*" (change)="handleFileSelect($event)" />
+        </div>
+
         <div mat-dialog-actions>
             <button mat-button [disabled]="!isFormValid()" (click)="submit()" [mat-dialog-close]="1">Crear</button>
             <button mat-button (click)="onNoClick()">Cancelar</button>

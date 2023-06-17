@@ -46,9 +46,9 @@ namespace CoreAPI.Controllers
 
         [HttpPost]
         [Route("CreateRoomType")]
-        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomTypeInsert roomTypeInsert)
         {
-            return await roomTypeBusiness.CreateRoomType(roomType);
+            return await roomTypeBusiness.CreateRoomType(roomTypeInsert);
         }
 
         [HttpDelete]

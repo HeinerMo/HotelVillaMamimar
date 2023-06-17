@@ -46,34 +46,50 @@ export class CreateRoomtypeComponent implements AfterViewInit, OnInit {
     });
   }
 
-  readFileAsDataURL(file: File): Promise<string> {
+  readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
+      reader.onload = () => resolve(reader.result as ArrayBuffer);
       reader.onerror = () => reject(reader.error);
-      reader.readAsDataURL(file);
+      reader.readAsArrayBuffer(file);
     });
   }
-  
+
+  arrayBufferToHex(arrayBuffer: ArrayBuffer): string {
+    const view = new Uint8Array(arrayBuffer);
+    let hex = '';
+    for (let i = 0; i < view.length; i++) {
+      const byte = view[i].toString(16).padStart(2, '0');
+      hex += byte.toUpperCase();
+    }
+    return hex;
+  }
+
+ hexToBytes(hex: string): Uint8Array {
+    const bytes = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < hex.length; i += 2) {
+      bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
+    }
+    return bytes;
+  }
+
   async handleFileSelect(event: Event) {
     const fileInput = event.target as HTMLInputElement;
     const file = fileInput.files![0];
-  
+
     if (file) {
       try {
-        const base64Image = await this.readFileAsDataURL(file);
-        this.roomType.roomTypeImages = [{
-          image: {
-            imageData: base64Image
-          }
-        }]
+        const arrayBuffer = await this.readFileAsArrayBuffer(file);
+        const hexString = this.arrayBufferToHex(arrayBuffer);
+        const bytes = this.hexToBytes(hexString);
+        this.roomType.hexImage = hexString;
         this.imageSelected = true;
       } catch (error) {
         console.error('Error reading file:', error);
         this.imageSelected = false;
       }
     }
-  }  
+  }
 
   ngAfterViewInit(): void {
     this.formGroup.get('name')?.setValidators([Validators.required]);

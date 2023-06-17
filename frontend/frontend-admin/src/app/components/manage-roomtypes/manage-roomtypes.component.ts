@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FeedbackService } from 'src/app/services/feedback.service';
 import { DeleteRoomtypesComponent } from './dialogs/delete-roomtypes/delete-roomtypes.component';
 import { MoreRoomtypesComponent } from './dialogs/more-roomtypes/more-roomtypes.component';
 import { RoomTypeService } from 'src/app/services/roomType.service';
@@ -21,9 +20,10 @@ export interface IRoomType {
     id?: number,
     image: {
       id?: number,
-      imageData: string
+      imageData: Uint8Array
     }
   }[],
+  hexImage?: string
   isDeleted: boolean
 }
 
@@ -110,10 +110,8 @@ export class ManageRoomtypesComponent implements OnInit, AfterViewInit {
           description: roomType.description,
           price: roomType.price,
           isDeleted: false,
-          //roomTypeImages: roomType.roomTypeImages
+          hexImageString: roomType.hexImage
         }
-
-        //console.log(result)
 
         this.roomTypeServive.createRoomType(roomTypeFormatted).subscribe(data => {
           if (data.id == 1) {
