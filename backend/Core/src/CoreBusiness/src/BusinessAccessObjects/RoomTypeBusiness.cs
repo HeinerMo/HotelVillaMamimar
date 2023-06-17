@@ -2,6 +2,7 @@
 using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,27 @@ namespace CoreBusiness.src.BusinessAccessObjects
         public async Task<ActionResult<ResponseDTO<decimal>>> getRoomTypeFinalPrice(int roomTypeId)
         {
             return await roomTypeDataAccess.getRoomTypeFinalPrice(roomTypeId);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> GetAllRoomTypes()
+        {
+            return await roomTypeDataAccess.GetAllRoomTypes();
+        }
+
+        public async Task<ActionResult<ResponseDTO<RoomType>>> UpdateRoomType(RoomType roomType)
+        {
+            return await roomTypeDataAccess.UpdateRoomType(roomType);
+
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
+        {
+            return await roomTypeDataAccess.CreateRoomType(roomType);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> DeleteRoomType(RoomType roomType)
+        {
+            return await roomTypeDataAccess.DeleteRoomType(roomType);
         }
     }
 }

@@ -28,5 +28,34 @@ namespace CoreAPI.Controllers
         {
             return await roomTypeBusiness.getRoomTypeFinalPrice(roomTypeId);
         }
+
+        [HttpGet]
+        [Route("GetAllRoomTypes")]
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> GetAllRoomTypes()
+        {
+            return await roomTypeBusiness.GetAllRoomTypes();
+        }
+
+        [HttpPut]
+        [Route("UpdateRoomType")]
+        public async Task<ActionResult<ResponseDTO<RoomType>>> UpdateRoomType(RoomType roomType)
+        {
+            return await roomTypeBusiness.UpdateRoomType(roomType);
+
+        }
+
+        [HttpPost]
+        [Route("CreateRoomType")]
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
+        {
+            return await roomTypeBusiness.CreateRoomType(roomType);
+        }
+
+        [HttpDelete]
+        [Route("DeleteRoomType")]
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> DeleteRoomType(RoomType roomType)
+        {
+            return await roomTypeBusiness.DeleteRoomType(roomType);
+        }
     }
 }

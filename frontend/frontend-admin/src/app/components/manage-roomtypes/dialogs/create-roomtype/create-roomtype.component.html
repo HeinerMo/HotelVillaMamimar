@@ -1,0 +1,35 @@
+<div class="dialog-container">
+    <h3 mat-dialog-title>Crear descuento</h3>
+
+    <form class="mat-dialog-content" [formGroup]="formGroup" (ngSubmit)="submit()">
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" class="form-control" maxlength="80">
+                <mat-hint align="end">{{ formGroup.get('name')?.value?.length || 0 }}/80</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <mat-label>Descripción</mat-label>
+                <input matInput formControlName="description" class="form-control" maxlength="500">
+                <mat-hint align="end">{{ formGroup.get('description')?.value?.length || 0 }}/500</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="price" #inputPrice type="number" class="form-control" maxlength="11">
+                <mat-hint align="end">{{ inputPrice.value.length || 0 }}/11</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button [disabled]="!isFormValid()" (click)="submit()" [mat-dialog-close]="1">Crear</button>
+            <button mat-button (click)="onNoClick()">Cancelar</button>
+        </div>
+    </form>
+</div>

@@ -21,7 +21,6 @@ namespace CoreDataAccess.src.DataAccessObjects
         {
             var dbDiscount = _context.discounts.ToList();
 
-
             for (int i = dbDiscount.Count-1; i >= 0; i--)
             {
 

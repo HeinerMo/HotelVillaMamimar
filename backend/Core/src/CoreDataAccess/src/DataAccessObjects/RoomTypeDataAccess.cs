@@ -36,7 +36,7 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         public async Task<ActionResult<ResponseDTO<decimal>>> getRoomTypeFinalPrice(int roomTypeId)
         {
-            var dbRoomTypes = _context.roomTypes.Where(r => r.Id == roomTypeId).ToList();
+            var dbRoomTypes = _context.roomTypes.Where(r => r.Id == roomTypeId && r.IsDeleted == false).ToList();
 
             var responseDTO = new ResponseDTO<decimal>();
 
@@ -97,7 +97,9 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         public async Task<ActionResult<ResponseDTO<List<RoomType>>>> GetRoomTypes()
         {
-            var dbRoomType = _context.roomTypes.Include(i => i.RoomTypeImages).ToList();                       
+            var dbRoomType = _context.roomTypes.Include(i => i.RoomTypeImages)
+                .Where(rt => rt.IsDeleted == false)
+             .ToList();                       
 
             if (dbRoomType != null) 
             {   
@@ -121,5 +123,98 @@ namespace CoreDataAccess.src.DataAccessObjects
 
             return await Task.FromResult(responseDTO);
         }
+
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> GetAllRoomTypes()
+        {
+            var responseDTO = new ResponseDTO<List<RoomType>>();
+
+            var dbRoomTypes = _context.roomTypes
+                .Include(rt => rt.RoomTypeImages!)
+                    .ThenInclude(rti => rti.Image!)
+                .Where(rt => rt.IsDeleted == false)
+                .ToList();
+
+            if (dbRoomTypes == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer los tipos de habitación";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbRoomTypes;
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
+
+        public async Task<ActionResult<ResponseDTO<RoomType>>> UpdateRoomType(RoomType roomType)
+        {
+            var dbRoomType = _context.roomTypes.Include(d => d.RoomTypeImages!).ThenInclude(rti => rti.Image!).Where(rt => rt.IsDeleted == false).FirstOrDefault(s => s.Id == roomType.Id);
+
+            var responseDTO = new ResponseDTO<RoomType>();
+            if (dbRoomType == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                dbRoomType.Id = roomType.Id;
+                dbRoomType.Price = roomType.Price;
+                dbRoomType.Name = roomType.Name;
+                dbRoomType.Description = roomType.Description;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = roomType;
+                return await Task.FromResult(responseDTO);
+            }
+
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
+        {
+            var responseDTO = new ResponseDTO<List<RoomType>>();
+
+            _context.roomTypes.Add(roomType);
+
+            _context.SaveChanges();
+
+            responseDTO.Id = 1;
+            responseDTO.Message = "create success";
+            responseDTO.Item = _context.roomTypes.Include(d => d.RoomTypeImages!).ThenInclude(rti => rti.Image!).Where(rt => rt.IsDeleted == false).ToList();
+            return await Task.FromResult(responseDTO);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> DeleteRoomType(RoomType roomType)
+        {
+            var dbRoomType = _context.roomTypes.FirstOrDefault(rt => rt.Id == roomType.Id);
+
+            var responseDTO = new ResponseDTO<List<RoomType>>();
+            if (dbRoomType == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "delete failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                dbRoomType.IsDeleted = true;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "delete success";
+                responseDTO.Item = _context.roomTypes.Include(d => d.RoomTypeImages!).ThenInclude(rti => rti.Image!).Where(rt => rt.IsDeleted == false).ToList(); ;
+                return await Task.FromResult(responseDTO);
+            }
+    
+        }
+
     }
 }

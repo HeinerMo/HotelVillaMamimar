@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ResponseDTO } from '../models/DataTransferObjects/ResponseDTO';
 import { RoomType } from '../models/RoomType';
 import { environment } from 'src/environments/environment';
@@ -23,4 +23,29 @@ export class RoomTypeService {
     return this.httpClient.get<any>(`${environment.apiUrl}/${this.controllerURL}/getRoomTypeFinalPrice/?roomTypeId=${roomTypeId}`);
   }
 
+  public getAllRoomTypes(): Observable<any> {
+    return this.httpClient.get<any>(`${environment.apiUrl}/${this.controllerURL}/GetAllRoomTypes`);
+  }
+
+  public createRoomType(roomType: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/${this.controllerURL}/CreateRoomType`, roomType);
+  }
+
+  public updateRoomType(roomType: any): Observable<any> {
+    return this.httpClient.put<any>(`${environment.apiUrl}/${this.controllerURL}/UpdateRoomType`, roomType);
+  }
+
+  public deleteRoomType(roomType: any): Observable<any> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('accept', 'text/plain');
+
+    return this.httpClient.delete<any> (
+      `${environment.apiUrl}/${this.controllerURL}/DeleteRoomType`,
+      {
+        headers,
+        body: JSON.stringify(roomType)
+      }
+    );
+  }
 }

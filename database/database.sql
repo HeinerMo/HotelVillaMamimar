@@ -58,7 +58,9 @@ BEGIN TRANSACTION
 		id INT IDENTITY(1, 1) PRIMARY KEY NOT NULL
 		,price NUMERIC(11, 4) NOT NULL
 		,name VARCHAR(80) NOT NULL
-		,description VARCHAR(500) NOT NULL);
+		,description VARCHAR(500) NOT NULL
+		,isDeleted BIT DEFAULT '0' NOT NULL
+	);
 
 	--Discount
 	CREATE TABLE tb_discount (

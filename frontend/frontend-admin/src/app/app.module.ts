@@ -13,7 +13,6 @@ import { NavigationMenuComponent } from './components/navigation-menu/navigation
 import { HomeComponent } from './components/home/home.component';
 import { PagesComponent } from './components/pages/pages.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
-import { RoomsComponent } from './components/rooms/rooms.component';
 import { HotelStatusComponent } from './components/hotel-status/hotel-status.component';
 import { RoomAvailabilityComponent } from './components/room-availability/room-availability.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
@@ -40,6 +39,10 @@ import { ModifyDiscountComponent } from './components/manage-discounts/dialogs/m
 import { ManageFeedbackComponent } from './components/manage-feedback/manage-feedback.component';
 import { DeleteFeedbackComponent } from './components/manage-feedback/dialogs/delete-feedback/delete-feedback.component';
 import { MoreFeedbackComponent } from './components/manage-feedback/dialogs/more-feedback/more-feedback.component';
+import { ManageRoomtypesComponent } from './components/manage-roomtypes/manage-roomtypes.component';
+import { MoreRoomtypesComponent } from './components/manage-roomtypes/dialogs/more-roomtypes/more-roomtypes.component';
+import { DeleteRoomtypesComponent } from './components/manage-roomtypes/dialogs/delete-roomtypes/delete-roomtypes.component';
+import { CreateRoomtypeComponent } from './components/manage-roomtypes/dialogs/create-roomtype/create-roomtype.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,6 @@ import { MoreFeedbackComponent } from './components/manage-feedback/dialogs/more
     HomeComponent,
     PagesComponent,
     ReservationsComponent,
-    RoomsComponent,
     HotelStatusComponent,
     RoomAvailabilityComponent,
     AdvertisementComponent,
@@ -66,7 +68,11 @@ import { MoreFeedbackComponent } from './components/manage-feedback/dialogs/more
     ModifyDiscountComponent,
     ManageFeedbackComponent,
     DeleteFeedbackComponent,
-    MoreFeedbackComponent
+    MoreFeedbackComponent,
+    ManageRoomtypesComponent,
+    MoreRoomtypesComponent,
+    DeleteRoomtypesComponent,
+    CreateRoomtypeComponent
   ],
   imports: [
     BrowserModule,

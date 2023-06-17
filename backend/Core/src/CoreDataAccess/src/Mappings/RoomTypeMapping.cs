@@ -31,6 +31,11 @@ namespace CoreDataAccess.src.Mappings
                 .HasColumnType("varchar(500)")
             .HasColumnName("description");
 
+            builder.Property(c => c.IsDeleted)
+                .IsRequired()
+                .HasColumnType("bit")
+            .HasColumnName("isDeleted");
+
             builder.ToTable("tb_room_type");
         }
 

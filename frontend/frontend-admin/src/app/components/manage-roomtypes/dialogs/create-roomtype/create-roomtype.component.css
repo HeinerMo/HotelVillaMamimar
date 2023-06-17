@@ -1,0 +1,36 @@
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 30em;
+    height: 40em;
+    overflow: auto;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  .form {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+
+  .mat-mdc-form-field {
+    width: 100%;
+    margin: 20px;
+  }
+  
+/* Dark Style */
+
+:host ::ng-deep .dialog-container * {
+  color: black;
+}
+
+.dialog-container button.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base {
+  background-color: #3f51b5;
+}
+
+:host ::ng-deep .dialog-container .mdc-button__label {
+  color: white;
+}
