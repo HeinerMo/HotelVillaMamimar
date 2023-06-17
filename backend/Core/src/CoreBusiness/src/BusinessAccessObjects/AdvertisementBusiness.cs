@@ -20,9 +20,19 @@ namespace CoreBusiness.src.BusinessAccessObjects
             this.advertisementDataAcess = new AdvertisementDataAccess();
         }
 
+        public async Task<ActionResult<ResponseDTO<Advertisement>>> createAdvertisement(Advertisement advertisement)
+        { 
+            return await advertisementDataAcess.createAdvertisement(advertisement);
+        }
+
         public async Task<ActionResult<ResponseDTO<List<Advertisement>>>> GetAdvertisiment()
         {
             return await advertisementDataAcess.GetAdvertisiment();
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<Advertisement>>>> DeleteAdvertisement(Advertisement advertisement)
+        {
+            return await advertisementDataAcess.DeleteAdvertisement(advertisement);
         }
 
 
