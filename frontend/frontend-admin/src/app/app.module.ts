@@ -40,6 +40,9 @@ import { ModifyDiscountComponent } from './components/manage-discounts/dialogs/m
 import { ManageFeedbackComponent } from './components/manage-feedback/manage-feedback.component';
 import { DeleteFeedbackComponent } from './components/manage-feedback/dialogs/delete-feedback/delete-feedback.component';
 import { MoreFeedbackComponent } from './components/manage-feedback/dialogs/more-feedback/more-feedback.component';
+import { CreateAdvertisementComponent } from './components/advertisement/dialogs/create-advertisement/create-advertisement.component';
+import { DeleteAdvertisementComponent } from './components/advertisement/dialogs/delete-advertisement/delete-advertisement.component';
+import { EditAdvertisementComponent } from './components/advertisement/dialogs/edit-advertisement/edit-advertisement.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { MoreFeedbackComponent } from './components/manage-feedback/dialogs/more
     ModifyDiscountComponent,
     ManageFeedbackComponent,
     DeleteFeedbackComponent,
-    MoreFeedbackComponent
+    MoreFeedbackComponent,
+    CreateAdvertisementComponent,
+    DeleteAdvertisementComponent,
+    EditAdvertisementComponent
   ],
   imports: [
     BrowserModule,

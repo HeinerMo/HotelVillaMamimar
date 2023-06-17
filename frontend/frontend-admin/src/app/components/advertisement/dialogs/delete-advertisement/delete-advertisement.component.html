@@ -1,0 +1,15 @@
+<div class="container">
+    <h3 mat-dialog-title>Estás seguro que quieres eliminar el anunucio?</h3>
+    <div mat-dialog-content>
+      <strong>Id:</strong> {{advertisement.id}}
+      <p></p>
+      <strong>Url:</strong> {{advertisement.url}}
+      <p></p>
+    </div>
+  
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Eliminar</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </div>
+  
