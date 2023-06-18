@@ -46,6 +46,7 @@ import { CreateRoomtypeComponent } from './components/manage-roomtypes/dialogs/c
 import { CreateAdvertisementComponent } from './components/advertisement/dialogs/create-advertisement/create-advertisement.component';
 import { DeleteAdvertisementComponent } from './components/advertisement/dialogs/delete-advertisement/delete-advertisement.component';
 import { EditAdvertisementComponent } from './components/advertisement/dialogs/edit-advertisement/edit-advertisement.component';
+import { ModifyRoomtypeComponent } from './components/manage-roomtypes/dialogs/modify-roomtype/modify-roomtype.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { EditAdvertisementComponent } from './components/advertisement/dialogs/e
     CreateAdvertisementComponent,
     DeleteAdvertisementComponent,
     DeleteRoomtypesComponent,
-    EditAdvertisementComponent
+    EditAdvertisementComponent,
+    ModifyRoomtypeComponent
   ],
   imports: [
     AppRoutingModule,

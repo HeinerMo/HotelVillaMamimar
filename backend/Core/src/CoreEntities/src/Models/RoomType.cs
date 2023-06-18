@@ -16,8 +16,8 @@ namespace CoreEntities.src.Models
         public string? Description { get; set; } = String.Empty;
 
         public Boolean? IsDeleted { get; set; }
-
-        
+        [NotMapped]
+        public string? HexImageString { get; set; }
         [NotMapped]
         public int? Discount { get; set; } = 0;
         [NotMapped]

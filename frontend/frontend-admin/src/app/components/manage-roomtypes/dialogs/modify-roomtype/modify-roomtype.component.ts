@@ -12,9 +12,9 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { toByteArray } from 'base64-js';
 
 @Component({
-  selector: 'app-create-discount',
-  templateUrl: './create-roomtype.component.html',
-  styleUrls: ['./create-roomtype.component.css'],
+  selector: 'app-modify-discount',
+  templateUrl: './modify-roomtype.component.html',
+  styleUrls: ['./modify-roomtype.component.css'],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
     {
@@ -25,7 +25,7 @@ import { toByteArray } from 'base64-js';
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 })
-export class CreateRoomtypeComponent implements AfterViewInit, OnInit {
+export class ModifyRoomtypeComponent implements AfterViewInit, OnInit {
   formGroup!: FormGroup;
 
   roomTypes: IRoomType[] = [];
@@ -33,17 +33,29 @@ export class CreateRoomtypeComponent implements AfterViewInit, OnInit {
   imageURL: SafeUrl = '';
   imageSelected = false;
 
-  constructor(public dialogRef: MatDialogRef<CreateRoomtypeComponent>,
+  constructor(public dialogRef: MatDialogRef<ModifyRoomtypeComponent>,
     @Inject(MAT_DIALOG_DATA) public roomType: IRoomType,
     private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      price: new FormControl('', Validators.required),
+      name: new FormControl(this.roomType.name, Validators.required),
+      description: new FormControl(this.roomType.description, Validators.required),
+      price: new FormControl(this.roomType.price, Validators.required),
     });
+
+    let imageEncoded = this.roomType.hexImage!;
+
+    let decodedBytes: Uint8Array;
+
+    decodedBytes = toByteArray(imageEncoded);
+    const blob = new Blob([decodedBytes], { type: 'image/png' });
+    let safeURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+    this.imageURL = safeURL;
+    this.imageSelected = true;
+
+    this.roomType.hexImage = this.arrayBufferToHex(decodedBytes);
   }
 
   readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
@@ -128,7 +140,7 @@ export class CreateRoomtypeComponent implements AfterViewInit, OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close({ id: 0 });
+    this.dialogRef.close();
   }
 
   isFormValid() {

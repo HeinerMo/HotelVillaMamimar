@@ -39,9 +39,9 @@ namespace CoreBusiness.src.BusinessAccessObjects
 
         }
 
-        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomTypeInsert roomTypeInsert)
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
         {
-            return await roomTypeDataAccess.CreateRoomType(roomTypeInsert);
+            return await roomTypeDataAccess.CreateRoomType(roomType);
         }
 
         public async Task<ActionResult<ResponseDTO<List<RoomType>>>> DeleteRoomType(RoomType roomType)

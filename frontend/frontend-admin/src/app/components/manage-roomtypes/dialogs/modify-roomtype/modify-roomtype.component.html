@@ -1,7 +1,7 @@
 <div class="dialog-container">
     <h3 mat-dialog-title>Crear tipo de habitación</h3>
 
-    <form class="mat-dialog-content" [formGroup]="formGroup" (ngSubmit)="submit()">
+    <form class="mat-dialog-content" [formGroup]="formGroup">
 
         <div class="form">
             <mat-form-field color="primary">
@@ -37,7 +37,7 @@
         </div>
 
         <div mat-dialog-actions>
-            <button mat-button [disabled]="!isFormValid()" (click)="submit()" [mat-dialog-close]="1">Crear</button>
+            <button mat-button [disabled]="!isFormValid()" (click)="submit()" [mat-dialog-close]="1">Modificar</button>
             <button mat-button (click)="onNoClick()">Cancelar</button>
         </div>
     </form>

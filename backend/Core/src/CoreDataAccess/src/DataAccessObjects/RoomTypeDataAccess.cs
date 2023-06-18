@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace CoreDataAccess.src.DataAccessObjects
             seasonDataAccess = new SeasonDataAccess();
         }
 
-        public List<RoomType> GetImagesForRoomTypes(List<RoomType> roomTypes) 
+        public List<RoomType> GetImagesForRoomTypes(List<RoomType> roomTypes)
         {
             foreach (RoomType i in roomTypes)
             {
@@ -82,14 +83,14 @@ namespace CoreDataAccess.src.DataAccessObjects
                 discounts = discountDataAccess.GetDiscountByRoomType((int)i.Id).Result.Value.Item;
                 if (discounts != null)
                 {
-                    discountPercentage = Decimal.Divide((Decimal)discounts.Porcentage, 100);                  
+                    discountPercentage = Decimal.Divide((Decimal)discounts.Porcentage, 100);
                     i.Discount = discounts.Porcentage;
                 }
                 i.FinalPrice = i.FinalPrice - (i.FinalPrice * discountPercentage);
-                
-                
-               
-               
+
+
+
+
             }
             return roomTypes;
         }
@@ -99,11 +100,11 @@ namespace CoreDataAccess.src.DataAccessObjects
         {
             var dbRoomType = _context.roomTypes.Include(i => i.RoomTypeImages)
                 .Where(rt => rt.IsDeleted == false)
-             .ToList();                       
+             .ToList();
 
-            if (dbRoomType != null) 
-            {   
-                dbRoomType = GetImagesForRoomTypes(dbRoomType);         
+            if (dbRoomType != null)
+            {
+                dbRoomType = GetImagesForRoomTypes(dbRoomType);
                 dbRoomType = PriceRoomTypes(dbRoomType);
             }
 
@@ -162,10 +163,19 @@ namespace CoreDataAccess.src.DataAccessObjects
             }
             else
             {
+                int numBytes = roomType.HexImageString!.Length / 2;
+                byte[] bytes = new byte[numBytes];
+                for (int i = 0; i < numBytes; ++i)
+                {
+                    bytes[i] = Convert.ToByte(roomType.HexImageString!.Substring(i * 2, 2), 16);
+                }
+
                 dbRoomType.Id = roomType.Id;
                 dbRoomType.Price = roomType.Price;
-                dbRoomType.Name = roomType.Name;
                 dbRoomType.Description = roomType.Description;
+                dbRoomType.Name = roomType.Name;
+                dbRoomType.IsDeleted = roomType.IsDeleted;
+                dbRoomType.RoomTypeImages!.FirstOrDefault()!.Image!.ImageData = bytes;
 
                 _context.SaveChanges();
 
@@ -177,44 +187,36 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         }
 
-        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomTypeInsert roomTypeInsert)
+        public async Task<ActionResult<ResponseDTO<List<RoomType>>>> CreateRoomType(RoomType roomType)
         {
             var responseDTO = new ResponseDTO<List<RoomType>>();
 
-            var newRoomType = new RoomType
-            {
-                Price = roomTypeInsert.Price,
-                Description = roomTypeInsert.Description,
-                Name = roomTypeInsert.Name,
-                IsDeleted = roomTypeInsert.IsDeleted
-            };
-
-            _context.roomTypes.Add(newRoomType);
-            _context.SaveChanges();
-
-            int numBytes = roomTypeInsert.hexImageString!.Length / 2;
+            int numBytes = roomType.HexImageString!.Length / 2;
             byte[] bytes = new byte[numBytes];
             for (int i = 0; i < numBytes; ++i)
             {
-                bytes[i] = Convert.ToByte(roomTypeInsert.hexImageString!.Substring(i * 2, 2), 16);
+                bytes[i] = Convert.ToByte(roomType.HexImageString!.Substring(i * 2, 2), 16);
             }
 
-            var newImage = new Image
+            var newRoomType = new RoomType
             {
-                ImageData = bytes,
-                UniqueIdentifier = Guid.NewGuid()
+                Price = roomType.Price,
+                Description = roomType.Description,
+                Name = roomType.Name,
+                IsDeleted = roomType.IsDeleted,
+                RoomTypeImages = new RoomTypeImage[] {
+                    new RoomTypeImage
+                    {
+                        Image = new Image
+                        {
+                            UniqueIdentifier = Guid.NewGuid(),
+                            ImageData = bytes
+                        }
+                    }
+                }
             };
 
-            _context.images.Add(newImage);
-            _context.SaveChanges();
-
-            var roomTypeImage = new RoomTypeImage
-            {
-               RoomTypeId = newRoomType.Id,
-               ImageId = newImage.Id
-            };
-
-            _context.roomTypeImages.Add(roomTypeImage);
+            _context.roomTypes.Add(newRoomType);
             _context.SaveChanges();
 
             responseDTO.Id = 1;
@@ -245,7 +247,7 @@ namespace CoreDataAccess.src.DataAccessObjects
                 responseDTO.Item = _context.roomTypes.Include(d => d.RoomTypeImages!).ThenInclude(rti => rti.Image!).Where(rt => rt.IsDeleted == false).ToList(); ;
                 return await Task.FromResult(responseDTO);
             }
-    
+
         }
 
     }

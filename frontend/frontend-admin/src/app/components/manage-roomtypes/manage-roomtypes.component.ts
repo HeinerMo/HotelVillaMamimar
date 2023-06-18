@@ -10,21 +10,15 @@ import { RoomTypeService } from 'src/app/services/roomType.service';
 import { toByteArray } from 'base64-js';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CreateRoomtypeComponent } from './dialogs/create-roomtype/create-roomtype.component';
+import { ModifyRoomtypeComponent } from './dialogs/modify-roomtype/modify-roomtype.component';
 
 export interface IRoomType {
   id?: number;
   price: number;
   name: string;
   description: string;
-  roomTypeImages?: {
-    id?: number,
-    image: {
-      id?: number,
-      imageData: Uint8Array
-    }
-  }[],
-  hexImage?: string
-  isDeleted: boolean
+  hexImage?: string;
+  isDeleted: boolean;
 }
 
 @Component({
@@ -121,6 +115,45 @@ export class ManageRoomtypesComponent implements OnInit, AfterViewInit {
             });
           }
         })
+      }
+    });
+  }
+
+  openModifyRoomTypeDialog(roomType: any) {
+    let newRoomType: IRoomType = {
+      id: roomType.id,
+      name: roomType.name,
+      price: roomType.price,
+      description: roomType.description,
+      isDeleted: roomType.isDeleted,
+      hexImage: roomType.roomTypeImages[0].image.imageData
+    }
+
+    const dialogRef = this.dialogService.open(ModifyRoomtypeComponent, {
+      data: newRoomType
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.id === 1) {
+
+        let roomTypeFormatted = {
+          id: result.roomType.id,
+          name: result.roomType.name,
+          description: result.roomType.description,
+          price: result.roomType.price,
+          isDeleted: result.roomType.isDeleted,
+          hexImageString: result.roomType.hexImage
+        }
+
+        this.roomTypeServive.updateRoomType(roomTypeFormatted).subscribe(data => {
+          if (data.id == 1) {
+            this._snackBar.open('Tipo de habitación modificado', 'Cerrar', {
+              duration: 3000
+            });
+            this.getAllRoomTypes();
+          }
+        })
+        
       }
     });
   }
