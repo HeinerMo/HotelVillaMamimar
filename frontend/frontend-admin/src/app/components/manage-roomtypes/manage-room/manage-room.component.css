@@ -5,7 +5,6 @@
   padding-bottom: 20em;
   margin: 0;
   margin-top: 0px;
-  margin-bottom: 50em;
 }
 
 .component-title {
@@ -96,7 +95,7 @@ table {
   background-color: rgb(60, 60, 60);
 }
 
-.main-container mat-paginator {
+.crud-container mat-paginator {
   background-color: rgb(60, 60, 60);
   border: 0.1em solid white;
   border-top: 0;

@@ -60,7 +60,7 @@ export class ManageRoomtypesComponent implements OnInit, AfterViewInit {
     if (this.paginator) {
       this.paginator._intl.nextPageLabel = 'Siguiente';
       this.paginator._intl.previousPageLabel = 'Anterior';
-      this.paginator._intl.itemsPerPageLabel = 'Cantidad de quejas o sugerencias por página:';
+      this.paginator._intl.itemsPerPageLabel = 'Cantidad por página:';
     }
   }
 

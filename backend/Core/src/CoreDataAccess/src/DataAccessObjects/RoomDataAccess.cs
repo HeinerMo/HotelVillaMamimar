@@ -20,6 +20,67 @@ namespace CoreDataAccess.src.DataAccessObjects
             _context = new DataContext();
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAllRooms()
+        {
+            var responseDTO = new ResponseDTO<List<Room>>();
+            
+            var currentDate = DateTime.Now;
+
+            var dbRooms = _context.rooms
+                .Include(r => r.RoomType)
+                .ToList();
+
+            foreach (var room in dbRooms)
+            {
+                room.Reserved = room.Reservations != null && room.Reservations
+                    .Any(reservation =>
+                        reservation.StartingDate <= currentDate &&
+                        reservation.EndingDate >= currentDate);
+            }
+
+
+            if (dbRooms == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer las habitaciones";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbRooms;
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
+
+        public async Task<ActionResult<ResponseDTO<Room>>> UpdateRoom(Room room)
+        {
+            var dbRoom = _context.rooms.FirstOrDefault(s => s.Id == room.Id);
+
+            var responseDTO = new ResponseDTO<Room>();
+            if (dbRoom == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                Console.WriteLine(room.RoomTypeId);
+                dbRoom.Id = room.Id;
+                dbRoom.Active = room.Active;
+                dbRoom.RoomTypeId = room.RoomTypeId;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = dbRoom;
+                return await Task.FromResult(responseDTO);
+            }
+        }
+
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetRoomsStatus()
         {
             var dbRoom = _context.rooms; 

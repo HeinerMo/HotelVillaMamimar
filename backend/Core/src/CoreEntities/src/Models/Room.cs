@@ -15,6 +15,8 @@ namespace CoreEntities.src.Models
         public Boolean Active { get; set; }
         [NotMapped]
         public string? ReservationStatus { get; set; } = string.Empty;
+        [NotMapped]
+        public Boolean? Reserved { get; set; } 
         public IEnumerable<Reservation>? Reservations { get; set; }
         public RoomType? RoomType { get; set; }
     }

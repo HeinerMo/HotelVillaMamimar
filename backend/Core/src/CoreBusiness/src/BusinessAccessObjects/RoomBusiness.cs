@@ -2,6 +2,7 @@
 using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,17 @@ namespace CoreBusiness.src.BusinessAccessObjects
         public RoomBusiness() { 
             this.roomDataAccess = new RoomDataAccess();
         }
+
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAllRooms()
+        {
+            return await this.roomDataAccess.GetAllRooms();
+        }
+
+        public async Task<ActionResult<ResponseDTO<Room>>> UpdateRoom(Room room)
+        {
+            return await this.roomDataAccess.UpdateRoom(room);
+        }
+
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(string startDateString, string endDateString, int roomTypeId)
         {
             DateTime startDate = DateTime.Parse(startDateString);

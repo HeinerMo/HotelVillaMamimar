@@ -18,6 +18,20 @@ namespace CoreAPI.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllRooms")]
+        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAllRooms()
+        {
+            return await this.roomBusiness.GetAllRooms();
+        }
+
+        [HttpPut]
+        [Route("UpdateRoom")]
+        public async Task<ActionResult<ResponseDTO<Room>>> UpdateRoom(Room room)
+        {
+            return await this.roomBusiness.UpdateRoom(room);
+        }
+
+        [HttpGet]
         [Route("GetAvailableRooms")]
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(string startDate, string endDate, int roomTypeId)
         {

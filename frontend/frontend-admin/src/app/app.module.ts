@@ -47,6 +47,10 @@ import { CreateAdvertisementComponent } from './components/advertisement/dialogs
 import { DeleteAdvertisementComponent } from './components/advertisement/dialogs/delete-advertisement/delete-advertisement.component';
 import { EditAdvertisementComponent } from './components/advertisement/dialogs/edit-advertisement/edit-advertisement.component';
 import { ModifyRoomtypeComponent } from './components/manage-roomtypes/dialogs/modify-roomtype/modify-roomtype.component';
+import { ManageRoomComponent } from './components/manage-roomtypes/manage-room/manage-room.component';
+import { ModifyRoomComponent } from './components/manage-roomtypes/manage-room/dialogs/modify-room/modify-room.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,9 @@ import { ModifyRoomtypeComponent } from './components/manage-roomtypes/dialogs/m
     DeleteAdvertisementComponent,
     DeleteRoomtypesComponent,
     EditAdvertisementComponent,
-    ModifyRoomtypeComponent
+    ModifyRoomtypeComponent,
+    ManageRoomComponent,
+    ModifyRoomComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -101,7 +107,9 @@ import { ModifyRoomtypeComponent } from './components/manage-roomtypes/dialogs/m
     MatIconModule,
     MatMenuModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

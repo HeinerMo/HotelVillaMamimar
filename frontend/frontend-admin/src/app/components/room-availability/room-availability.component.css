@@ -50,3 +50,9 @@ mat-select, mat-date-picker, mat-label, mat-option, mat-form-field {
 th, td {
     color: #fff;
 }
+
+.page-content mat-paginator {
+    background-color: rgb(60, 60, 60);
+    border: 0.1em solid white;
+    border-top: 0;
+  }
