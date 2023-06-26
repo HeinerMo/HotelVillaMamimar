@@ -1,16 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ICustomerDetail, ReservationPageComponent } from '../reservation-page.component';
-import { NgForm } from '@angular/forms';
+import { NgForm, Validators } from '@angular/forms';
 import { ResevationService } from 'src/app/services/reservation.service';
-import { Reservation } from 'src/app/models/Reservation';
 import { Room } from 'src/app/models/Room';
 import { RoomService } from 'src/app/services/room.service';
-import { MessageDataTransferObject } from 'src/app/models/DataTransferObjects/MessageDTO';
 import { ResponseDTO } from 'src/app/models/DataTransferObjects/ResponseDTO';
 import { RoomTypeService } from 'src/app/services/roomType.service';
 import { toByteArray } from 'base64-js';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Customer } from 'src/app/models/Customer';
+import Inputmask from 'inputmask';
 
 export interface IRoomType {
   id?: number;
@@ -45,8 +43,11 @@ interface ICustomer {
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.css']
 })
-export class CustomerDetailComponent implements OnInit {
+export class CustomerDetailComponent implements OnInit, AfterViewInit {
   @Input() inputParams!: ICustomerDetail;
+  @ViewChild('emailInput') emailInput: ElementRef | undefined;
+  @ViewChild('cardInput') cardInput: ElementRef | undefined;
+  @ViewChild('idInput') idInput: ElementRef | undefined;
 
   room: Room;
   roomType?: IRoomType;
@@ -58,6 +59,21 @@ export class CustomerDetailComponent implements OnInit {
     private sanitizer: DomSanitizer) {
 
     this.room = new Room({})
+  }
+
+  ngAfterViewInit(): void {
+    Inputmask("email").mask(this.emailInput?.nativeElement);
+    Inputmask('9999-9999-9999-9999').mask(this.cardInput?.nativeElement);
+    Inputmask('9-9999-9999').mask(this.idInput?.nativeElement);
+  }
+
+  checkEmail(userform: NgForm) {
+    let emailInput = userform.controls['email'];
+    var emailPattern = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    
+    if (!emailPattern.test(emailInput.value)) {
+      emailInput.addValidators(Validators.email)
+    }
   }
 
   ngOnInit() {
