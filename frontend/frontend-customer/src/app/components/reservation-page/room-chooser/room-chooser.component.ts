@@ -16,21 +16,27 @@ import { DatePipe } from '@angular/common';
 export class RoomChooserComponent implements OnInit {
   @Input() inputParams!: IRoomChooser;
   roomTypes: RoomType[] = [];
-  startDate!: string;
-  endDate!: string;
+  startDate!: Date;
+  endDate!: Date;
+  minStartDate!: Date;
   roomType!: number;
   defaultRoomType: string;
 
-
-
-
-
-
   constructor(private roomTypeService: RoomTypeService, private miDatePipe: DatePipe) {
     const currentDate = new Date();
-    this.startDate = this.miDatePipe.transform(currentDate, 'yyyy-MM-dd') ?? ''; // Establece la fecha actual como valor predeterminado
-    this.endDate = this.miDatePipe.transform(currentDate, 'yyyy-MM-dd') ?? ''; // Establece la fecha actual como valor predeterminado
+    this.minStartDate = currentDate;
+    this.startDate = this.minStartDate;
+    this.endDate = this.minStartDate;
     this.defaultRoomType = '1';
+  }
+
+  getMinStartDate() {
+    const currentDate = new Date();
+    return this.miDatePipe.transform(`${currentDate.getFullYear()} ${currentDate.getMonth() + 1} ${currentDate.getDate() + 1}`, 'yyyy-MM-dd') ?? '';
+  }
+
+  getMinEndDate() {
+
   }
 
 
@@ -84,9 +90,9 @@ export class RoomChooserComponent implements OnInit {
 
   sendInformation() {
     if (this.roomType > 0) {
-      this.startDate = this.miDatePipe.transform(this.startDate, 'yyyy/MM/dd') ?? '';
-      this.endDate = this.miDatePipe.transform(this.endDate, 'yyyy/MM/dd') ?? '';
-      this.inputParams.nextView(this.startDate, this.endDate, this.roomType);
+      let startDateString = this.miDatePipe.transform(this.startDate, 'yyyy/MM/dd') ?? '';
+      let endDateString = this.miDatePipe.transform(this.endDate, 'yyyy/MM/dd') ?? '';
+      this.inputParams.nextView(startDateString, endDateString, this.roomType);
     }
   }
 

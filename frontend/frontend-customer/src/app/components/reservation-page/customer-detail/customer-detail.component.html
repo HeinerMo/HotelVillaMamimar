@@ -1,11 +1,11 @@
 <div class="main-container">
-    <div class="room-info-container"> <!--TODO: Load from previous view-->
-        <img [src]="this.roomType!.image" alt="Room Image" class="room-image">
-        <p class="room-description">{{this.roomType!.description}}</p>
+    <div class="room-info-container">
+        <img [src]="this.getImageFromBytes(this.roomType?.roomTypeImages)" alt="Room Image" class="room-image">
+        <p class="room-description">{{this.roomType?.description}}</p>
     </div>
 
     <div class="input-fields">
-        <p>Monto de su resevación: $XYZ</p> <!--TODO: Load from previous view, or database, I dunno-->
+        <p>Monto de su resevación: ₡{{this.roomType?.price}}</p> <!--TODO: Load from previous view, or database, I dunno-->
         <form #userForm="ngForm" (ngSubmit)="applyReservation(userForm)" [noValidate]="false">
             <div class="form-group">
                 <label for="name">Nombre:</label>

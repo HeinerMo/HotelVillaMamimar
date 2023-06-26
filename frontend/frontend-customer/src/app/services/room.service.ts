@@ -26,4 +26,9 @@ export class RoomService {
     var request = `${environment.apiUrl}/${this.controllerURL}/GetAvailableRooms/?startDate=${startDate.replaceAll("/", "-")}&endDate=${endDate.replaceAll("/", "-")}&roomTypeId=${roomTypeId}`
     return this.httpClient.get<ResponseDTO<Room[]>>(request);
   }
+
+  public getAvailableRoomsToAdmin(startDate: string, endDate: string, roomTypeId: number): Observable<ResponseDTO<any[]>> {
+    var request = `${environment.apiUrl}/${this.controllerURL}/GetAvailableRoomsToAdmin/?startDate=${startDate}&endDate=${endDate}&roomTypeId=${roomTypeId}`
+    return this.httpClient.get<ResponseDTO<any[]>>(request);
+  }
 }

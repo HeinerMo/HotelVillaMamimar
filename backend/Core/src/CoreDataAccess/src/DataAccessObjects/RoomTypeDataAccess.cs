@@ -135,6 +135,8 @@ namespace CoreDataAccess.src.DataAccessObjects
                 .Where(rt => rt.IsDeleted == false)
                 .ToList();
 
+            PriceRoomTypes(dbRoomTypes);
+
             if (dbRoomTypes == null)
             {
                 responseDTO.Id = 0;

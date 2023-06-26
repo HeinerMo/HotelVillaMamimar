@@ -19,9 +19,9 @@ namespace CoreDataAccess.src.DataAccessObjects
             _context = new DataContext();
         }
 
-        public async Task<ActionResult<ResponseDTO<int>>> CreateReservation(Reservation reservation)
+        public async Task<ActionResult<ResponseDTO<Reservation>>> CreateReservation(Reservation reservation)
         {
-            var response = new ResponseDTO<int>()
+            var response = new ResponseDTO<Reservation>()
             {
                 Id = 1,
                 Message = "Solicitud realizada correctamente"
@@ -30,7 +30,7 @@ namespace CoreDataAccess.src.DataAccessObjects
             {
                 _context.Reservations.Add(reservation);
                 await _context.SaveChangesAsync();
-                response.Item = reservation.Id ?? default(int);
+                response.Item = reservation;
             }
             catch (Exception e)
             {

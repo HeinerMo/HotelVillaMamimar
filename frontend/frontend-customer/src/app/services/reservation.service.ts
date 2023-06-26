@@ -16,8 +16,8 @@ export class ResevationService {
     this.controllerURL = "Resevation";
   }
 
-  public createReservation(reservation: Reservation): Observable<ResponseDTO<any>> {
-    return this.httpClient.put<ResponseDTO<any>>(`${environment.apiUrl}/${this.controllerURL}/CreateReservation`, reservation);
+  public createReservation(reservation: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/${this.controllerURL}/CreateReservation`, reservation);
   } 
 
 }

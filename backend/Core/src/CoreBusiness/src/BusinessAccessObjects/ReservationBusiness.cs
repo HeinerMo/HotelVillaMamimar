@@ -18,12 +18,9 @@ namespace CoreBusiness.src.BusinessAccessObjects
             this.reservationDataAccess = new ReservationDataAccess();
         }
 
-        public async Task<ActionResult<ResponseDTO<int>>> CreateReservation(Reservation reservation)
+        public async Task<ActionResult<ResponseDTO<Reservation>>> CreateReservation(Reservation reservation)
         {
-            Reservation temp = reservation;
-            temp.RoomId = reservation.Room.Id;
-            temp.Room = null; //null room so it doesn't get inserted again.
-            return await reservationDataAccess.CreateReservation(temp);
+            return await reservationDataAccess.CreateReservation(reservation);
         }
 
     }

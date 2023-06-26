@@ -19,4 +19,12 @@ export class RoomTypeService {
     return this.httpClient.get<ResponseDTO<RoomType[]>>(`${environment.apiUrl}/${this.controllerURL}/GetRoomTypes`);
   }
 
+  public getAllRoomTypes(): Observable<any> {
+    return this.httpClient.get<any>(`${environment.apiUrl}/${this.controllerURL}/GetAllRoomTypes`);
+  }
+
+  public getRoomTypeFinalPrice(roomTypeId: number): Observable<any> {
+    return this.httpClient.get<any>(`${environment.apiUrl}/${this.controllerURL}/getRoomTypeFinalPrice/?roomTypeId=${roomTypeId}`);
+  }
+
 }

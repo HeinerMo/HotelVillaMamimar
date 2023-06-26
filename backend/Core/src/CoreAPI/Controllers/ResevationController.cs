@@ -14,9 +14,9 @@ namespace CoreAPI.Controllers
             this.reservationBusiness = new ReservationBusiness();
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("CreateReservation")]
-        public async Task<ActionResult<ResponseDTO<int>>> CreateReservation(Reservation reservation)
+        public async Task<ActionResult<ResponseDTO<Reservation>>> CreateReservation(Reservation reservation)
         {
             return await reservationBusiness.CreateReservation(reservation);
         }

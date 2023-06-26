@@ -5,7 +5,7 @@
         <div class="form-outline">
           <mat-form-field>
             <mat-label>Fecha de llegada</mat-label>
-            <input matInput [matDatepicker]="picker1" placeholder="Fecha Inicio" [(ngModel)]="startDate" [min]="startDate" readonly>
+            <input matInput [matDatepicker]="picker1" placeholder="Fecha Inicio" [(ngModel)]="this.startDate" [min]="this.minStartDate" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
@@ -17,7 +17,7 @@
         <div class="form-outline">
           <mat-form-field>
             <mat-label>Fecha de salida</mat-label>
-            <input matInput [matDatepicker]="picker2" placeholder="Fecha Fin" [(ngModel)]="endDate" [min]="endDate" readonly>
+            <input matInput [matDatepicker]="picker2" placeholder="Fecha Fin" [(ngModel)]="this.endDate" [min]="this.startDate" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
