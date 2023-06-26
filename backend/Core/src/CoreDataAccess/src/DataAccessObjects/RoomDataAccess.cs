@@ -207,7 +207,7 @@ namespace CoreDataAccess.src.DataAccessObjects
                 .ToList();*/
 
             // This show the available rooms
-            var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId)
+            var dbRooms = _context.rooms.Where(room => room.RoomTypeId == roomTypeId && room.Active == true)
                 .Where(room => !_context.Reservations.Any(r => r.RoomId == room.Id &&
                                                               r.StartingDate >= statingDateAux &&
                                                               r.EndingDate <= endingDateAux))
