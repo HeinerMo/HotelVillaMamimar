@@ -17,17 +17,17 @@ export class AuthGuard implements OnDestroy {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      console.log(localStorage.getItem('USERNAME'))
+      //console.log(localStorage.getItem('USERNAME'))
       let url: string = state.url;
     return this.checkUser(next, url);
   }
 
   private checkUser(route: ActivatedRouteSnapshot, url: any): boolean {
     if (this.adminService.isLoggedIn()) {
-      console.log("logeado")
+      //console.log("logeado")
       return true;
     }
-    console.log("no logeado")
+    //console.log("no logeado")
 
     this.router.navigate(['/login']);
     return false;

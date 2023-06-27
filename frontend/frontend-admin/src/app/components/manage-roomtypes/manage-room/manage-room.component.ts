@@ -34,7 +34,7 @@ export interface IRoom {
   styleUrls: ['./manage-room.component.css'],
 })
 export class ManageRoomComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'roomType', 'active', 'reserved', 'actions'];
+  displayedColumns: string[] = ['id', 'roomType', 'active', 'actions'];
   rooms: IRoom[] = [];
   dataSourceRoom: MatTableDataSource<IRoom>;
 

@@ -51,7 +51,7 @@ export class AdminService {
   }
 
   public setLoggedIn(isLoggedIn:boolean) {
-    console.log("we")
+    //console.log("we")
 
     if (isLoggedIn) {
       localStorage.setItem('STATE', 'true');
