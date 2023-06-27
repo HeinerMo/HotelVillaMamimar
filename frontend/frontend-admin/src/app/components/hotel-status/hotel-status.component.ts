@@ -32,15 +32,10 @@ export class HotelStatusComponent implements AfterViewInit {
       if (responseId == 1) {
         let item: [] = data.item
 
-        let id: any;
-        let type: any;
-        let status: any;
-
-        item.forEach((a: any) => {
-          let objeto = Object.entries(a);
-          id = objeto[0][1];
-          type = objeto[5][1];
-          status = objeto[3][1];
+        item.forEach((room: any) => {
+          let id = room.id;
+          let type = room.roomType;
+          let status = room.reservationStatus;
 
           Object.keys(type).forEach(key => {
             if (key === "name") {
@@ -48,8 +43,6 @@ export class HotelStatusComponent implements AfterViewInit {
               type = name;
             }
           });
-
-
 
           this.createRoom(new Room({ id: id, roomType: type, roomStatus: status }))
         });

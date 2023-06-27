@@ -30,7 +30,7 @@ export class FacilitiesPageComponent {
         let description: any;
         let image:any;
 
-        console.log(item)
+        //console.log(item)
 
         item.forEach((a:any) => {
           let objeto = Object.entries(a);
@@ -41,7 +41,7 @@ export class FacilitiesPageComponent {
           decodedBytes = toByteArray(image[0].image.imageData);
           const blob = new Blob([decodedBytes], { type: 'image/jpg' });
           let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-          console.log(url);
+          //console.log(url);
          this.createFacility(new Facility({description:description, image:url}))
          
         });

@@ -83,53 +83,42 @@ namespace CoreDataAccess.src.DataAccessObjects
 
         public async Task<ActionResult<ResponseDTO<List<Room>>>> GetRoomsStatus()
         {
-            var dbRoom = _context.rooms; 
+            var currentDate = DateTime.Now;
 
-            var dbReservation = _context.Reservations;
+            var query = _context.rooms
+                .Select(r => new
+                {
+                    Room = r,
+                    ReservationStatus = r.Reservations
+                        .Any(res => res.StartingDate <= currentDate && res.EndingDate >= currentDate) ? (r.Active ? "Reservada" : "Inactiva") : (r.Active ? "Disponible" : "Inactiva")
+                });
 
-            var query = from r in dbRoom
-                        join res in dbReservation
-                        on r.Id equals res.RoomId into reservations
-                        from res in reservations.DefaultIfEmpty()
-                        select new
-                        {
-                            r.Id,
-                            r.Active,
-                            r.RoomType,
-                            ReservationStatus = res.RoomId != null ? "Reservada" :
-                            r.Active ? "Inactiva" : "Disponible"
-                        };
+            var responseDTO = new ResponseDTO<List<Room>>();
 
-            foreach (var result in query)
-            {
-                Console.WriteLine($"Room ID: {result.Id}, Active: {result.Active}, Reservation Status: {result.ReservationStatus}");
-            }
-
-            var responseDTO = new ResponseDTO<List<Room>>(); //Create response data transfer object 
-
-            if (query == null) //if no rooms where found then return an error message
+            if (query == null)
             {
                 responseDTO.Id = 0;
                 responseDTO.Message = "Error al obtener la lista de habitaciones";
-                return await Task.FromResult(responseDTO); //wait for task to finish (await)
+                return await Task.FromResult(responseDTO);
             }
             else
             {
                 responseDTO.Id = 1;
                 responseDTO.Item = query.Select(result => new Room
                 {
-                    Id = result.Id,
-                    Active = result.Active,
-                    RoomType = result.RoomType,
+                    Id = result.Room.Id,
+                    Active = result.Room.Active,
+                    RoomType = result.Room.RoomType,
                     ReservationStatus = result.ReservationStatus
                 }).ToList();
             }
 
             return await Task.FromResult(responseDTO);
 
+
         }
 
-        public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
+            public async Task<ActionResult<ResponseDTO<List<Room>>>> GetAvailableRooms(DateTime startDate, DateTime endDate, int roomTypeId)
         {
             var dbRoom = _context.rooms; //load database.
 

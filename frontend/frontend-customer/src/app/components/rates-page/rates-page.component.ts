@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild  } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HotelService } from 'src/app/services/hotel.service';
 import { toByteArray } from 'base64-js'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -11,51 +11,41 @@ import { RoomTypeService } from 'src/app/services/roomType.service';
   templateUrl: './rates-page.component.html',
   styleUrls: ['./rates-page.component.css']
 })
-export class RatesPageComponent implements OnInit{
+export class RatesPageComponent implements OnInit {
 
-  roomTypes: RoomType [] = [];
+  roomTypes: RoomType[] = [];
 
-  constructor(private roomTypeService: RoomTypeService, private sanitizer: DomSanitizer){
-   
+  constructor(private roomTypeService: RoomTypeService, private sanitizer: DomSanitizer) {
+
   }
 
   ngOnInit(): void {
     this.initRoomTypes();
   }
 
-  initRoomTypes () {
+  initRoomTypes() {
     this.roomTypeService.getRoomTypes().subscribe((data: any) => {
       let responseId: number = data.id
 
       if (responseId == 1) {
         let item: [] = data.item
 
-        let name: any;
-        let description:any;
-        let price: any;
-        let discount: any;
-        let finalPrice: any;
-        let image:any;
-
-
-        item.forEach((a:any) => {
-          let objeto = Object.entries(a);
-
-          name=objeto[2][1];
-          price=objeto[1][1];
-          description=objeto[3][1];
-          discount=objeto[4][1];
-          finalPrice=objeto[5][1];
-          image=objeto[7][1];
-        
+        item.forEach((roomType: any) => {
           
+          let name = roomType.name;
+          let description = roomType.description;
+          let price = roomType.price;
+          let discount = roomType.discount;
+          let finalPrice = roomType.finalPrice;
+          let image = roomType.roomTypeImages[0].image;
+
           let decodedBytes: Uint8Array;
-          decodedBytes = toByteArray(image[0].image.imageData);
+          decodedBytes = toByteArray(image.imageData);
           const blob = new Blob([decodedBytes], { type: 'image/jpg' });
           let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-  
-         this.createRoomTypes(new RoomType({name:name,price:price,image:url, description:description, discountPercentage:discount, finalPrice:finalPrice}))
-         
+
+          this.createRoomTypes(new RoomType({ name: name, price: price, image: url, description: description, discountPercentage: discount, finalPrice: finalPrice }))
+
         });
 
       }
@@ -63,7 +53,7 @@ export class RatesPageComponent implements OnInit{
     });
   }
 
-  createRoomTypes(roomType :RoomType){
+  createRoomTypes(roomType: RoomType) {
     this.roomTypes.push(roomType);
   }
 

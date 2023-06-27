@@ -25,7 +25,7 @@ export class ContactsPageComponent {
     this.hotelService.getHotel(1).subscribe((data: any) => {
       if (data.id == 1) {
         this.contactInformation = Object.assign(new ContactInformation({}), data.item);
-        console.log(this.contactInformation.phone);
+        //console.log(this.contactInformation.phone);
         
       }
     })
