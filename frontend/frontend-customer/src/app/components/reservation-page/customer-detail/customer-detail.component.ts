@@ -120,7 +120,7 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit {
     });
 
     this.roomService.getAvailableRoomsToAdmin(this.inputParams.startDate, this.inputParams.endDate, this.inputParams.idRoomType).subscribe((data: ResponseDTO<Room[]>) => {
-      if (data.id == 1) {
+      if (data.id == 1 && data.item![0] != undefined) {
         this.room = data.item![0]
       } else {
         this.inputParams.nextView(false)

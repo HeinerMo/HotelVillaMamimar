@@ -16,7 +16,7 @@ a {
     --color: #ffa260;
     --hover: #ffa260;
 
-    margin-top: 8em;
+    margin-top: 2em;
     padding: 1em;
 
     text-align: center;
@@ -40,4 +40,10 @@ a {
     transform: translateY(-0.25em);
     border-color: var(--hover);
     color: #fff;
+}
+
+.component-title {
+    padding: 1em;
+    font-size: x-large;
+    font-weight: bolder;
 }

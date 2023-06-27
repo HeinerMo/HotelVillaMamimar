@@ -1,0 +1,97 @@
+.main-container {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 250px);
+  padding-bottom: 20em;
+  margin: 0;
+  margin-top: 0px;
+  margin-bottom: 50em;
+}
+
+.component-title {
+  padding: 0.5em;
+  font-size: x-large;
+  font-weight: bolder;
+  color: white !important;
+}
+
+.submit-btn {
+  margin-right: 1em;
+}
+
+.message {
+  width: 100%;
+  height: 10em;
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 30em;
+  height: 40em;
+  overflow: auto;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+  margin: 20px;
+}
+
+.image-input {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: 3em;
+}
+
+.image-input input {
+  display: none;
+}
+
+.image-input label {
+  display: block;
+  color: #fff;
+  background: #3f51b586;
+  padding: 0.3rem 0.6rem;
+  font-size: 115%;
+  cursor: pointer;
+}
+
+.image-input label i {
+  font-size: 125%;
+  margin-right: 0.3rem;
+}
+
+.image-input img {
+  width: 20em;
+  height: 10em;
+}
+
+.image-input .image-error {
+  color: red;
+}
+
+/* Dark Style */
+
+:host ::ng-deep .dialog-container * {
+  color: black;
+}
+
+.dialog-container
+  button.mdc-button.mat-mdc-button.mat-unthemed.mat-mdc-button-base {
+  background-color: #3f51b5;
+}
+
+:host ::ng-deep .dialog-container .mdc-button__label {
+  color: white;
+}

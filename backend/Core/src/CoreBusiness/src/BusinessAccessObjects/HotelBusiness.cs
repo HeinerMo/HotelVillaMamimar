@@ -7,6 +7,7 @@ using CoreDataAccess.src.DataAccessObjects;
 using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CoreBusiness.src.BusinessAccessObjects
@@ -29,6 +30,16 @@ namespace CoreBusiness.src.BusinessAccessObjects
         public async Task<ActionResult<ResponseDTO<List<HotelAboutImage>>>> GetGalleryAbout()
         {
             return await hotelDataAccess.GetGalleryAbout();
+        }
+
+        public async Task<ActionResult<ResponseDTO<HotelWelcomeImage>>> GetWelcomeImage()
+        {
+            return await hotelDataAccess.GetWelcomeImage();
+        }
+
+        public async Task<ActionResult<ResponseDTO<HotelInformation>>> UpdateWelcomeInformation(HotelInformation hotelInformation)
+        {
+            return await hotelDataAccess.UpdateWelcomeInformation(hotelInformation);
         }
 
         public async Task<ActionResult<ResponseDTO<Location>>> GetLocation()

@@ -17,6 +17,7 @@ namespace CoreEntities.src.Models
         public string? Facebook { get; set; } = string.Empty;
         public string? WelcomeMessage { get; set; } = string.Empty;
         public string? AboutMessage { get; set; } = string.Empty;
-
+        [NotMapped]
+        public string? HexImageString { get; set; }
     }
 }

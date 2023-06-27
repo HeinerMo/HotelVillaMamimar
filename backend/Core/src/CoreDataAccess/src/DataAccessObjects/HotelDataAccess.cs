@@ -60,6 +60,60 @@ namespace CoreDataAccess.src.DataAccessObjects
             return await Task.FromResult(responseDTO);
         }
 
+        public async Task<ActionResult<ResponseDTO<HotelWelcomeImage>>> GetWelcomeImage()
+        {
+
+            var dbWelcomeImage = _context.hotelWelcomeImages.Include(wi => wi.Image).FirstOrDefault();
+
+            var responseDTO = new ResponseDTO<HotelWelcomeImage>();
+
+            if (dbWelcomeImage == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al traer la imagen de inicio";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                responseDTO.Id = 1;
+                responseDTO.Item = dbWelcomeImage;
+            }
+
+            return await Task.FromResult(responseDTO);
+        }
+
+        public async Task<ActionResult<ResponseDTO<HotelInformation>>> UpdateWelcomeInformation(HotelInformation hotelInformation)
+        {
+            var dbHotelInformation = _context.HotelInformation.FirstOrDefault();
+            var dbWelcomeImage = _context.hotelWelcomeImages.Include(wi => wi.Image).FirstOrDefault();
+
+            var responseDTO = new ResponseDTO<HotelInformation>();
+            if (dbHotelInformation == null || dbWelcomeImage == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                int numBytes = hotelInformation.HexImageString!.Length / 2;
+                byte[] bytes = new byte[numBytes];
+                for (int i = 0; i < numBytes; ++i)
+                {
+                    bytes[i] = Convert.ToByte(hotelInformation.HexImageString!.Substring(i * 2, 2), 16);
+                }
+
+                dbWelcomeImage!.Image!.ImageData = bytes;
+                dbHotelInformation.WelcomeMessage = hotelInformation.WelcomeMessage;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = dbHotelInformation;
+                return await Task.FromResult(responseDTO);
+            }
+        }
 
         public async Task<ActionResult<ResponseDTO<Location>>> GetLocation()
         {

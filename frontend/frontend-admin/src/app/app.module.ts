@@ -51,6 +51,7 @@ import { ManageRoomComponent } from './components/manage-roomtypes/manage-room/m
 import { ModifyRoomComponent } from './components/manage-roomtypes/manage-room/dialogs/modify-room/modify-room.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { ManageHomePageComponent } from './components/pages/manage-homepage/manage-homepage.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { MatRadioModule } from '@angular/material/radio';
     ModifyRoomtypeComponent,
     ManageRoomComponent,
     ModifyRoomComponent,
+    ManageHomePageComponent,
   ],
   imports: [
     AppRoutingModule,

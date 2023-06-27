@@ -1,0 +1,35 @@
+<div class="page-content">
+    <app-navigation-menu></app-navigation-menu>
+
+    <div ngClass="main-container">
+
+        <div class="dialog-container">
+            <p class="component-title">Modificar página de inicio</p>
+        
+            <form class="mat-dialog-content" [formGroup]="formGroup">
+        
+                <div class="form">
+                    <mat-form-field>
+                        <mat-label>Mensaje de bienvenida</mat-label>
+                        <textarea matInput formControlName="message" class="form-control" maxlength="500"></textarea>
+                        <mat-hint align="end">{{ formGroup.get('message')?.value?.length || 0 }}/500</mat-hint>
+                      </mat-form-field>
+                </div>    
+
+                <div class="form">
+                    <div class="image-input">
+                        <img *ngIf="this.imageSelected" [src]="this.imageURL" class="image-preview">
+                        <span *ngIf="!this.imageSelected" ngClass="image-error">Debe seleccionar una imagen</span>
+                        <input type="file" accept="image/*" id="imageInput" (input)="handleFileSelect($event)">
+                        <label for="imageInput" class="image-button"><i class="far fa-image"></i>Seleccionar imagen*</label> 
+                    </div>
+                </div>
+        
+                <div mat-dialog-actions>
+                    <button mat-button [disabled]="!isFormValid()" class="submit-btn" (click)="submit()">Modificar</button>
+                    <button mat-button (click)="onNoClick()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
