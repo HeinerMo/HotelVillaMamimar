@@ -58,6 +58,7 @@ import { CreateFacilityComponent } from './components/pages/manage-facilities/di
 import { ModifyFacilityComponent } from './components/pages/manage-facilities/dialogs/modify-facility/modify-facility.component';
 import { ManageAboutComponent } from './components/pages/manage-about/manage-about.component';
 import { ManageLocationComponent } from './components/pages/manage-location/manage-location.component';
+import { CreateAdminComponent } from './components/add-admins/dialogs/create-admin/create-admin.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { ManageLocationComponent } from './components/pages/manage-location/mana
     ModifyFacilityComponent,
     ManageAboutComponent,
     ManageLocationComponent,
+    CreateAdminComponent,
   ],
   imports: [
     AppRoutingModule,
