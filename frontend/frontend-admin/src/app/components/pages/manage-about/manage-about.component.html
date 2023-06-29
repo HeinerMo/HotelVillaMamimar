@@ -1,0 +1,26 @@
+<div class="page-content">
+    <app-navigation-menu></app-navigation-menu>
+
+    <div ngClass="main-container">
+
+        <div class="dialog-container">
+            <p class="component-title">Modificar página de sobre nosotros</p>
+        
+            <form class="mat-dialog-content" [formGroup]="formGroup">
+        
+                <div class="form">
+                    <mat-form-field>
+                        <mat-label>Texto sobre nosotros</mat-label>
+                        <textarea matInput formControlName="message" class="form-control" maxlength="500"></textarea>
+                        <mat-hint align="end">{{ formGroup.get('message')?.value?.length || 0 }}/500</mat-hint>
+                      </mat-form-field>
+                </div>    
+        
+                <div mat-dialog-actions>
+                    <button mat-button class="submit-btn" >Modificar</button>
+                    <button mat-button>Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

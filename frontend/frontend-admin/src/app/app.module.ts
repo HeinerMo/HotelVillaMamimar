@@ -52,6 +52,12 @@ import { ModifyRoomComponent } from './components/manage-roomtypes/manage-room/d
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { ManageHomePageComponent } from './components/pages/manage-homepage/manage-homepage.component';
+import { ManageFacilitiesComponent } from './components/pages/manage-facilities/manage-facilities.component';
+import { DeleteFacilityComponent } from './components/pages/manage-facilities/dialogs/delete-facility/delete-facility.component';
+import { CreateFacilityComponent } from './components/pages/manage-facilities/dialogs/create-facility/create-facility.component';
+import { ModifyFacilityComponent } from './components/pages/manage-facilities/dialogs/modify-facility/modify-facility.component';
+import { ManageAboutComponent } from './components/pages/manage-about/manage-about.component';
+import { ManageLocationComponent } from './components/pages/manage-location/manage-location.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +95,12 @@ import { ManageHomePageComponent } from './components/pages/manage-homepage/mana
     ManageRoomComponent,
     ModifyRoomComponent,
     ManageHomePageComponent,
+    ManageFacilitiesComponent,
+    DeleteFacilityComponent,
+    CreateFacilityComponent,
+    ModifyFacilityComponent,
+    ManageAboutComponent,
+    ManageLocationComponent,
   ],
   imports: [
     AppRoutingModule,

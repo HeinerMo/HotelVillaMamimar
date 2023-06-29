@@ -60,5 +60,27 @@ namespace CoreAPI.Controllers
         {
             return await hotelBusiness.GetFacilities();
         }
+
+        [HttpPost]
+        [Route("AddFacility")]
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> AddFacility(Facility facility)
+        {
+            return await hotelBusiness.AddFacility(facility);
+        }
+
+        [HttpDelete]
+        [Route("DeleteFacility")]
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> DeleteFacility(Facility facility)
+        {
+            return await hotelBusiness.DeleteFacility((int)facility.Id);
+        }
+
+        [HttpPut]
+        [Route("UpdateFacility")]
+        public async Task<ActionResult<ResponseDTO<Facility>>> UpdateFacility(Facility facility)
+        {
+            return await hotelBusiness.UpdateFacility(facility);
+
+        }
     }
 }

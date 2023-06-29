@@ -1,0 +1,15 @@
+<div class="container">
+  <h3 mat-dialog-title>Estás seguro que quieres eliminar la queja o sugerencia?</h3>
+  <div mat-dialog-content>
+    <strong>Id:</strong> {{facility.id}}
+    <p></p>
+    <strong>Descripción: </strong>
+    <span class="message-text">{{facility.description}}</span>
+    <p></p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Eliminar</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+  </div>
+</div>
