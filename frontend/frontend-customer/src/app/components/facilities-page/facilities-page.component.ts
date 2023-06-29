@@ -30,15 +30,13 @@ export class FacilitiesPageComponent {
         let description: any;
         let image:any;
 
-        //console.log(item)
+        item.forEach((facility:any) => {
 
-        item.forEach((a:any) => {
-          let objeto = Object.entries(a);
-          description = objeto[1][1];
-          image = objeto[2][1];
-          
+          description = facility.description;
+          image = facility.facilityImages[0].image;
+
           let decodedBytes: Uint8Array;
-          decodedBytes = toByteArray(image[0].image.imageData);
+          decodedBytes = toByteArray(image.imageData);
           const blob = new Blob([decodedBytes], { type: 'image/jpg' });
           let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
           //console.log(url);
