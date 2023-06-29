@@ -1,0 +1,60 @@
+<div class="page-content">
+    <app-navigation-menu></app-navigation-menu>
+    <div ngClass="main-container">
+        <div class="dialog-container">
+            <p class="component-title">Modificar página de facilidades</p>
+        </div>
+
+        <div ngClass="crud-container">
+
+            <div class="table-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                        <td mat-cell *matCellDef="let facility"> {{facility.id}} </td>
+                    </ng-container>
+
+                    <!-- Descripción Column -->
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+                        <td mat-cell *matCellDef="let facility" class="message-cell"> {{facility.description}} </td>
+                    </ng-container>
+
+                    <!-- Imagen Column -->
+                    <ng-container matColumnDef="image">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+                        <td mat-cell *matCellDef="let facility">
+                            <img ngClass="roomtype-img" [src]="getImageFromBytes(facility.facilityImages)"
+                                alt="Sin imagen">
+                    </ng-container>
+
+                    <!-- actions -->
+                    <ng-container matColumnDef="actions">
+                        <th ngClass="actions-container" mat-header-cell *matHeaderCellDef>
+                            <button mat-icon-button color="primary" (click)="this.openCreateFacilityDialog()">
+                                <mat-icon aria-label="Agregar temporada">add</mat-icon>
+                            </button>
+                        </th>
+                        <td ngClass="actions-container" mat-cell *matCellDef="let row">
+                            <button mat-icon-button color="primary" (click)="this.openModifyFacilityDialog(row)">
+                                <mat-icon aria-label="Edit">edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="this.openDeleteFacilityDialog(row)">
+                                <mat-icon aria-label="Delete">delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr ngClass="sticky-header" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+            </div>
+            <mat-paginator ngClass="table-paginator" [pageSizeOptions]="[3, 10, 20, 30]"
+                aria-label="Seleccionar páginas de tipos de habitación"></mat-paginator>
+        </div>
+
+    </div>
+</div>

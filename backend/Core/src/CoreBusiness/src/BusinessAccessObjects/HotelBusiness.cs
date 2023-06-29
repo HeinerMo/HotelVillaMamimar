@@ -52,6 +52,24 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await hotelDataAccess.GetFacilities();
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> AddFacility(Facility facility)
+        {
+            return await hotelDataAccess.AddFacility(facility);
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> DeleteFacility(int facilityId)
+        {
+            return await hotelDataAccess.DeleteFacility(facilityId);
+        }
+
+        public async Task<ActionResult<ResponseDTO<Facility>>> UpdateFacility(Facility facility)
+        {
+            return await hotelDataAccess.UpdateFacility(facility);
+
+        }
+
+
+
 
     }
 }

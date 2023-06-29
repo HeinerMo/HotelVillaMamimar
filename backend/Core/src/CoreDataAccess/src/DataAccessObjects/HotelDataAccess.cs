@@ -164,7 +164,122 @@ namespace CoreDataAccess.src.DataAccessObjects
             return await Task.FromResult(responseDTO);
         }
 
-    
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> AddFacility(Facility facility)
+        {
+            var responseDTO = new ResponseDTO<List<Facility>>();
 
-}
+            int numBytes = facility.HexImageString!.Length / 2;
+            byte[] bytes = new byte[numBytes];
+            for (int i = 0; i < numBytes; ++i)
+            {
+                bytes[i] = Convert.ToByte(facility.HexImageString!.Substring(i * 2, 2), 16);
+            }
+
+            var newFacility = new Facility
+            {
+                Description = facility.Description,
+                FacilityImages = new FacilityImage[] {
+                    new FacilityImage
+                    {
+                        Image = new Image
+                        {
+                            UniqueIdentifier = Guid.NewGuid(),
+                            ImageData = bytes
+                        }
+                    }
+                }
+            };
+
+            _context.Facilities.Add(newFacility);
+            _context.SaveChanges();
+            // Cargar la lista actualizada de facilidades (incluyendo las imágenes)
+            var updatedFacilities = _context.Facilities.Include(d => d.FacilityImages!).ThenInclude(rti => rti.Image!).ToList();
+
+
+            responseDTO.Id = 1;
+            responseDTO.Message = "create success";
+            responseDTO.Item = updatedFacilities;
+            return await Task.FromResult(responseDTO);
+        }
+
+
+        public async Task<ActionResult<ResponseDTO<List<Facility>>>> DeleteFacility(int facilityId)
+        {
+            var responseDTO = new ResponseDTO<List<Facility>>();
+
+            try
+            {
+                var dbFacility = await _context.Facilities.Include(i => i.FacilityImages).FirstOrDefaultAsync(f => f.Id == facilityId);
+
+                if (dbFacility == null)
+                {
+                    responseDTO.Id = 0;
+                    responseDTO.Message = "No se encontró la facilidad con el ID especificado";
+                    return responseDTO;
+                }
+
+                // Eliminar los registros relacionados en la tabla tb_facility_image
+                var facilityImages = _context.facilityImages.Where(fi => fi.FacilityId == facilityId);
+                _context.facilityImages.RemoveRange(facilityImages);
+
+                _context.Facilities.Remove(dbFacility);
+                await _context.SaveChangesAsync();
+
+                // Cargar la lista actualizada de facilidades (incluyendo las imágenes)
+                var updatedFacilities = _context.Facilities.Include(d => d.FacilityImages!).ThenInclude(rti => rti.Image!).ToList();
+                 
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "Eliminación exitosa";
+                responseDTO.Item = updatedFacilities;
+
+                return responseDTO;
+            }
+            catch (Exception ex)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "Error al eliminar la facilidad: " + ex.InnerException?.Message ?? ex.Message;
+                return responseDTO;
+            }
+        }
+
+
+        public async Task<ActionResult<ResponseDTO<Facility>>> UpdateFacility(Facility facility)
+        {
+            var dbFacility = _context.Facilities.Include(d => d.FacilityImages!).ThenInclude(rti => rti.Image!).FirstOrDefault(s => s.Id == facility.Id);
+
+            var responseDTO = new ResponseDTO<Facility>();
+            if (dbFacility == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                int numBytes = facility.HexImageString!.Length / 2;
+                byte[] bytes = new byte[numBytes];
+                for (int i = 0; i < numBytes; ++i)
+                {
+                    bytes[i] = Convert.ToByte(facility.HexImageString!.Substring(i * 2, 2), 16);
+                }
+
+                dbFacility.Id = facility.Id;
+                dbFacility.Description = facility.Description;
+                dbFacility.FacilityImages!.FirstOrDefault()!.Image!.ImageData = bytes;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = facility;
+                return await Task.FromResult(responseDTO);
+            }
+
+        }
+
+
+
+
+    }
 }

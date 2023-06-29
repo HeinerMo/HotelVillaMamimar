@@ -54,4 +54,27 @@ export class HotelService {
     return this.httpClient.post<any>(`${environment.apiUrl}/Feedback/CreateFeedback`, feedback);
   }
 
+  public deleteFacilty(facility: any): Observable<any> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('accept', 'text/plain');
+
+    return this.httpClient.delete<any>(
+      `${environment.apiUrl}/${this.controllerURL}/DeleteFacility`,
+      {
+        headers,
+        body: JSON.stringify(facility)
+      }
+    );
+  }
+
+  public createFacility(facility: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/${this.controllerURL}/AddFacility`, facility);
+  }
+
+  public updateFacility(facility: any): Observable<any> {
+    return this.httpClient.put<any>(`${environment.apiUrl}/${this.controllerURL}/UpdateFacility`, facility);
+  }
+
+
 }

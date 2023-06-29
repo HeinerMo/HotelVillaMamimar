@@ -14,6 +14,9 @@ import { ManageDiscountsComponent } from './components/manage-discounts/manage-d
 import { ManageFeedbackComponent } from './components/manage-feedback/manage-feedback.component';
 import { ManageRoomtypesComponent } from './components/manage-roomtypes/manage-roomtypes.component';
 import { ManageHomePageComponent } from './components/pages/manage-homepage/manage-homepage.component';
+import { ManageFacilitiesComponent } from './components/pages/manage-facilities/manage-facilities.component';
+import { ManageAboutComponent } from './components/pages/manage-about/manage-about.component';
+import { ManageLocationComponent } from './components/pages/manage-location/manage-location.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
@@ -28,7 +31,10 @@ const routes: Routes = [
   { path: 'discounts', component: ManageDiscountsComponent, canActivate:[AuthGuard]},
   { path: 'feedbacks', component: ManageFeedbackComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent},
-  { path: 'manage-homepage', component: ManageHomePageComponent},
+  { path: 'manage-homepage', component: ManageHomePageComponent, canActivate:[AuthGuard]},
+  { path: 'manage-facilities', component: ManageFacilitiesComponent, canActivate:[AuthGuard]},
+  { path: 'manage-about', component: ManageAboutComponent, canActivate:[AuthGuard]},
+  { path: 'manage-location', component: ManageLocationComponent, canActivate:[AuthGuard]},
   { path: '**', component: HomeComponent, canActivate:[AuthGuard]}]
 
 @NgModule({

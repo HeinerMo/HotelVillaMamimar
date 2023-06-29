@@ -12,7 +12,8 @@ namespace CoreEntities.src.Models
     {
         public int? Id { get; set; }
         public string? Description { get; set; }
-
+        [NotMapped]
+        public string? HexImageString { get; set; }
         public IEnumerable<FacilityImage>? FacilityImages { get; set; } 
 
     }
