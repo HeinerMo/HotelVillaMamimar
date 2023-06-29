@@ -1,5 +1,5 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ISeason } from '../../manage-seasons.component';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -24,6 +24,7 @@ import {
   ],
 })
 export class CreateSeasonComponent implements AfterViewInit, OnInit {
+  @ViewChild('inputName') inputName!: ElementRef;
   formControl = new FormControl('');
 
   // Min dates
@@ -71,7 +72,7 @@ export class CreateSeasonComponent implements AfterViewInit, OnInit {
   }
 
   isFormValid() {
-    return this.formControl.valid && this.beginingDateControl.valid && this.endingDateControl.valid;
+    return this.formControl.valid && this.beginingDateControl.valid && this.endingDateControl.valid && (this.inputName.nativeElement.value.trim().length > 0);
   }
 
   checkPercentage(inputElement: HTMLInputElement) {
