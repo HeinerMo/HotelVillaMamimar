@@ -10,6 +10,8 @@ import {
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { toByteArray } from 'base64-js';
 import { HotelService } from 'src/app/services/hotel.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 interface IHotelInformation {
   id?: number;
@@ -53,7 +55,9 @@ export class ManageHomePageComponent implements AfterViewInit, OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private _snackBar: MatSnackBar,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -175,13 +179,16 @@ export class ManageHomePageComponent implements AfterViewInit, OnInit {
       this.hotelService.updateWelcomeInformation(this.hotelInformation.welcomeMessage, this.hotelImage.image.imageData).subscribe((data:any) => {
         if (data.id == 1) {
           this.loadData();
+          this._snackBar.open('Información modificada', 'Cerrar', {
+            duration: 3000
+          });
         }
       })
     }
   }
 
   onNoClick(): void {
-    
+    this.router.navigate(["/pages"]);
   }
 
   isFormValid() {
