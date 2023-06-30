@@ -200,8 +200,8 @@ BEGIN TRANSACTION
 		[name], [porcentage], [startingDate], [endingDate]
 	)
 	VALUES
-		('Temporada alta', 20,'2023-11-1', '2023-03-31')
-		,('Temporada baja', -20,'2023-04-1', '2023-10-31')
+		('Temporada alta', 40,'2023-06-1', '2023-10-31')
+		,('Temporada baja', -20,'2023-01-1', '2023-05-31')
 
 	INSERT INTO [dbo].[tb_admin]
 	(
