@@ -73,19 +73,20 @@ export class ManageAboutComponent {
     }
     return '';
   }
-/*
   submit() {
     if (this.isFormValid()) {
-      this.hotelInformation.welcomeMessage = this.formGroup.get('message')!.value;
+      this.hotelInformation.aboutMessage = this.formGroup.get('message')!.value;
 
-      this.hotelService.updateWelcomeInformation(this.hotelInformation.welcomeMessage, this.hotelImage.image.imageData).subscribe((data:any) => {
+      this.hotelService.updateAboutInformation(this.hotelInformation.aboutMessage).subscribe((data:any) => {
         if (data.id == 1) {
           this.loadData();
         }
       })
+      
+      
+      console.log(this.hotelInformation.aboutMessage)
     }
   }
-*/
 
   isFormValid() {
     return this.formGroup.valid;
