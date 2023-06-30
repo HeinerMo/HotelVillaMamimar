@@ -24,19 +24,73 @@ namespace CoreDataAccess.src.DataAccessObjects
         }
 
         public async Task<ActionResult<ResponseDTO<Advertisement>>> createAdvertisement(Advertisement advertisement)
-        { 
+        {
             var responseDTO = new ResponseDTO<Advertisement>();
 
-            _context.Advertisements.Add(advertisement);
+            int numBytes = advertisement.HexImageString!.Length / 2;
+            byte[] bytes = new byte[numBytes];
+            for (int i = 0; i < numBytes; ++i)
+            {
+                bytes[i] = Convert.ToByte(advertisement.HexImageString!.Substring(i * 2, 2), 16);
+            }
+
+            var newAd = new Advertisement
+            {
+                Url = advertisement.Url,
+                AdvertisementImages = new AdvertisementImage[] {
+                    new AdvertisementImage
+                    {
+                        Image = new Image
+                        {
+                            UniqueIdentifier = Guid.NewGuid(),
+                            ImageData = bytes
+                        }
+                    }
+                }
+            };
+
+            _context.Advertisements.Add(newAd);
             _context.SaveChanges();
-
-
 
             responseDTO.Id = 1;
             responseDTO.Message = "create success";
-            
+            responseDTO.Item = advertisement;
             return await Task.FromResult(responseDTO);
-        }  
+        }
+
+        public async Task<ActionResult<ResponseDTO<Advertisement>>> UpdateAdvertisement(Advertisement advertisement)
+        {
+            var dbAdvertisement = _context.Advertisements.Include(d => d.AdvertisementImages!).ThenInclude(rti => rti.Image!).FirstOrDefault(s => s.Id == advertisement.Id);
+
+            var responseDTO = new ResponseDTO<Advertisement>();
+            if (dbAdvertisement == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+
+                int numBytes = advertisement.HexImageString!.Length / 2;
+                byte[] bytes = new byte[numBytes];
+                for (int i = 0; i < numBytes; ++i)
+                {
+                    bytes[i] = Convert.ToByte(advertisement.HexImageString!.Substring(i * 2, 2), 16);
+                }
+
+                dbAdvertisement.Id = advertisement.Id;
+                dbAdvertisement.Url = advertisement.Url;
+                dbAdvertisement.AdvertisementImages!.FirstOrDefault()!.Image!.ImageData = bytes;
+
+                _context.SaveChanges();
+
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = advertisement;
+                return await Task.FromResult(responseDTO);
+            }
+        }
 
         public async Task<ActionResult<ResponseDTO<List<Advertisement>>>> GetAdvertisiment()
         {

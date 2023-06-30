@@ -1,16 +1,15 @@
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { IAdvertisement } from '../../advertisement.component';
-import { toByteArray } from 'base64-js';
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
-import { FormControl, Validators } from '@angular/forms';
-import { CreateSeasonComponent } from 'src/app/components/manage-seasons/dialogs/create-season/create-season.component';
-import { MAT_DIALOG_DATA,MatDialogRef } from '@angular/material/dialog';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { toByteArray } from 'base64-js';
+import { IAdvertisement } from '../../advertisement.component';
 
 @Component({
   selector: 'app-create-advertisement',
@@ -27,77 +26,108 @@ import { DomSanitizer } from '@angular/platform-browser';
   ],
 })
 export class CreateAdvertisementComponent implements AfterViewInit, OnInit {
-  formControl = new FormControl('');
+  formGroup!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<CreateSeasonComponent>,
-    @Inject(MAT_DIALOG_DATA) public advertisement: IAdvertisement,
-    @Inject(MAT_DATE_LOCALE) private _locale: string,
-    private sanitizer: DomSanitizer
+  ads: IAdvertisement[] = [];
+
+  imageURL: SafeUrl = '';
+  imageSelected = false;
+
+  constructor(public dialogRef: MatDialogRef<CreateAdvertisementComponent>,
+    @Inject(MAT_DIALOG_DATA) public ad: IAdvertisement,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
-   
+    this.formGroup = new FormGroup({
+      url: new FormControl('', Validators.required)
+    });
+  }
+
+  readFileAsArrayBuffer(file: File): Promise<ArrayBuffer> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as ArrayBuffer);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  arrayBufferToHex(arrayBuffer: ArrayBuffer): string {
+    const view = new Uint8Array(arrayBuffer);
+    let hex = '';
+    for (let i = 0; i < view.length; i++) {
+      const byte = view[i].toString(16).padStart(2, '0');
+      hex += byte.toUpperCase();
+    }
+    return hex;
+  }
+
+  convertImageToByteArray(file: File): Promise<Uint8Array> {
+    return new Promise<Uint8Array>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        if (event.target && event.target.result) {
+          const arrayBuffer = event.target.result as ArrayBuffer;
+          const byteArray = new Uint8Array(arrayBuffer);
+          resolve(byteArray);
+        } else {
+          reject(new Error('Failed to read the image file.'));
+        }
+      };
+      reader.onerror = () => {
+        reject(new Error('Failed to read the image file.'));
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  async handleFileSelect(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    const file = fileInput.files![0];
+
+    if (file) {
+      try {
+        const arrayBuffer = await this.convertImageToByteArray(file);
+        const hexString = this.arrayBufferToHex(arrayBuffer);
+        this.ad.hexImage = hexString;
+        this.imageSelected = true;
+        const blobURL = URL.createObjectURL(file);
+        const safeURL: SafeUrl = this.sanitizer.bypassSecurityTrustUrl(blobURL);
+        this.imageURL = safeURL;
+      } catch (error) {
+        console.error('Error reading file:', error);
+        this.imageSelected = false;
+      }
+    }
   }
 
   ngAfterViewInit(): void {
-    this.formControl.setValidators([Validators.required]);
+    this.formGroup.get('name')?.setValidators([Validators.required]);
+    this.formGroup.get('description')?.setValidators([Validators.required]);
+    this.formGroup.get('price')?.setValidators([Validators.required]);
   }
 
-  getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' : '';
+  getErrorMessage(formControlName: string) {
+    const formControl = this.formGroup.get(formControlName);
+    if (formControl && formControl.hasError('required')) {
+      return 'Required field';
+    }
+    return '';
   }
 
   submit() {
     if (this.isFormValid()) {
-      this.dialogRef.close({ id: 1, season: this.advertisement });
+      this.ad.url = this.formGroup.get('url')!.value;
+      this.dialogRef.close({ id: 1, ad: this.ad });
     }
   }
 
   onNoClick(): void {
-    this.dialogRef.close({ id: 0});
+    this.dialogRef.close({ id: 0 });
   }
 
   isFormValid() {
-    return this.formControl.valid;
+    return this.formGroup.valid && this.imageSelected;
   }
-
-  processFile(imageInput: any): void {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-  
-    reader.addEventListener('load', (event: any) => {
-      // Access the Base64-encoded image string
-      let base64String: string = event.target.result;
-  
-      // const hexString: string = this.base64ToHex(base64String);
-      const dataUrlPrefixjpeg = 'data:image/jpeg;base64,';
-      const dataUrlPrefixjpg = 'data:image/jpg;base64,';
-      const dataUrlPrefixpng = 'data:image/png;base64,';
-      if (base64String.startsWith(dataUrlPrefixjpeg)) {
-        base64String = base64String.slice(dataUrlPrefixjpeg.length);
-      }
-      if (base64String.startsWith(dataUrlPrefixjpg)) {
-        base64String = base64String.slice(dataUrlPrefixjpg.length);
-      }
-      if (base64String.startsWith(dataUrlPrefixpng)) {
-        base64String = base64String.slice(dataUrlPrefixpng.length);
-      }
-      
-      // Use the Base64 string as needed
-      // console.log('Base64 string:', base64String);
-
-      let decodedBytes: Uint8Array;
-      decodedBytes = toByteArray(base64String);
-      const blob = new Blob([decodedBytes], { type: 'image/jpg' });
-      let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-      this.advertisement.image = url
-
-    });
-  
-    // Read the file as Data URL (Base64)
-    reader.readAsDataURL(file);
-
-    
-  }
-
 }

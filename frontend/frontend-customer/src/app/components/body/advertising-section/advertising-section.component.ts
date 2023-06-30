@@ -33,10 +33,9 @@ export class AdvertisingSectionComponent  implements OnInit{
         let link: any;
         let image:any;
 
-        item.forEach((a:any) => {
-          let objeto = Object.entries(a);
-          link = objeto[1][1];
-          image = objeto[2][1];
+        item.forEach((ad:any) => {
+          link = ad.url;
+          image = ad.advertisementImages;
           
           let decodedBytes: Uint8Array;
           decodedBytes = toByteArray(image[0].image.imageData);

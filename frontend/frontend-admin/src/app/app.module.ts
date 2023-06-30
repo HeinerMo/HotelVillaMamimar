@@ -45,7 +45,7 @@ import { DeleteRoomtypesComponent } from './components/manage-roomtypes/dialogs/
 import { CreateRoomtypeComponent } from './components/manage-roomtypes/dialogs/create-roomtype/create-roomtype.component';
 import { CreateAdvertisementComponent } from './components/advertisement/dialogs/create-advertisement/create-advertisement.component';
 import { DeleteAdvertisementComponent } from './components/advertisement/dialogs/delete-advertisement/delete-advertisement.component';
-import { EditAdvertisementComponent } from './components/advertisement/dialogs/edit-advertisement/edit-advertisement.component';
+import { ModifyAdvertisementComponent } from './components/advertisement/dialogs/edit-advertisement/edit-advertisement.component';
 import { ModifyRoomtypeComponent } from './components/manage-roomtypes/dialogs/modify-roomtype/modify-roomtype.component';
 import { ManageRoomComponent } from './components/manage-roomtypes/manage-room/manage-room.component';
 import { ModifyRoomComponent } from './components/manage-roomtypes/manage-room/dialogs/modify-room/modify-room.component';
@@ -93,7 +93,7 @@ import { ViewReservationComponent } from './components/reservations/dialogs/view
     CreateAdvertisementComponent,
     DeleteAdvertisementComponent,
     DeleteRoomtypesComponent,
-    EditAdvertisementComponent,
+    ModifyAdvertisementComponent,
     ModifyRoomtypeComponent,
     ManageRoomComponent,
     ModifyRoomComponent,
