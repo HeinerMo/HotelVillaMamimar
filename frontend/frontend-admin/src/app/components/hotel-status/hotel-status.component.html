@@ -5,6 +5,10 @@
   <div class="row container-roomsStatus">
     <h2>Estado de las habitaciones - {{ today | date:'dd/MM/yyyy' }}</h2>
 
+
+    <button mat-button color="primary" [ngClass]="'send-button'" (click)="this.convertToPDF();">Imprimir</button>
+
+
     <div class="example-container mat-elevation-z8">
       <ng-container *ngIf="dataSource">
         <mat-table #table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" class="main-color">

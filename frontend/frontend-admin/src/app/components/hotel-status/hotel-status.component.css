@@ -34,3 +34,19 @@ mat-header-cell {
   flex-direction: column;
   align-content: center;
 }
+
+.send-button {
+  margin: 2em;
+  background-color: #626666;
+  color: black;
+  transition: .4s;
+}
+
+.send-button:focus, .send-button:hover {
+  background-color: #b1b1b1;
+  transition: .4s;
+}
+
+.send-button:active {
+  background-color: #ffa260;
+}

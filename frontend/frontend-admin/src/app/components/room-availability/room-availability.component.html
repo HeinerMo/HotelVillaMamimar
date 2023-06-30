@@ -47,7 +47,10 @@
 
     <button mat-button color="primary" [ngClass]="'send-button'" (click)="this.sendRequest()">Consultar</button>
 
-    <div class="rooms-table" *ngIf="this.availableRooms.length > 0">
+    <button mat-button color="primary" [ngClass]="'send-button'" (click)="this.convertToPDF();">Imprimir</button>
+
+
+    <div  id="pdfTable" #pdfTable class="rooms-table" *ngIf="this.availableRooms.length > 0">
         <div class="mat-elevation-z8" [ngClass]="'mat-table'">
             <table class="main-color" mat-table [dataSource]="dataSource">
 
@@ -76,6 +79,9 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
         </mat-paginator>
     </div>
+
+    
+
     <hr>
     <span *ngIf="this.availableRooms.length == 0">Ingrese los datos solicitados para que se muestren las
         habitaciones.</span>

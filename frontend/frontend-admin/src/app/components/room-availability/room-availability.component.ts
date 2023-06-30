@@ -11,6 +11,16 @@ import { RoomService } from 'src/app/services/room.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
+
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
+import autoTable,{ UserOptions } from 'jspdf-autotable';
+import 'jspdf-autotable'
+
+interface JsPDFWithPlugin extends jsPDF {
+  autoTable: (options: UserOptions) => jsPDF;
+}
+
 interface IRoomType {
   id: number,
   name: String
@@ -36,9 +46,14 @@ interface IAvailableRoom {
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
 })
+
+
+
 export class RoomAvailabilityComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+
+  
   // Configure Table
   displayedColumns: string[] = ['roomNumber', 'roomTypeName', 'totalCost'];
   availableRooms: IAvailableRoom[] = []
@@ -59,7 +74,7 @@ export class RoomAvailabilityComponent implements OnInit {
   constructor(
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private roomTypeService: RoomTypeService,
-    private roomService: RoomService
+    private roomService: RoomService,
   ) { }
 
   ngOnInit(): void {
@@ -102,6 +117,41 @@ export class RoomAvailabilityComponent implements OnInit {
   
     return diffInDays;
   }
+
+  public convertToPDF(){
+    
+    const doc = new jsPDF('portrait', 'px', 'a4') as JsPDFWithPlugin;
+
+    // Convert the availableRooms data to tableData format
+    const tableData: any[] = this.availableRooms.map((room: IAvailableRoom) => [
+      room.roomNumber,
+      room.roomTypeName,
+      room.costTotal
+    ]);
+  
+    doc.autoTable({
+      head: [['roomNumber', 'roomTypeName', 'totalCost']], // Table headers
+      body: tableData, // Table data
+    });
+
+    const text = 'Disponibilidad de Habitaciones';
+    const fontSize = 12; // Set your desired font size here
+    doc.setFontSize(fontSize);
+
+    const textWidth = doc.getStringUnitWidth(text) * fontSize;
+    const pdfWidth = doc.internal.pageSize.getWidth();
+
+    // Calculate the x-coordinate to center the text
+    const centerX = (pdfWidth - textWidth) / 2;
+
+    // Add the text at the calculated center position
+    doc.text(text, centerX, 20);
+  
+    doc.save('disponibilidadHabitacion.pdf'); // Save the generated PDF
+      
+  }
+
+
   
 
   sendRequest() {
