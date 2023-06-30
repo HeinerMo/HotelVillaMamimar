@@ -8,6 +8,8 @@ import {
 } from '@angular/material-moment-adapter';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { HotelService } from 'src/app/services/hotel.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 interface IHotelInformation {
   id?: number;
@@ -37,7 +39,9 @@ export class ManageAboutComponent {
   };
   constructor(
     private sanitizer: DomSanitizer,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private _snackBar: MatSnackBar,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -80,12 +84,16 @@ export class ManageAboutComponent {
       this.hotelService.updateAboutInformation(this.hotelInformation.aboutMessage).subscribe((data:any) => {
         if (data.id == 1) {
           this.loadData();
+          this._snackBar.open('Información modificada', 'Cerrar', {
+            duration: 3000
+          });
         }
       })
-      
-      
-      console.log(this.hotelInformation.aboutMessage)
     }
+  }
+
+  onNoClick(): void {
+    this.router.navigate(["/pages"]);
   }
 
   isFormValid() {
