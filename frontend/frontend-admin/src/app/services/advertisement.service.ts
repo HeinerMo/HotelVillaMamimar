@@ -16,6 +16,14 @@ export class AdvertisementService {
     this.controllerURL = "Advertisement";
   }
 
+  public createAdvertisement(advertisement: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/${this.controllerURL}/CreateAdvertisement`, advertisement);
+  }
+
+  public modifyAdvertisement(advertisement: any): Observable<any> {
+    return this.httpClient.put<any>(`${environment.apiUrl}/${this.controllerURL}/UpdateAdvertisement`, advertisement);
+  }
+
   public getAdvertisement(): Observable<ResponseDTO<Advertisement>> {
     return this.httpClient.get<ResponseDTO<Advertisement>>(`${environment.apiUrl}/${this.controllerURL}/GetAdvertisiment`);
   }
