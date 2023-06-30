@@ -130,7 +130,7 @@ export class RoomAvailabilityComponent implements OnInit {
     ]);
   
     doc.autoTable({
-      head: [['roomNumber', 'roomTypeName', 'totalCost']], // Table headers
+      head: [['Número', 'Tipo', 'Costo total']], // Table headers
       body: tableData, // Table data
     });
 
