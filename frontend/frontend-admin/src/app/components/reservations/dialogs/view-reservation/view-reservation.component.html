@@ -1,0 +1,37 @@
+<div class="container">
+    <h3 mat-dialog-title>Reservacion</h3>
+    <hr>
+    <div mat-dialog-content>
+      <strong>Id:</strong> {{reservation.id}}
+      <p></p>
+      <hr>
+      <strong>Nombre:</strong> {{reservation.customerName}}
+      <p></p>
+      <hr>
+      <strong>Apellidos:</strong> {{reservation.customerLastName}}
+      <p></p>
+      <hr>
+      <strong>Email:</strong> {{reservation.customerEmail}}
+      <p></p>
+      <hr>
+      <strong>Tarjeta:</strong> {{reservation.customerCard}}
+      <p></p>
+      <hr>
+      <strong>Fecha Ingreso:</strong> {{reservation.startingDate}}
+      <p></p>
+      <hr>
+      <strong>Fecha Salida:</strong> {{reservation.endingDate}}
+      <p></p>
+      <hr>
+      <strong>Numero de Cuarto</strong> {{reservation.roomId}}
+      <p></p>
+      <hr>
+      <strong>Tipo de Cuarto</strong> {{reservation.roomType}}
+      <p></p>
+      <hr>
+    </div>
+  
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cerrar</button>
+    </div>
+  </div>

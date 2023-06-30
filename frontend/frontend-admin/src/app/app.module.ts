@@ -52,6 +52,7 @@ import { ModifyRoomComponent } from './components/manage-roomtypes/manage-room/d
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { ManageHomePageComponent } from './components/pages/manage-homepage/manage-homepage.component';
+import { ViewReservationComponent } from './components/reservations/dialogs/view-reservation/view-reservation.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { ManageHomePageComponent } from './components/pages/manage-homepage/mana
     ManageRoomComponent,
     ModifyRoomComponent,
     ManageHomePageComponent,
+    ViewReservationComponent,
   ],
   imports: [
     AppRoutingModule,
