@@ -1,4 +1,95 @@
-<app-navigation-menu></app-navigation-menu>
 <div class="page-content">
-    <p>reservations works!</p>
+    <app-navigation-menu></app-navigation-menu>
+
+    <div ngClass="main-container">
+        <p class="component-title">Gestionar Reservaciones</p>
+
+        <div ngClass="crud-container">
+           
+
+            <div class="table-container mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                    </ng-container>
+
+                    <!-- Id CustomerName -->
+                    <ng-container matColumnDef="customerName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                        <td mat-cell *matCellDef="let row"> {{row.customerName}} </td>
+                    </ng-container>
+
+                    <!-- Id CustomerLastName -->
+                    <ng-container matColumnDef="customerLastName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
+                        <td mat-cell *matCellDef="let row"> {{row.customerLastName}} </td>
+                    </ng-container>
+
+                    <!-- Id CustomerEmail -->
+                    <ng-container matColumnDef="customerEmail">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td mat-cell *matCellDef="let row"> {{row.customerEmail}} </td>
+                    </ng-container>
+
+                    <!-- Id CustomerCard -->
+                    <ng-container matColumnDef="customerCard">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tarjeta </th>
+                        <td mat-cell *matCellDef="let row"> {{row.customerCard}} </td>
+                    </ng-container>
+
+                    <!-- Id StartingDate -->
+                    <ng-container matColumnDef="startingDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Ingreso </th>
+                        <td mat-cell *matCellDef="let row"> {{row.startingDate}} </td>
+                    </ng-container>
+
+                    <!-- Id EndingDate -->
+                    <ng-container matColumnDef="endingDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Salida </th>
+                        <td mat-cell *matCellDef="let row"> {{row.endingDate}} </td>
+                    </ng-container>
+
+                    <!-- Id roomId -->
+                    <ng-container matColumnDef="roomId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> N Cuarto </th>
+                        <td mat-cell *matCellDef="let row"> {{row.roomId}} </td>
+                    </ng-container>
+                    
+                    <!-- Id roomType -->
+                    <ng-container matColumnDef="roomType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Cuarto </th>
+                        <td mat-cell *matCellDef="let row"> {{row.roomType}} </td>
+                    </ng-container>
+
+                    <!-- actions -->
+                    <ng-container matColumnDef="actions">
+      
+                        <th ngClass="actions-container" mat-header-cell *matHeaderCellDef>
+                            Actions
+                        </th>
+                        <td ngClass="actions-container" mat-cell *matCellDef="let row">
+                            <button mat-icon-button color="primary" (click)="this.openViewReservationDialog(row)">
+                                <mat-icon aria-label="Visibility">visibility</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="this.deleteReservationById(row.reservationId)">
+                                <mat-icon aria-label="Delete">delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr ngClass="sticky-header" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                   
+                </table>
+
+            </div>
+            <mat-paginator ngClass="table-paginator" [pageSizeOptions]="[5, 10, 20, 30]"
+                aria-label="Seleccionar páginas"></mat-paginator>
+        </div>
+
+    </div>
 </div>

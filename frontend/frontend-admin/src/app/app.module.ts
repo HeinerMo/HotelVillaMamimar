@@ -59,6 +59,8 @@ import { ModifyFacilityComponent } from './components/pages/manage-facilities/di
 import { ManageAboutComponent } from './components/pages/manage-about/manage-about.component';
 import { ManageLocationComponent } from './components/pages/manage-location/manage-location.component';
 import { CreateAdminComponent } from './components/add-admins/dialogs/create-admin/create-admin.component';
+import { ViewReservationComponent } from './components/reservations/dialogs/view-reservation/view-reservation.component';
+
 
 @NgModule({
   declarations: [
@@ -103,6 +105,7 @@ import { CreateAdminComponent } from './components/add-admins/dialogs/create-adm
     ManageAboutComponent,
     ManageLocationComponent,
     CreateAdminComponent,
+    ViewReservationComponent
   ],
   imports: [
     AppRoutingModule,
