@@ -71,19 +71,17 @@ export class ManageLocationComponent {
     }
     return '';
   }
-/*
+
   submit() {
     if (this.isFormValid()) {
-      this.hotelInformation.welcomeMessage = this.formGroup.get('message')!.value;
-
-      this.hotelService.updateWelcomeInformation(this.hotelInformation.welcomeMessage, this.hotelImage.image.imageData).subscribe((data:any) => {
+      this.hotelLocation.extraDetails = this.formGroup.get('extraDetails')!.value;
+      this.hotelService.updateHotelLocation(this.hotelLocation.extraDetails).subscribe((data:any) => {
         if (data.id == 1) {
           this.loadData();
         }
       })
     }
   }
-*/
 
   isFormValid() {
     return this.formGroup.valid;

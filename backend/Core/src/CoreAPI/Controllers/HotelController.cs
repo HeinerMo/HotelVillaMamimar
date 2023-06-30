@@ -46,6 +46,13 @@ namespace CoreAPI.Controllers
             return await hotelBusiness.UpdateAboutInformation(hotelInformation);
         }
 
+        [HttpPut]
+        [Route("UpdateHotelLocation")]
+        public async Task<ActionResult<ResponseDTO<Location>>> UpdateHotelLocation(Location location)
+        {
+            return await hotelBusiness.UpdateHotelLocation(location);
+        }
+        
         [HttpGet]
         [Route("GetWelcomeImage")]
         public async Task<ActionResult<ResponseDTO<HotelWelcomeImage>>> GetWelcomeImage()

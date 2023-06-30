@@ -86,4 +86,14 @@ export class HotelService {
     return this.httpClient.put<any>(url, hotelInformation);
   }
 
+  public updateHotelLocation(extraDetails: string): Observable<any> {
+    const url = `${environment.apiUrl}/${this.controllerURL}/UpdateHotelLocation`;
+  
+    let hotelLocation = {
+      extraDetails: extraDetails
+    }
+  
+    return this.httpClient.put<any>(url, hotelLocation);
+  }
+
 }

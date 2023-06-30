@@ -47,6 +47,12 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await hotelDataAccess.UpdateAboutInformation(hotelInformation);
         }
 
+        [Route("UpdateHotelLocation")]
+        public async Task<ActionResult<ResponseDTO<Location>>> UpdateHotelLocation(Location location)
+        {
+            return await hotelDataAccess.UpdateHotelLocation(location);
+        }
+
         public async Task<ActionResult<ResponseDTO<Location>>> GetLocation()
         {
             return await hotelDataAccess.GetLocation();

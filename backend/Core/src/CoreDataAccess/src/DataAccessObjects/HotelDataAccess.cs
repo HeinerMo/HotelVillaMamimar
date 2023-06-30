@@ -118,7 +118,6 @@ namespace CoreDataAccess.src.DataAccessObjects
         public async Task<ActionResult<ResponseDTO<HotelInformation>>> UpdateAboutInformation(HotelInformation hotelInformation)
         {
             var dbHotelInformation = _context.HotelInformation.FirstOrDefault();
-
             var responseDTO = new ResponseDTO<HotelInformation>();
             if (dbHotelInformation == null)
             {
@@ -129,12 +128,31 @@ namespace CoreDataAccess.src.DataAccessObjects
             else
             {
                 dbHotelInformation.AboutMessage = hotelInformation.AboutMessage;
-
                 _context.SaveChanges();
-
                 responseDTO.Id = 1;
                 responseDTO.Message = "update success";
                 responseDTO.Item = dbHotelInformation;
+                return await Task.FromResult(responseDTO);
+            }
+        }
+
+        public async Task<ActionResult<ResponseDTO<Location>>> UpdateHotelLocation(Location location)
+        {
+            var dbLocation = _context.Locations.FirstOrDefault();
+            var responseDTO = new ResponseDTO<Location>();
+            if (dbLocation == null)
+            {
+                responseDTO.Id = 0;
+                responseDTO.Message = "update failed";
+                return await Task.FromResult(responseDTO);
+            }
+            else
+            {
+                dbLocation.ExtraDetails = location.ExtraDetails;
+                _context.SaveChanges();
+                responseDTO.Id = 1;
+                responseDTO.Message = "update success";
+                responseDTO.Item = dbLocation;
                 return await Task.FromResult(responseDTO);
             }
         }
