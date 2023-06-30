@@ -1,11 +1,16 @@
-import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { AdminService } from 'src/app/services/admin.service';
-import { Admin } from 'src/app/models/Admin';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DomSanitizer } from '@angular/platform-browser';
+import { toByteArray } from 'base64-js';
+import { HotelService } from 'src/app/services/hotel.service';
+import { CreateAdminComponent } from './dialogs/create-admin/create-admin.component';
+import { AdminService } from 'src/app/services/admin.service';
 
-interface IAdmin {
+export interface IAdmin {
   id: number;
   userName: string;
   password: string;
@@ -16,79 +21,81 @@ interface IAdmin {
   templateUrl: './add-admins.component.html',
   styleUrls: ['./add-admins.component.css']
 })
-export class AddAdminsComponent implements OnInit{
+export class AddAdminsComponent implements OnInit, AfterViewInit  {
+
+  displayedColumns: string[] = ['id', 'userName','actions'];
+  admins: IAdmin[] = [];
+  dataSource: MatTableDataSource<IAdmin>;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['userName'];
-  admins: IAdmin[] = []
-  dataSource = new MatTableDataSource<IAdmin>(this.admins);
+  columnsToDisplayWithExpand: string[];
 
-  userNameControl: FormControl = new FormControl();
-  passwordControl: FormControl = new FormControl();
-  confirmPasswordControl: FormControl = new FormControl();
-
-  constructor(private adminService: AdminService) { }
-
-
-  passwordMatchValidator(control: AbstractControl) {
-    const password = this.passwordControl.value;
-    const confirmPassword = control.value;
-    return password === confirmPassword ? null : { passwordMismatch: true };
-  }
-
-  sendRequest() {
-    if (this.userNameControl.valid && this.passwordControl.valid && this.confirmPasswordControl.valid) {
-      if (this.passwordControl.value === this.confirmPasswordControl.value) {
-
-        var admin: Admin = new Admin({ userName: this.userNameControl.value, password: this.passwordControl.value });
-
-        this.adminService.CreateAdmin(admin).subscribe((responseDto) => {
-          if (responseDto.id == 0) {
-            console.log("Todo bien");
-          } else {
-            this.userNameControl.setValue("");
-            this.passwordControl.setValue("");
-            this.confirmPasswordControl.setValue("");
-          }
-        });
-
-      }
-    } else {
-      this.userNameControl.markAsTouched();
-      this.passwordControl.markAsTouched();
-      this.confirmPasswordControl.markAsTouched();
-    }
-    this.updateAdmins();
+  constructor(
+    public adminService: AdminService,
+    public dialogService: MatDialog,
+    private _snackBar: MatSnackBar,
+    private sanitizer: DomSanitizer,
+  ) {
+    this.dataSource = new MatTableDataSource<IAdmin>(this.admins);
+    this.columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
   }
 
   ngOnInit(): void {
-    this.userNameControl.setValidators([Validators.required]);
-    this.passwordControl.setValidators([Validators.required]);
-    this.confirmPasswordControl.setValidators([
-      Validators.required,
-      (control: AbstractControl) => this.passwordMatchValidator(control)
-    ]);
-    
-    this.updateAdmins();
-    this.updateAdmins();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
+    this.getAdmins();  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+    if (this.paginator) {
+      this.paginator._intl.nextPageLabel = 'Siguiente';
+      this.paginator._intl.previousPageLabel = 'Anterior';
+      this.paginator._intl.itemsPerPageLabel = 'Cantidad por página:';
+    }
   }
 
-  updateAdmins() {
-    this.adminService.getAdmins().subscribe(data => {
-      if (data.id == 1 && data.item != undefined) {
-        this.admins = data.item.map(admin => ({
-          id: admin.id!,
-          userName: admin.userName!,
-          password: admin.password!
-        }));
-      } else {
-        this.admins = []; // Limpiar el arreglo si no hay administradores
+  getAdmins() {
+    this.adminService.getAdmins().subscribe((data) => {
+      if (data.id === 1) {
+        this.reloadTable(data.item);
       }
-      this.dataSource = new MatTableDataSource<IAdmin>(this.admins);
-      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  reloadTable(admins: IAdmin[]) {
+    this.admins = admins;
+    this.dataSource.data = this.admins;
+  }
+
+  public openCreateAdminDialog() {
+    const dialogRef = this.dialogService.open(CreateAdminComponent, {
+      data: {}
     });
 
-  }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.id === 1) {
 
+        let admin = result.admin;
+
+        let adminFormatted = {
+          userName: admin.userName,
+          password: admin.password,
+        }
+
+        this.adminService.CreateAdmin(adminFormatted).subscribe(data => {
+          if (data.id == 1) {
+            this.getAdmins();
+            this._snackBar.open('Administrador creado', 'Cerrar', {
+              duration: 3000
+            });
+          }
+        })
+      }
+    });
+  }
 }

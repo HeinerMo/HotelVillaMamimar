@@ -18,5 +18,8 @@ namespace CoreEntities.src.Models
 
         public Room? Room { get; set; }
         public Customer? Customer { get; set; }
+
+        [NotMapped]
+        public string? roomTypeName { get; set; }
     }
 }

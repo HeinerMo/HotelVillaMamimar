@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CoreEntities.DataTranferObjects;
 using CoreEntities.src.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CoreBusiness.src.BusinessAccessObjects
@@ -23,6 +24,11 @@ namespace CoreBusiness.src.BusinessAccessObjects
         public async Task<ActionResult<ResponseDTO<Advertisement>>> createAdvertisement(Advertisement advertisement)
         { 
             return await advertisementDataAcess.createAdvertisement(advertisement);
+        }
+
+        public async Task<ActionResult<ResponseDTO<Advertisement>>> UpdateAdvertisement(Advertisement advertisement)
+        {
+            return await advertisementDataAcess.UpdateAdvertisement(advertisement);
         }
 
         public async Task<ActionResult<ResponseDTO<List<Advertisement>>>> GetAdvertisiment()

@@ -70,8 +70,9 @@ export class AdminService {
     return this.httpClient.put<ResponseDTO<any>>(`${environment.apiUrl}/${this.controllerURL}/CreateAdmin`, admin);
   }
 
-  public getAdmins(): Observable<ResponseDTO<Admin[]>> {
-    return this.httpClient.get<ResponseDTO<Admin[]>>(`${environment.apiUrl}/${this.controllerURL}/GetAdmins`);
+  public getAdmins(): Observable<any> {
+    return this.httpClient.get<any>(`${environment.apiUrl}/${this.controllerURL}/GetAdmins`);
   }
+  
 
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,14 +10,13 @@ import { Advertisement } from 'src/app/models/Advertisement';
 import { AdvertisementService } from 'src/app/services/advertisement.service';
 import { CreateAdvertisementComponent } from './dialogs/create-advertisement/create-advertisement.component';
 import { DeleteAdvertisementComponent } from './dialogs/delete-advertisement/delete-advertisement.component';
-import { EditAdvertisementComponent } from './dialogs/edit-advertisement/edit-advertisement.component';
-
-
+import { ModifyAdvertisementComponent } from './dialogs/edit-advertisement/edit-advertisement.component';
 
 export interface IAdvertisement {
   id: number;
   url: string;
-  image: any;
+  images: any;
+  hexImage?: string;
 }
 
 @Component({
@@ -25,8 +24,8 @@ export interface IAdvertisement {
   templateUrl: './advertisement.component.html',
   styleUrls: ['./advertisement.component.css']
 })
-export class AdvertisementComponent implements AfterViewInit{
-  displayedColumns: string[] = ['id', 'url','actions'];
+export class AdvertisementComponent implements AfterViewInit {
+  displayedColumns: string[] = ['id', 'url', 'image', 'actions'];
   // advertisement: Advertisement[] = [];
   advertisement: IAdvertisement[] = [];
   dataSource: MatTableDataSource<IAdvertisement> = new MatTableDataSource<IAdvertisement>(this.advertisement);
@@ -47,36 +46,52 @@ export class AdvertisementComponent implements AfterViewInit{
     this.getAllAdvertisement();
   }
 
+  getImageFromBytes(adImages: any[]) {
+
+    if (adImages.length > 0) {
+      let imageEncoded = adImages[0].image.imageData;
+
+      let decodedBytes: Uint8Array;
+      const byteArray = new Uint8Array([]);
+
+      decodedBytes = toByteArray(imageEncoded);
+      const blob = new Blob([decodedBytes], { type: 'image/png' });
+      let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+
+      return url;
+    }
+
+    return "";
+  }
+
   getAllAdvertisement() {
     this.advertisementService.getAdvertisement().subscribe((data: any) => {
 
       if (data.id == 1) {
+        this.advertisement = [];
         let item: [] = data.item;
         let link: any;
-        let image:any;
-        let id: any; 
-        item.forEach((a:any) => {
-          let objeto = Object.entries(a);
-          id = objeto[0][1];
-          link = objeto[1][1];
-          image = objeto[2][1];
-          let decodedBytes: Uint8Array;
-          decodedBytes = toByteArray(image[0].image.imageData);
-          const blob = new Blob([decodedBytes], { type: 'image/jpg' });
-          let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+        let images: any;
+        let id: any;
+        item.forEach((ad: any) => {
+          id = ad.id;
+          link = ad.url;
+          images = ad.advertisementImages;
+
           const advertisement: IAdvertisement = {
             id: id,
             url: link,
-            image: url
+            images: images,
+            hexImage: images[0].image.imageData
           }
-         this.createAdvertise(advertisement)
+          this.createAdvertise(advertisement)
         });
         this.reloadTable(this.advertisement)
       }
     })
   }
 
-  createAdvertise(ad :IAdvertisement){
+  createAdvertise(ad: IAdvertisement) {
     this.advertisement.push(ad);
   }
 
@@ -85,68 +100,57 @@ export class AdvertisementComponent implements AfterViewInit{
       data: {}
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result != undefined && result.id === 1) {
-    //     let season = result.season;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.id === 1) {
+        let ad = result.ad;
 
-    //     let startingDate = `${season.startingDate._i.year}-${season.startingDate.format("MM")}-${season.startingDate._i.date}`;
-    //     let endingDate = `${season.endingDate._i.year}-${season.endingDate.format("MM")}-${season.endingDate._i.date}`;
+        let adFormatted = {
+          url: ad.url,
+          hexImageString: ad.hexImage
+        }
 
-    //     let seasonFormatted = {
-    //       name: season.name,
-    //       porcentage: (Number)(season.porcentage),
-    //       startingDate: startingDate,
-    //       endingDate: endingDate
-    //     }
-    //     this.seasonServive.createSeason(seasonFormatted).subscribe(data => {
-    //       if (data.id == 1) {
-    //         data.item.forEach((season: ISeason) => {
-    //           let startingDate = new Date(season.startingDate);
-    //           let endingDate = new Date(season.endingDate)
-    //           season.startingDate = startingDate;
-    //           season.endingDate = endingDate;
-    //         });
-    //         this.reloadTable(data.item)
-    //         this._snackBar.open('Temporada creada', 'Cerrar', {
-    //           duration: 3000
-    //         });
-    //       }
-    //     })
-    //   }
-    // });
+        this.advertisementService.createAdvertisement(adFormatted).subscribe(data => {
+          if (data.id == 1) {
+            this.getAllAdvertisement();
+            this._snackBar.open('Publicidad creada', 'Cerrar', {
+              duration: 3000
+            });
+          }
+        })
+      }
+    });
   }
 
   openModifyDialog(advertisement: IAdvertisement) {
-    let newAdvertise: IAdvertisement = {
+    let newAdvertisement: IAdvertisement = {
       id: advertisement.id,
       url: advertisement.url,
-      image: advertisement.image
+      images: advertisement.images,
+      hexImage: advertisement.hexImage
     }
 
-    const dialogRef = this.dialogService.open(EditAdvertisementComponent, {
-      data: newAdvertise
+    const dialogRef = this.dialogService.open(ModifyAdvertisementComponent, {
+      data: newAdvertisement
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined && result.id === 1) {
         let advertisement = result.advertisement;
-       
-        // let seasonFormatted = {
-        //   id: season.id,
-        //   name: season.name,
-        //   porcentage: (Number)(season.porcentage),
-        //   startingDate: startingDate,
-        //   endingDate: endingDate
-        // }
 
-        // this.seasonServive.modifySeason(seasonFormatted).subscribe(data => {
-        //   if (data.id == 1) {
-        //     this._snackBar.open('Temporada modificada', 'Cerrar', {
-        //       duration: 3000
-        //     });
-        //     this.getAllSeasons();
-        //   }
-        // })
+        let adFormatted = {
+          id: advertisement.id,
+          url: advertisement.url,
+          hexImageString: advertisement.hexImage
+        }
+
+        this.advertisementService.modifyAdvertisement(adFormatted).subscribe(data => {
+           if (data.id == 1) {
+             this._snackBar.open('Publicidad modificada', 'Cerrar', {
+               duration: 3000
+             });
+             this.getAllAdvertisement();
+           }
+        })
       }
     });
   }
@@ -155,7 +159,7 @@ export class AdvertisementComponent implements AfterViewInit{
     let newAdvertise: IAdvertisement = {
       id: advertisement.id,
       url: advertisement.url,
-      image: advertisement.image
+      images: advertisement.images
     }
 
     const dialogRef = this.dialogService.open(DeleteAdvertisementComponent, {
@@ -166,10 +170,6 @@ export class AdvertisementComponent implements AfterViewInit{
       if (result != undefined && result.id === 1) {
         let advertisement = result.advertisement;
 
-        let Formmatted = {
-
-        }
-
         let advertisementFormatted = {
           id: advertisement.id,
           url: advertisement.url
@@ -177,29 +177,8 @@ export class AdvertisementComponent implements AfterViewInit{
 
         this.advertisementService.deleteAdvertisement(advertisementFormatted).subscribe(data => {
           if (data.id == 1) {
-            let item: [] = data.item;
-            let link: any;
-            let image:any;
-            let id: any; 
-            this.advertisement = [];
-            item.forEach((a:any) => {
-              let objeto = Object.entries(a);
-              id = objeto[0][1];
-              link = objeto[1][1];
-              image = objeto[2][1];
-              let decodedBytes: Uint8Array;
-              decodedBytes = toByteArray(image[0].image.imageData);
-              const blob = new Blob([decodedBytes], { type: 'image/jpg' });
-              let url = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
-              const advertisement: IAdvertisement = {
-                id: id,
-                url: link,
-                image: url
-              }
-              this.createAdvertise(advertisement)
-            });
-            this.reloadTable(this.advertisement)
-            this._snackBar.open('Temporada eliminada', 'Cerrar', {
+            this.getAllAdvertisement();
+            this._snackBar.open('Publicidad eliminada', 'Cerrar', {
               duration: 3000
             });
           }

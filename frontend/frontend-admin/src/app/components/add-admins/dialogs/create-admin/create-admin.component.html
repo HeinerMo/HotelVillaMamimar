@@ -1,0 +1,27 @@
+<div class="dialog-container">
+    <h3 mat-dialog-title>Crear Administrador</h3>
+
+    <form class="mat-dialog-content" [formGroup]="formGroup" (ngSubmit)="submit()">
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <mat-label>Nombre de usuario</mat-label>
+                <input matInput formControlName="userName" class="form-control" maxlength="500">
+                <mat-hint align="end">{{ formGroup.get('userName')?.value?.length || 0 }}/500</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" class="form-control" maxlength="500" type="password">
+                <mat-hint align="end">{{ formGroup.get('password')?.value?.length || 0 }}/500</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button [disabled]="!isFormValid()" (click)="submit()" [mat-dialog-close]="1">Crear</button>
+            <button mat-button (click)="onNoClick()">Cancelar</button>
+        </div>
+    </form>
+</div>

@@ -23,5 +23,15 @@ namespace CoreBusiness.src.BusinessAccessObjects
             return await reservationDataAccess.CreateReservation(reservation);
         }
 
+        public async Task<ActionResult<ResponseDTO<List<Reservation>>>> GetReservationsToList()
+        {
+            return await reservationDataAccess.GetReservationsToList();
+        }
+
+        public async Task<ActionResult<ResponseDTO<List<Reservation>>>> DeleteReservation(int id)
+        { 
+            return await reservationDataAccess.DeleteReservation(id);
+        }
+
     }
 }
